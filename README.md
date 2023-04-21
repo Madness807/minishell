@@ -1,6 +1,6 @@
 # minishell
 
-# Table des matiéres
+# Table des matières
 
 1. [BUT](#But-1)
 2. [Fonctions autorisées](#Function-autorisée-pour-ce-projet-1)
