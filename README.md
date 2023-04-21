@@ -1,4 +1,4 @@
-# minishell
+# MINISHELL
 
 # Table des matières
 
