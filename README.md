@@ -1,6 +1,11 @@
 # minishell
 
-Function autorisée pour ce projet 
+# Table des matiéres
+
+1. [BUT](#But-1)
+2. [Fonctions autorisées](#Function-autorisée-pour-ce-projet-1)
+
+# Fonctions autorisées 
 
 |Fonction           |Utilité                                                            |Prototype                                                                             |Bibliothèque|
 |:----------------- |:------------------------------------------------------------------|:-------------------------------------------------------------------------------------|--------------|
