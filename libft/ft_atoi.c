@@ -3,36 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/10 22:27:55 by jo                #+#    #+#             */
-/*   Updated: 2022/10/14 18:53:45 by joterret         ###   ########.fr       */
+/*   Created: 2022/08/13 11:59:11 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/27 16:26:17 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Transform a string in a integer
+		Return : 
+			the transformed integer
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	neg;
 	int	res;
-	int	sign;
 
 	i = 0;
+	neg = 1;
 	res = 0;
-	sign = 1;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (str[i] == '-')
 	{
-		if (nptr[i] == '-')
-			sign *= -1;
+		neg = -1;
 		i++;
 	}
-	while (nptr[i] != 0 && (nptr[i] >= '0' && nptr[i] <= '9'))
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res = (res * 10) + (nptr[i] - 48);
+		res = ((res * 10) + str[i] - '0');
 		i++;
 	}
-	return (sign * res);
+	return (res * neg);
 }

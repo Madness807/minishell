@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   core_xx.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/10 21:51:22 by aschaefe          #+#    #+#             */
-/*   Updated: 2022/10/17 14:05:53 by aschaefe         ###   ########.fr       */
+/*   Created: 2022/11/09 14:21:07 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/11/11 17:04:02 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/******************************************************************************
-
-******************************************************************************/
-
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t siz)
+int	core_xx(unsigned int nbr)
 {
-	size_t	i;
+	int	res;
 
-	i = 0;
-	if (siz == 0)
-		return (ft_strlen(src));
-	while (src[i] && i < siz - 1)
+	res = 0;
+	if (nbr >= 16)
 	{
-		dst[i] = src[i];
-		i++;
+		res += core_xx(nbr / 16);
+		res += core_xx(nbr % 16);
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	if (nbr < 16)
+	{
+		res++;
+		if (nbr <= 9)
+			ft_putchar_fd(nbr + '0', 1);
+		else
+			ft_putchar_fd((nbr - 10) + 'A', 1);
+	}
+	return (res);
 }

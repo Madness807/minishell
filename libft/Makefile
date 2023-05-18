@@ -39,31 +39,35 @@ SRCS	=	ft_atoi.c \
 			ft_strmapi.c \
 			ft_striteri.c \
 			ft_split.c \
-			./ft_printf/ft_printf.c\
-			./ft_printf/utils_ft_printf/ft_print_char.c\
-			./ft_printf/utils_ft_printf/ft_print_str.c\
-			./ft_printf/utils_ft_printf/ft_putnbr_b10.c\
-			./ft_printf/utils_ft_printf/ft_putnbr_b16.c\
-			./ft_printf/utils_ft_printf/ft_putnbr_addb16.c\
-			./ft_printf/utils_ft_printf/ft_print_pourcent.c\
-			./ft_printf/utils_ft_printf/ft_putnbr_ub10.c\
-			./ft_printf/utils_ft_printf/ft_checkstr.c\
-			./get_next_line/get_next_line.c\
-			./get_next_line/get_next_line_utils.c\
-
-
+			ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
+			get_next_line.c \
+			get_next_line_utils.c \
+			ft_printf.c \
+			core_c.c \
+			core_s.c \
+			core_di.c \
+			core_u.c \
+			core_p.c \
+			core_x.c \
+			core_xx.c \
+			ft_puthex.c \
 
 OBJS	= ${SRCS:.c=.o}
 
 #***** Flags *****#
 
 CC	= gcc
-
 AR = ar rcs
-
 RM	= rm -f
-
-CFLAGS	= -Wall -Werror -Wextra -I./
+CFLAGS	= -Wall -Werror -Wextra
 
 #***** Colors *****#
 
@@ -75,37 +79,40 @@ ENDCOLOR		=		\033[0m
 
 #******Echo********#
 
-START			=		echo "$(BLUE_T)Start compilation LIBFT\n$(ENDCOLOR)"
-END_COMP_LIB	=		echo "$(BLUE_T)End compilation LIBFT\n$(ENDCOLOR)"
-END_CLEAN	=		echo "$(GREEN)Succes cleaning\n$(ENDCOLOR)"
-CHARG_LINE		=		echo "$(BLUE)    $(ENDCOLOR)\c"
-BS_N			=		echo "\n"
+START_TXT			=		echo "$(BLUE_T)LIBFT compilation started$(ENDCOLOR)"
+END_COMP_LIB_TXT	=		echo "$(BLUE_T)LIBFT compilation done\n$(ENDCOLOR)"
+END_CLEAN_TXT		=		echo "$(RED)Cleaning in progress$(ENDCOLOR)"
+CHARG_LINE_TXT		=		echo "$(BLUE)    $(ENDCOLOR)\c"
+BS_N_TXT			=		echo "\n"
 
 #***** Compilation *****#
 
+.c.o:
+		@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+		@echo "$(BLUE)    $(ENDCOLOR)\c"
 
 all: 	start ${NAME}
 
 start:
-		@${START}
+		@${START_TXT}
 
 %.o: %.c
 		@${CC} ${CFLAGS} -c $< -o $@
-		@printf "${GREEN}%-50s\r${ENDCOLOR}" $@
+		@$(CHARG_LINE_TXT)
 
 ${NAME}: ${OBJS}
-		@$(BS_N)
+		@$(BS_N_TXT)
 		@${AR} ${NAME} ${OBJS}
-		@$(END_COMP_LIB)
+		@$(END_COMP_LIB_TXT)
 
 #***** Clean *****#
 
 clean:		
 		@${RM} ${OBJS} ${OBJSB}
+		@$(END_CLEAN_TXT)
 
 fclean:		clean
 		@${RM} ${NAME}
-		@$(END_CLEAN)
 
 re:			fclean all
 

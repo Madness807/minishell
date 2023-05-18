@@ -3,35 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 16:00:06 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/26 23:42:11 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/19 15:12:18 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/19 20:34:26 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Write the int n on the output fd
+		Return :
+			nothing, just hardwork
+******************************************************************************/
+
 #include "libft.h"
 
-void	ft_putnbr_fd(int nb, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (nb == -2147483648)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putchar_fd('2', fd);
-		nb = 147483648;
-	}
-	if (nb < 0)
-	{
-		ft_putchar_fd('-', fd);
-		nb *= -1;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putnbr_fd(nb % 10, fd);
-	}
+	int		nb;
+	char	res;
+
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
 	else
 	{
-		ft_putchar_fd(nb + 48, fd);
+		if (n < 0)
+		{
+			write(fd, "-", 1);
+			n = -n;
+		}
+		nb = n;
+		if (nb >= 10)
+		{
+			ft_putnbr_fd(nb / 10, fd);
+			ft_putnbr_fd(nb % 10, fd);
+		}
+		if (nb < 10)
+		{
+			res = nb + '0';
+			write(fd, &res, 1);
+		}
 	}
 }

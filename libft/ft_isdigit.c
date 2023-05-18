@@ -3,19 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 21:23:41 by jo                #+#    #+#             */
-/*   Updated: 2022/10/27 00:26:03 by joterret         ###   ########.fr       */
+/*   Created: 2022/08/10 14:57:18 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/09/12 23:04:28 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Determines if an integer is a digit charcter
+		Return : 
+			the input if right
+			0 if false
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	ft_isdigit(int nb)
 {
-	if (c < '0' || c > '9')
-		return (0);
+	if (nb >= '0' && nb <= '9')
+		return (nb);
 	else
-		return (1);
+		return (0);
 }

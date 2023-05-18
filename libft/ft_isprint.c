@@ -3,19 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 21:41:39 by jo                #+#    #+#             */
-/*   Updated: 2022/10/27 00:26:08 by joterret         ###   ########.fr       */
+/*   Created: 2022/08/12 13:49:32 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/09/12 23:00:42 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Determines if an integer is a printable charcter
+		Return : 
+			the input if right
+			0 if false
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_isprint(int c)
+int	ft_isprint(int nb)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
+	if (nb > 31 && nb < 127)
+		return (nb);
 	else
 		return (0);
 }

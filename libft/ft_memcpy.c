@@ -3,26 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 15:12:08 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/17 14:17:24 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/17 16:23:22 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/17 16:45:18 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Copy the value of a memory zone in an other memory zone in input
+		Return :
+			the adress of the copyed memory
+******************************************************************************/
+
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *source, size_t size)
+void	*ft_memcpy(void *dst, const void *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	if (dest == 0 && source == 0)
-		return (0);
+	if (!dst && !src)
+		return (NULL);
 	while (i < size)
 	{
-		((unsigned char *)dest)[i] = ((unsigned char *)source)[i];
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 		i++;
 	}
-	return (dest);
+	return (dst);
 }

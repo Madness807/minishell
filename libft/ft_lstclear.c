@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/10 21:51:22 by aschaefe          #+#    #+#             */
-/*   Updated: 2022/10/17 14:05:53 by aschaefe         ###   ########.fr       */
+/*   Created: 2022/10/24 14:44:54 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/24 15:04:53 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /******************************************************************************
-
+	
+		Return :
+					
 ******************************************************************************/
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t siz)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	i;
+	t_list	*tmp;
+	t_list	*tmplast;
 
-	i = 0;
-	if (siz == 0)
-		return (ft_strlen(src));
-	while (src[i] && i < siz - 1)
+	tmp = *lst;
+	if (! tmp)
+		return ;
+	else
 	{
-		dst[i] = src[i];
-		i++;
+		while (tmp->next != NULL)
+		{
+			tmplast = tmp;
+			tmp = tmp->next;
+			del(tmplast->content);
+			free(tmplast);
+		}
+		del(tmp->content);
+		free(tmp);
+		*lst = NULL;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
 }

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   core_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 07:18:58 by jo                #+#    #+#             */
-/*   Updated: 2022/12/21 15:30:37 by joterrett        ###   ########.fr       */
+/*   Created: 2022/11/04 17:34:24 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/11/11 18:16:21 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_print_str(char *str)
+int	core_s(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (str == NULL)
+	if (!str)
 	{
 		write(1, "(null)", 6);
 		return (6);
 	}
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		ft_putchar_fd(str[i], 1);
 		i++;
 	}
 	return (i);

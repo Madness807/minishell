@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/10 21:51:22 by aschaefe          #+#    #+#             */
-/*   Updated: 2022/10/17 14:05:53 by aschaefe         ###   ########.fr       */
+/*   Created: 2022/10/20 19:43:32 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/24 12:05:52 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /******************************************************************************
-
+	Creat a new struct and write the content inside the node
+		Return :
+			the new structure
+			NULL if doesn't work			
 ******************************************************************************/
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t siz)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
+	t_list	*dest;
 
-	i = 0;
-	if (siz == 0)
-		return (ft_strlen(src));
-	while (src[i] && i < siz - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	dest = (t_list *)malloc(sizeof(t_list));
+	if (! dest)
+		return (NULL);
+	dest->content = content;
+	dest->next = NULL;
+	return (dest);
 }

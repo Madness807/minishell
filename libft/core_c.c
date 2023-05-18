@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   core_c.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 07:08:27 by jo                #+#    #+#             */
-/*   Updated: 2022/12/21 15:30:42 by joterrett        ###   ########.fr       */
+/*   Created: 2022/11/04 17:03:09 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/11/09 12:06:37 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_print_char(int c)
+int	core_c(int job)
 {
-	write(1, &c, 1);
-	return (1);
+	int	i;
+
+	i = 0;
+	ft_putchar_fd(job, 1);
+	i++;
+	return (i);
 }

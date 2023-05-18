@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:58:26 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/15 00:12:56 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/19 15:01:26 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/19 15:05:25 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******************************************************************************
+	Write the char c on the output fd
+		Return :
+			nothing, just hardwork
+******************************************************************************/
 
 #include "libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	write(fd, &c, sizeof(c));
 }

@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   core_u.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/10 21:51:22 by aschaefe          #+#    #+#             */
-/*   Updated: 2022/10/17 14:05:53 by aschaefe         ###   ########.fr       */
+/*   Created: 2022/11/05 16:58:19 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/11/11 19:26:48 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/******************************************************************************
-
-******************************************************************************/
-
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t siz)
-{
-	size_t	i;
+// unsigned int i = -2;
+// i = UNSIGNED_INT_MAX -1
+// ftprintf("%u", -10) -> 
 
-	i = 0;
-	if (siz == 0)
-		return (ft_strlen(src));
-	while (src[i] && i < siz - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+int	core_u(unsigned int job, int i)
+{
+	if (job >= 10)
+		i = core_u(job / 10, i);
+	ft_putchar_fd(job % 10 + '0', 1);
+	i++;
+	return (i);
 }

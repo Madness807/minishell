@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/26 18:52:11 by jo                #+#    #+#             */
-/*   Updated: 2023/01/30 21:25:58 by joterret         ###   ########.fr       */
+/*   Created: 2022/08/10 10:04:24 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/09/12 23:18:25 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******************************************************************************
+	Count the number of character in the string in parameter
+		Return : 
+			int of the count
+******************************************************************************/
 
 #include "libft.h"
 
 size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[i] != 0)
-	{
+	while (str[i] != '\0')
 		i++;
-	}
 	return (i);
 }

@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_pourcent.c                                :+:      :+:    :+:   */
+/*   core_di.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 14:41:42 by jo                #+#    #+#             */
-/*   Updated: 2022/12/21 15:30:39 by joterrett        ###   ########.fr       */
+/*   Created: 2022/11/04 17:51:14 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/11/11 17:18:22 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_print_pourcent(void)
+int	core_di(int job)
 {
-	write(1, "%", 1);
-	return (1);
+	int		i;
+	char	*res;
+
+	res = ft_itoa(job);
+	i = 0;
+	if (! res)
+	{
+		return (0);
+	}
+	while (res[i])
+	{
+		ft_putchar_fd(res[i], 1);
+		i++;
+	}
+	free(res);
+	return (i);
 }

@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_ub10.c                                   :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:47:34 by jo                #+#    #+#             */
-/*   Updated: 2022/12/21 15:30:27 by joterrett        ###   ########.fr       */
+/*   Created: 2022/11/09 13:21:49 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/11/11 11:42:40 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putnbr_ub10(unsigned int nb)
+int	ft_puthex(unsigned long long nbr)
 {
-	int	count;
+	int	res;
 
-	count = 0;
-	if (nb >= 10)
+	res = 0;
+	if (nbr >= 16)
 	{
-		count += ft_putnbr_ub10(nb / 10);
-		count += ft_putnbr_ub10(nb % 10);
+		res += ft_puthex(nbr / 16);
+		res += ft_puthex(nbr % 16);
 	}
-	else
+	if (nbr < 16)
 	{
-		ft_putchar_fd(nb + 48, 1);
-		count = count + 1;
+		res++;
+		if (nbr <= 9)
+			ft_putchar_fd(nbr + '0', 1);
+		else
+			ft_putchar_fd((nbr - 10) + 'a', 1);
 	}
-	return (count);
+	return (res);
 }

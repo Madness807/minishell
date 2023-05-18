@@ -3,28 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:43:59 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/16 18:34:40 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/18 13:13:22 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/18 14:21:30 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Search the first occurence of the input in a memory zone
+		Return :
+			the pointer of the first occurence
+			NULL if no occurence
+******************************************************************************/
+
 #include "libft.h"
 
-void	*ft_memchr(const void *ptr, int ch, size_t count)
+void	*ft_memchr(const void *s, int check, size_t size)
 {
+	unsigned char	*str;
 	size_t			i;
-	unsigned char	*string;
-	unsigned char	car;
 
+	str = (unsigned char *)s;
 	i = 0;
-	string = (unsigned char *)ptr;
-	car = (unsigned char)ch;
-	while (i < count)
+	while (i < size)
 	{
-		if (string[i] == car)
-			return (&string[i]);
+		if (str[i] == (unsigned char)check)
+			return (&str[i]);
 		i++;
 	}
 	return (NULL);

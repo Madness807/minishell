@@ -3,32 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 17:34:47 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/27 00:29:03 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/12 17:02:34 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/17 14:23:12 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******************************************************************************
+	Concat src to dst with control check
+		Return :
+			len of the str (src + dst)
+******************************************************************************/
 
 #include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	j;
+	size_t	i1;
+	size_t	i2;
+	size_t	len;
 
-	if (size == 0)
-		return (ft_strlen(src));
-	i = 0;
-	j = 0;
-	while (dst[i] != 0 && i < size)
-		i++;
-	while (src[j] != 0 && (i + j + 1) < size)
+	i1 = 0;
+	i2 = 0;
+	len = 0;
+	while (dst[i1])
+		i1++;
+	while (src[len])
+		len++;
+	if (size <= i1)
+		len += size;
+	else
+		len += i1;
+	while (src[i2] && (i1 + i2) < size - 1 && size > 0)
 	{
-			dst[i + j] = src[j];
-			j++;
+		dst[(i1 + i2)] = src[i2];
+		i2++;
 	}
-	if (i + j < size)
-		dst[i + j] = '\0';
-	return (i + ft_strlen(src));
+	if (size != 0)
+		dst[(i1 + i2)] = '\0';
+	return (len);
 }

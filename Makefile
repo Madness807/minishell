@@ -1,14 +1,16 @@
 #***** Name *****#
 
-NAME			=		template
+NAME			=		minishell
+
+#***** Makeflags *****#
+
+MAKEFLAGS += --no-print-directory
 
 #***** Sources / Objs *****#
 
-SRC				=		projet.c \
+SRC				=		main.c \
 
-OBJS			=		obj/$(SRC:.c=.o)
-
-MAKEFLAGS += --no-print-directory
+OBJS			=		$(SRC:.c=.o)
 
 #***** Libft *****#
 
@@ -18,28 +20,21 @@ MLIBFT			=		@$(MAKE) -C libft
 #***** Couleurs *****#
 
 GREEN			=		\033[1;32m
+BG_GREEN		=		\033[42m
 BLUE			=		\033[0;94m
 RED				=		\033[1;31m
+GREY			=		\033[0;37m
 ENDCOLOR		=		\033[0m
-BG_G			=		\033[42m
 
 #***** Textes *****#
 
-START			=		echo "$(GREEN)Start compilation\n$(ENDCOLOR)"
-TEST			=		echo "Run test\n"
-END_COMP		=		echo "$(GREEN)End compilation\n$(ENDCOLOR)"
-S_OBJS			=		echo "$(RED)Suppression des objets\n$(ENDCOLOR)"
-S_NAME			=		echo "$(RED)Suppression du programme\n$(ENDCOLOR)"
-CHARG_LINE		=		echo "$(BG_G)    $(ENDCOLOR)\c"
-BS_N			=		echo "\n"
-
-#***** Logo *****#
-
-MSHELL			=		echo "$(GREEN) \t     __  ______    ____  _   __________________\n\
-\t    /  |/  /   |  / __ \/ | / / ____/ ___/ ___/\n\
-\t   / /|_/ / /| | / / / /  |/ / __/  \__ \\__ \ \n\
-\t  / /  / / ___ |/ /_/ / /|  / /___ ___/ /__/ / \n\
-\t /_/  /_/_/  |_/_____/_/ |_/_____//____/____/   $(ENDCOLOR)\n"
+START_TXT		=		echo "$(GREEN)Compilation of $(NAME) just started$(ENDCOLOR)"
+TEST_TXT		=		echo "$(GREY)Running some test$(ENDCOLOR)\n"
+END_COMP_TXT	=		echo "$(GREEN)Compilation is done$(ENDCOLOR)"
+CLEAN_TXT		=		echo "$(RED)Deleting objects$(ENDCOLOR)"
+FCLEAN_TXT		=		echo "$(RED)Deleting program$(ENDCOLOR)"
+CHARG_LINE_TXT	=		echo "$(BG_GREEN)    $(ENDCOLOR)\c"
+BS_N_TXT			=		echo "\n"
 
 #***** Flags *****#
 
@@ -50,50 +45,58 @@ RM				=		rm -f
 
 #***** Compilation *****#
 
-all : lib start logo $(NAME)
+all : logo lib start $(NAME)
 
 lib:
-	@$(MLIBFT) all
-			@$(END_COMP_LIB)
-
-start:
-			@$(START)
+			@$(MLIBFT) all
+			@$(END_COMP_LIB_TXT)
 
 logo :
-			@$(MSHELL)	
+			@tput setaf 2; cat ascii_art/hibou_madness; tput setaf default
+			@$(BS_N_TXT)
 
-$(OBJS):	srcs/$(SRC) ./libft/libft.h Makefile
+start:
+			@tput setaf 2; cat ascii_art/minishell; tput setaf default
+			@$(BS_N_TXT)
+			@$(START_TXT)
+
+%.o:		%.c ./libft/libft.h Makefile
 			@$(CC) $(CFLAGS) -c $< -o $@
-			@$(CHARG_LINE)
+			@$(CHARG_LINE_TXT)
 
 $(NAME) :	${OBJS}
-			@$(BS_N)
+			@$(BS_N_TXT)
 			@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
-			@$(END_COMP)
+			@$(END_COMP_TXT)
+			@tput setaf 2; cat ascii_art/small_hibou1; tput setaf default
 
 l :			${OBJS}
 			${MLIBFT} all
 			${CC} ${L} -o ${NAME} ${OBJS} ${LIBFT}
-			@$(END_COMP)
+			@$(END_COMP_TXT)
+
+leaks :		all
+			leaks -atExit -- ./${NAME} 
 
 test: 		all
-			@${CC} ${CFLAGS} ${OBJS}
-			@$(TEST)
+			@${CC} ${CFLAGS} ${OBJS} libft/libft.a
+			@$(TEST_TXT)
 			@./a.out
-			@rm -f ./a.out			
+			@rm -f ./a.out
 
 #***** Clean *****#
 
 clean:
-			@$(S_OBJS)
+			@$(CLEAN_TXT)
 			@${RM} ${OBJS}
 			@${MLIBFT} clean
+			@tput setaf 1; cat ascii_art/trash; tput setaf default
 
 fclean:		clean
-			@$(S_NAME)
+			@$(FCLEAN_TXT)	
 			@${RM} ${NAME}
 			@${MLIBFT} fclean
-			@echo "Succes cleaning"
+			@echo "$(GREEN)Cleaning succes$(ENDCOLOR)"
 
 re:			fclean all
 

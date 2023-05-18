@@ -3,27 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 21:55:24 by jo                #+#    #+#             */
-/*   Updated: 2022/10/17 14:18:33 by joterret         ###   ########.fr       */
+/*   Created: 2022/09/10 11:16:07 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/20 18:20:41 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Locates the first occurence of c in a string. The null character \0
+	is part of the string
+		Return:
+			ptr to located char
+			NULL if not in the string
+******************************************************************************/
+
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int param)
 {
-	int	i;
-	int	len;
+	int		i;
+	char	*s;
 
 	i = 0;
-	len = ft_strlen(str)+1;
-	while (i < len)
+	s = (char *)str;
+	if ((char)param == '\0')
 	{
-		if (str[i] == (char)c)
-			return ((char *)&str[i]);
+		i = ft_strlen(str);
+		return (&(s[i]));
+	}	
+	while ((s[i]) && (s[i] != (char)param))
+	{
 		i++;
 	}
-	return (0);
+	if (s[i] == (char)param)
+	{
+		return (&(s[i]));
+	}
+	else
+	{
+		return (NULL);
+	}
 }

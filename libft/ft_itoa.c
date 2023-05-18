@@ -3,55 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:57:33 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/27 01:24:43 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/19 17:23:36 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/19 20:14:33 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Transform an integer in a string
+		Return : 
+			the transformed string
+			NULL if doesn't work
+******************************************************************************/
+
 #include "libft.h"
-#include <stdio.h>
 
-static int	compteurint(int n)
+char	*finish(int n, int nlen, int neg, char *res)
 {
-	int	compteur;
+	int		i;
 
-	if (n == 0)
-		return (1);
-	compteur = 0;
-	while (n != 0)
+	i = nlen - 1;
+	if (neg == 1)
+		i++;
+	while (i >= 0)
 	{
+		res[i] = '0' + n % 10;
 		n = n / 10;
-		compteur++;
+		i--;
 	}
-	return (compteur);
+	if (neg == 1)
+		res[0] = '-';
+	res[nlen + neg] = '\0';
+	return (res);
+}
+
+int	nbrlen(int nbr)
+{
+	int	len;
+
+	len = 0;
+	while (nbr >= 0)
+	{
+		nbr = nbr / 10;
+		len++;
+		if (nbr == 0)
+			break ;
+	}
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*res;
 	int		neg;
-	int		cptn;
+	int		nlen;
 
+	neg = 0;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	neg = 0;
 	if (n < 0)
 	{
-		n = -n;
 		neg = 1;
+		n *= -1;
 	}
-	cptn = compteurint(n);
-	res = ft_calloc(sizeof(char), (cptn + 1 + neg));
-	if (res == NULL)
+	nlen = nbrlen(n);
+	res = ft_calloc((nlen + neg + 1), sizeof(char));
+	if (! res)
 		return (NULL);
-	while (--cptn >= 0)
-	{
-		res[cptn + neg] = (n % 10) + '0';
-		n = n / 10;
-	}
-	if (neg)
-		res[0] = '-';
+	res = finish(n, nlen, neg, res);
 	return (res);
 }

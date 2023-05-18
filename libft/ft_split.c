@@ -3,81 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:57:10 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/27 00:41:26 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/20 13:31:45 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/20 18:29:48 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Split the str from every c splitter and creat a malloc of every
+	new string
+		Return:
+			the double tab of every new str
+			NULL if doesn't work
+******************************************************************************/
+
 #include "libft.h"
 
-static int	ft_nbrsep(const char *s, char c)
+int	nb_of_split(char const *str, char c)
 {
-	int	i;
-	int	nbrsep;
+	int	ft_res;
 
-	i = 0;
-	nbrsep = 0;
-	if (s[i] == 0)
+	ft_res = 0;
+	if (! *str)
 		return (0);
-	while (s[i] != 0)
+	while (*str)
 	{
-		while (s[i] == c)
-			i++;
-		while (s[i] != c && s[i] != 0)
-			i++;
-		nbrsep++;
+		while (*str == c)
+			str++;
+		if (*str)
+			ft_res++;
+		while (*str != c && *str)
+			str++;
 	}
-	if (s[i - 1] == c)
-		nbrsep--;
-	return (nbrsep);
+	return (ft_res);
 }
 
-static char	*ft_mot(const char *s, char c)
+char	**ft_split(char const *str, char c)
 {
-	int		i;
-	char	*mot;
+	int		i_of_res;
+	size_t	len;
+	char	**res;
 
-	i = 0;
-	while (s[i] != 0 && s[i] != c)
-		i++;
-	mot = malloc((i + 1) * sizeof(char));
-	if (mot == 0)
-		return (0);
-	i = 0;
-	while (s[i] != 0 && s[i] != c)
+	res = (char **)malloc((nb_of_split(str, c) + 1) * sizeof(char *));
+	if (! str || ! res)
+		return (NULL);
+	i_of_res = 0;
+	while (*str)
 	{
-		mot[i] = s[i];
-		i++;
-	}
-	mot[i] = 0;
-	return (mot);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		i;
-	char	**tab;
-	int		nbrsep;
-
-	i = 0;
-	nbrsep = ft_nbrsep(s, c);
-	tab = malloc((nbrsep + 1) * sizeof(char *));
-	if (tab == 0)
-		return (0);
-	while (*s)
-	{
-		while (*s != 0 && *s == c)
-			s++;
-		if (*s != 0 && *s != c)
+		while (*str == c && *str)
+			str++;
+		if (*str)
 		{
-			tab[i] = ft_mot(s, c);
-			i++;
-			while (*s && *s != c)
-				s++;
+			if (!ft_strchr(str, c))
+				len = ft_strlen(str);
+			else
+				len = ft_strchr(str, c) - str;
+			res[i_of_res] = ft_substr(str, 0, len);
+			i_of_res++;
+			str += len;
 		}
 	}
-	tab[i] = 0;
-	return (tab);
+	res[i_of_res] = NULL;
+	return (res);
 }

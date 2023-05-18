@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 19:57:32 by jo                #+#    #+#             */
-/*   Updated: 2022/10/27 00:43:40 by joterret         ###   ########.fr       */
+/*   Created: 2022/09/09 22:24:38 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/09/12 22:51:34 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Turn upper-case letter to lower-case
+		Return :
+			lower-case letter if present 
+			unchanged argument if not
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_tolower(int c)
+int	ft_tolower(int str)
 {
-	int	res;
-
-	res = 0;
-	if ((c >= 65) && (c <= 90))
-	{
-		res = c + 32;
-		return (res);
-	}
-	return (c);
+	if (str >= 'A' && str <= 'Z')
+		str += 32;
+	return (str);
 }

@@ -3,31 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:38:19 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/17 16:36:47 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/18 10:33:42 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/18 11:25:08 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Compare the value of a memory zone in an other memory zone in input
+		Return :
+			if ptr1 == prt2 -> 0
+			if prt1 < ptr2 -> negativ diff
+			if prt1 > prt2 -> positiv diff
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t count)
+int	ft_memcmp(const void *ptr1, const void *ptr2, size_t size)
 {
 	size_t			i;
-	unsigned char	*string1;
-	unsigned char	*string2;
+	unsigned char	*s1;
+	unsigned char	*s2;
 
+	s1 = (unsigned char *)ptr1;
+	s2 = (unsigned char *)ptr2;
 	i = 0;
-	string1 = (unsigned char *)s1;
-	string2 = (unsigned char *)s2;
-	if (count == 0)
-		return (0);
-	while (i < count && (string1[i] == string2[i]))
-	{	
+	while (i < size)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	if (i == count)
-		i--;
-	return (string1[i] - string2[i]);
+	return (0);
 }

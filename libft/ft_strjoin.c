@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:55:59 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/27 00:43:14 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/19 11:56:33 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/19 12:25:37 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******************************************************************************
+	Create a malloc and write inside the concatenation of s1 and s2 
+		Return :
+			the ptr of the result 
+			NULL if doesn't work
+******************************************************************************/
 
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*res;
 	int		i;
-	int		j;
 	int		len;
-	char	*s3;
 
-	i = -1;
-	j = -1;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	s3 = malloc(sizeof (*s3) * len + 1);
-	if (s3 == NULL)
-		return (0);
-	while (s1[++i] != 0)
-		s3[i] = s1[i];
-	while (s2[++j] != 0)
-	{
-		s3[i] = s2[j];
-		i++;
-	}
-	s3[i] = '\0';
-	return (s3);
+	if (! s1 || ! s2)
+		return (NULL);
+	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (! res)
+		return (NULL);
+	len = 0;
+	i = 0;
+	while (s1[i] != '\0')
+		res[len++] = s1[i++];
+	i = 0;
+	while (s2[i] != '\0')
+		res[len++] = s2[i++];
+	res[len] = '\0';
+	return (res);
 }

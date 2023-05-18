@@ -3,23 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 04:06:18 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/14 19:27:19 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/17 15:45:25 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/17 16:27:40 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Set a memory zone with a val in imput
+		Return :
+			the adress of the changed memory
+******************************************************************************/
+
 #include "libft.h"
 
-void	*ft_memset(void *ptr, int value, size_t count)
+void	*ft_memset(void *ptr, int val, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < count)
+	while (i < size)
 	{
-		((unsigned char *) ptr)[i] = value;
+		((unsigned char *)ptr)[i] = (unsigned char)val;
 		i++;
 	}
 	return (ptr);

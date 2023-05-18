@@ -3,12 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:59:34 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/15 00:30:00 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/19 15:18:44 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/19 16:09:40 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******************************************************************************
+	Write the string s and a '\n' at the end on the output fd
+		Return :
+			nothing, just hardwork
+******************************************************************************/
 
 #include "libft.h"
 
@@ -17,10 +23,10 @@ void	ft_putendl_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	while (s[i] != 0)
-	{	
-		write(fd, &s[i], 1);
+	while (s[i])
+	{
+		write(fd, &s[i], sizeof(s[i]));
 		i++;
 	}
-	write (fd, "\n", 1);
+	write(fd, "\n", 1);
 }

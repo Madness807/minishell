@@ -3,38 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:43:18 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/15 17:22:31 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/17 16:45:48 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/18 10:33:29 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Copy the value of a memory zone in an other memory zone in input
+		Return :
+			the adress of the copyed memory
+******************************************************************************/
+
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t count)
+void	*ft_memmove(void *dst, const void *src, size_t size)
 {
 	size_t			i;
-	unsigned char	*temp1;
-	unsigned char	*temp2;
 
 	i = 0;
-	temp1 = (unsigned char *)src;
-	temp2 = (unsigned char *)dest;
-	if (temp1 == 0 && temp2 == 0)
-		return (0);
-	if (temp2 > temp1)
+	if (dst == src || size == 0)
+		return (dst);
+	if (dst > src)
 	{
-		while (i < count)
+		while (size > 0)
 		{
-			temp2[count - i -1] = temp1[count - i -1];
+			((unsigned char *)dst)[size - 1] = ((unsigned char *)src)[size - 1];
+			size--;
+		}	
+	}
+	else
+	{
+		while (i < size)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 			i++;
 		}
 	}
-	while (i < count)
-	{
-			temp2[i] = temp1[i];
-			i++;
-	}
-	return (dest);
+	return (dst);
 }

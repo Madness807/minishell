@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 17:28:27 by jo                #+#    #+#             */
-/*   Updated: 2022/10/27 00:43:52 by joterret         ###   ########.fr       */
+/*   Created: 2022/08/10 08:57:02 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/12 13:36:49 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Compares null-terminated strings up until n characters
+		Return:
+			>0 if s1 > s2
+			0  if s1 == s2
+			<-1 if s1 < s2
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t count)
+int	ft_strncmp(const char *s1, const char *s2, size_t nb)
 {
-	size_t			i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t	i;
 
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
 	i = 0;
-	while ((s1[i] != 0 || s2[i] != 0) && i < count)
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < nb)
 	{
 		if (s1[i] != s2[i])
-		{
-			if (s1[i] < s2[i])
-				return (s1[i] - s2[i]);
-			else if (s1[i] > s2[i])
-				return (s1[i] - s2[i]);
+		{	
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		}
 		i++;
-	}
+	}	
 	return (0);
 }

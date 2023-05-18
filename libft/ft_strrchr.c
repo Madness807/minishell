@@ -3,25 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 18:37:11 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/27 00:43:48 by joterret         ###   ########.fr       */
+/*   Created: 2022/09/10 11:16:39 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/20 20:48:28 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Locates the last occurence of c in a string. The null character \0
+	is part of the string
+		Return:
+			ptr to located char
+			NULL if not in the string
+******************************************************************************/
+
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, int c)
+char	*ft_strrchr(const char *str, int param)
 {
-	int	i;
+	int		i;
+	char	*s;
 
-	i = ft_strlen(str);
-	while (i >= 0)
+	s = (char *)str;
+	i = ft_strlen(s);
+	if ((char)param == '\0')
 	{
-		if (str[i] == (char)c)
-			return ((char *)&str[i]);
+		return (&(s[i]));
+	}		
+	while (i > 0 && s[i] != (char)param)
+	{
 		i--;
 	}
-	return (0);
+	if (s[i] == (char)param)
+	{
+		return (&(s[i]));
+	}
+	else
+	{
+		return (NULL);
+	}
 }

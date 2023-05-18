@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 22:31:23 by jo                #+#    #+#             */
-/*   Updated: 2022/10/27 00:43:33 by joterret         ###   ########.fr       */
+/*   Created: 2022/09/09 22:06:15 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/09/12 22:59:20 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Turn lower-case letter to upper-case
+		Return :
+			upper-case letter if present 
+			unchanged argument if not
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_toupper(int c)
+int	ft_toupper(int str)
 {
-	int	res;
-
-	res = 0;
-	if ((c >= 97) && (c <= 122))
-	{
-		res = c - 32;
-		return (res);
-	}
-	return (c);
+	if (str >= 'a' && str <= 'z')
+		str -= 32;
+	return (str);
 }

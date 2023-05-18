@@ -3,12 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:59:02 by joterret          #+#    #+#             */
-/*   Updated: 2022/10/23 05:07:06 by joterret         ###   ########.fr       */
+/*   Created: 2022/10/19 15:06:02 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/10/19 15:11:36 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******************************************************************************
+	Write the string s on the output fd
+		Return :
+			nothing, just hardwork
+******************************************************************************/
 
 #include "libft.h"
 
@@ -17,9 +23,9 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	while (s[i] != 0)
+	while (s[i])
 	{
-		write(fd, &s[i], 1);
+		write(fd, &s[i], sizeof(s[i]));
 		i++;
 	}
 }

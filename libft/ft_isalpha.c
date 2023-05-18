@@ -3,19 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 19:39:34 by jo                #+#    #+#             */
-/*   Updated: 2022/10/27 00:25:40 by joterret         ###   ########.fr       */
+/*   Created: 2022/08/10 10:44:05 by aschaefe          #+#    #+#             */
+/*   Updated: 2022/09/12 23:03:00 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/******************************************************************************
+	Determines if an integer is an alphabetical character
+		Return : 
+			the input if right
+			0 if false
+******************************************************************************/
+
 #include "libft.h"
 
-int	ft_isalpha(int c)
+int	ft_isalpha(int nb)
 {
-	if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z'))
-		return (0);
+	if ((nb >= 'a' && nb <= 'z') || (nb >= 'A' && nb <= 'Z'))
+		return (nb);
 	else
-		return (1);
+		return (0);
 }
