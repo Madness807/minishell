@@ -8,7 +8,7 @@ MAKEFLAGS += --no-print-directory
 
 #***** Sources / Objs *****#
 
-SRC				=		main.c \
+SRC				=		srcs/main.c \
 
 OBJS			=		$(SRC:.c=.o)
 

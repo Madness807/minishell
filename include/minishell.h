@@ -29,6 +29,7 @@
 # include <sys/ioctl.h>
 # include <termios.h>
 # include <term.h>
+# include "../libft/libft.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // 									structs								      //
