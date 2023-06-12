@@ -16,7 +16,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // 									Librairies							      //
 ////////////////////////////////////////////////////////////////////////////////
-# include <readline.h>
+# include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -35,6 +35,12 @@
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
 
+typedef struct s_ms
+{
+	int		stop;
+    char    *test;
+}					t_ms;
+
 typedef struct s_token
 {
 	
@@ -49,12 +55,12 @@ typedef struct s_token
 void    init(void);
 
 //      MAIN FONCTION
-void    function(void);
+void    user_input(t_ms *ms);
 
 //      UTILS FONCTION
-void    function(void);
+
 
 //		exit and free function 
-void    exfr(void);
+
 
 #endif

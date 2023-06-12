@@ -14,6 +14,17 @@
 
 int	main(int argc, char **argv, char **env)
 {
+	t_ms	ms;
 
+	ms = (t_ms){};
+	(void)argc;
+	(void)argv;
+	(void)env;
+	ms.stop = 0;
+	while (ms.stop == 0)
+	{
+		user_input(&ms);
+	}
+	//free_and_exit();
 	return (0);
 }

@@ -9,8 +9,10 @@ MAKEFLAGS += --no-print-directory
 #***** Sources / Objs *****#
 
 SRC				=		srcs/main.c \
+						srcs/input.c \
 
-OBJS			=		$(SRC:.c=.o)
+##OBJS			=		$(SRC:.c=.o)
+OBJS			=		$(addprefix obj/, $(SRC:.c=.o))
 
 #***** Libft *****#
 
@@ -39,7 +41,7 @@ BS_N_TXT			=		echo "\n"
 #***** Flags *****#
 
 CC				=		gcc
-CFLAGS			=		-Wall -Wextra -Werror -g
+CFLAGS			=		-Wall -Wextra -Werror
 L				=		$(CFLAGS) -fsanitize=address
 RM				=		rm -f
 
@@ -55,6 +57,11 @@ logo :
 			@tput setaf 2; cat ascii_art/hibou_madness; tput setaf default
 			@$(BS_N_TXT)
 
+obj/%.o:	%.c 
+			@mkdir -p $(dir $@)
+			@$(CC) $(CFLAGS) -c $< -o $@
+
+
 start:
 			@tput setaf 2; cat ascii_art/minishell; tput setaf default
 			@$(BS_N_TXT)
@@ -66,9 +73,8 @@ start:
 
 $(NAME) :	${OBJS}
 			@$(BS_N_TXT)
-			@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
+			@${CC} ${CFLAGS} -o ${NAME} ${OBJS} -lreadline ${LIBFT}
 			@$(END_COMP_TXT)
-			@tput setaf 2; cat ascii_art/small_hibou1; tput setaf default
 
 l :			${OBJS}
 			${MLIBFT} all
