@@ -9,9 +9,10 @@ MAKEFLAGS += --no-print-directory
 #***** Sources / Objs *****#
 
 SRC				=		srcs/main.c \
-						srcs/input.c \
-						srcs/builtin_1.c\
-						srcs/builtin_2.c\
+						srcs/check/check_arg.c \
+						srcs/init/init.c \
+						srcs/lexer/input.c \
+						srcs/free_and_exit/free.c \
 
 ##OBJS			=		$(SRC:.c=.o)
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))

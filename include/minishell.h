@@ -57,7 +57,8 @@ typedef struct s_token
 void	user_input(t_ms *ms);
 
 //		Initialisation
-void	init_struct(t_ms *ms);
+void    check_arg(t_ms *ms, int argc, char **argv, char **env);
+void	init_struct(t_ms *ms, int argc, char **argv, char **env);
 
 //		LEXER FUNCTION
 
@@ -77,6 +78,6 @@ void	builtin_exit();
 //		SIGNAL FUNCTION
 
 //		exit and free function 
-
+void	free_and_exit(t_ms *ms, char *msg, int force_exit);
 
 #endif
