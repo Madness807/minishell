@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/06/13 03:52:24 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/13 04:04:26 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	user_input(t_ms *ms);
 //		Initialisation
 void	init_struct(t_ms *ms);
 
+//		LEXER FUNCTION
+
 //		PARSING FUNCTION
 
-//		BUILTIN FUNCTION
+//		BUILTINS FUNCTION
 void	builtin_echo();
 void	builtin_cd();
 void	builtin_pwd();

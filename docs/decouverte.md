@@ -1,3 +1,5 @@
+# lexer et parser 
+
 il y a deux type de commande 
 les commandes builtin qui seront executer sans cree de nouveau processus
 et les commandes externes qui elle utilise execve (ex: ls, cat etc)
@@ -14,4 +16,5 @@ fait une string complete utilisable
 PS j ai surment oublier des trucs ou pas tout compris mais je suis sur a 90% de ce 
 que je dit  
 
-bisous
+# signaux
+la partie sur les signaux sert a gerer les ctrl-C , ctrl-D etc etc 
