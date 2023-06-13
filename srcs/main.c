@@ -19,10 +19,7 @@ int	main(int argc, char **argv, char **env)
 	ms = (t_ms){};
 	check_arg(&ms, argc, argv, env);
 	init_struct(&ms, argc, argv, env);
-	while (ms.stop == 0)
-	{
-		user_input(&ms);
-	}
+	user_input(&ms);
 	free_and_exit(&ms, NULL, 0);
 	return (0);
 }

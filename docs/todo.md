@@ -24,7 +24,7 @@
 [] export
 [] unset
 [] env
-[] exit 
+[X] exit 
 
 fonction principal
 gestion des commandes intregrees

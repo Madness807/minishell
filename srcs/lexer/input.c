@@ -14,12 +14,14 @@
 
 void    user_input(t_ms *ms)
 {
-    while (1)
+    while (ms->stop == 0)
     {
         ms->test = readline("Prompt> ");
-        if (!ms->test)
-            break;
+        if(ms->test[0] == 'e' && ms->test[1] == 'x' && ms->test[2] == 'i' && ms->test[3] == 't' && ms->test[4] == '\0')
+        {
+            ms->stop = 1;
+        }
         free(ms->test);
+        ms->test = NULL;
     }
-    //printf("je print le contenu de ma structure", ms->test);
 }
