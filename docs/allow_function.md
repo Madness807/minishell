@@ -93,7 +93,7 @@ Fonctions
     void exit(int status);
 
 - Obtenir le répertoire de travail actuel
-    char *getcwd(char *buf, size_t size);
+    char *getcwd(char *buf, size_t size);gi
 
 - Changer le répertoire de travail actuel
     int chdir(const char *path);

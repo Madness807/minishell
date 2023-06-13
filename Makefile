@@ -10,6 +10,8 @@ MAKEFLAGS += --no-print-directory
 
 SRC				=		srcs/main.c \
 						srcs/input.c \
+						srcs/builtin_1.c\
+						srcs/builtin_2.c\
 
 ##OBJS			=		$(SRC:.c=.o)
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))

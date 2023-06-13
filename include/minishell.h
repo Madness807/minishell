@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/06/07 18:38:06 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/13 03:52:24 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@
 typedef struct s_ms
 {
 	int		stop;
-    char    *test;
-}					t_ms;
+	char	*test;
+}t_ms;
 
 typedef struct s_token
 {
-	
+	char			*contenue;
+	int				type;
+	struct s_token	*next;
 	
 }t_token;
 
@@ -51,14 +53,26 @@ typedef struct s_token
 // 							Prototype de fonctions						      //
 ////////////////////////////////////////////////////////////////////////////////
 
+//		MAIN FONCTION
+void	user_input(t_ms *ms);
+
 //		Initialisation
-void    init(void);
+void	init_struct(t_ms *ms);
 
-//      MAIN FONCTION
-void    user_input(t_ms *ms);
+//		PARSING FUNCTION
 
-//      UTILS FONCTION
+//		BUILTIN FUNCTION
+void	builtin_echo();
+void	builtin_cd();
+void	builtin_pwd();
+void	builtin_export();
+void	builtin_unset();
+void	builtin_env();
+void	builtin_exit();
 
+//		EXECUTION FUNCTION
+
+//		SIGNAL FUNCTION
 
 //		exit and free function 
 
