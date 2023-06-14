@@ -14,8 +14,7 @@
 
 void	free_and_exit(t_ms *ms, char *msg, int force_exit)
 {
-	if (ms->test)
-		free(ms->test);
+	(void)ms;
 	if (msg) 
 		ft_printf("Error : %s\n", msg);
 	if (force_exit != 0)

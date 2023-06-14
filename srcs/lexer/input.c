@@ -14,14 +14,18 @@
 
 void    user_input(t_ms *ms)
 {
+    char    *user_cmd;
+
     while (ms->stop == 0)
     {
-        ms->test = readline("Prompt> ");
-        if(ms->test[0] == 'e' && ms->test[1] == 'x' && ms->test[2] == 'i' && ms->test[3] == 't' && ms->test[4] == '\0')
+        user_cmd = readline("Prompt> ");
+        if(user_cmd[0] == 'e' && user_cmd[1] == 'x' && user_cmd[2] == 'i' && user_cmd[3] == 't' && user_cmd[4] == '\0')
         {
             ms->stop = 1;
         }
-        free(ms->test);
-        ms->test = NULL;
+        if (user_cmd[0] != '\0')
+            add_history(user_cmd);
+        free(user_cmd);
+        user_cmd = NULL;
     }
 }

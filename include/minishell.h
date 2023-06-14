@@ -17,6 +17,7 @@
 // 									Librairies							      //
 ////////////////////////////////////////////////////////////////////////////////
 # include <readline/readline.h>
+# include <readline/history.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -35,12 +36,6 @@
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef struct s_ms
-{
-	int		stop;
-	char	*test;
-}t_ms;
-
 typedef struct s_token
 {
 	char			*contenue;
@@ -49,35 +44,45 @@ typedef struct s_token
 	
 }t_token;
 
+typedef struct s_ms
+{
+	int			stop;
+	char		*test;
+}t_ms;
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // 							Prototype de fonctions						      //
 ////////////////////////////////////////////////////////////////////////////////
 
-//		MAIN FONCTION
-void	user_input(t_ms *ms);
+//			MAIN FONCTION
 
-//		Initialisation
-void    check_arg(t_ms *ms, int argc, char **argv, char **env);
-void	init_struct(t_ms *ms, int argc, char **argv, char **env);
 
-//		LEXER FUNCTION
+//			Initialisation
+void    	check_arg(t_ms *ms, int argc, char **argv, char **env);
+void		init_struct(t_ms *ms, int argc, char **argv, char **env);
 
-//		PARSING FUNCTION
+//			LEXER FUNCTION
+void		user_input(t_ms *ms);
+void    	history_proc(t_ms *ms, char *cmd);
 
-//		BUILTINS FUNCTION
-void	builtin_echo();
-void	builtin_cd();
-void	builtin_pwd();
-void	builtin_export();
-void	builtin_unset();
-void	builtin_env();
-void	builtin_exit();
+//			PARSING FUNCTION
 
-//		EXECUTION FUNCTION
+//			BUILTINS FUNCTION
+void		builtin_echo();
+void		builtin_cd();
+void		builtin_pwd();
+void		builtin_export();
+void		builtin_unset();
+void		builtin_env();
+void		builtin_exit();
 
-//		SIGNAL FUNCTION
+//			EXECUTION FUNCTION
 
-//		exit and free function 
-void	free_and_exit(t_ms *ms, char *msg, int force_exit);
+//			SIGNAL FUNCTION
+
+//			exit and free function 
+void		free_and_exit(t_ms *ms, char *msg, int force_exit);
 
 #endif
