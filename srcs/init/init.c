@@ -14,9 +14,9 @@
 
 void	init_struct(t_ms *ms, int argc, char **argv, char **env)
 {
-    (void)argc;
     (void)argv;
-    (void)env;
+    ms->argc = argc;
+    ms->env = env;
     using_history();
 	ms->stop = 0;
 }

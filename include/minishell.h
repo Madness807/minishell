@@ -46,6 +46,8 @@ typedef struct s_token
 
 typedef struct s_ms
 {
+	int			argc;
+	char		**env;
 	int			stop;
 	char		*test;
 }t_ms;
@@ -79,6 +81,7 @@ void		builtin_env();
 void		builtin_exit();
 
 //			EXECUTION FUNCTION
+void		print_env(char **env);
 
 //			SIGNAL FUNCTION
 

@@ -11,6 +11,7 @@ MAKEFLAGS += --no-print-directory
 SRC				=		srcs/main.c \
 						srcs/check/check_arg.c \
 						srcs/init/init.c \
+						srcs/env/env.c \
 						srcs/lexer/input.c \
 						srcs/free_and_exit/free.c \
 

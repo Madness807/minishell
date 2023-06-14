@@ -23,6 +23,10 @@ void    user_input(t_ms *ms)
         {
             ms->stop = 1;
         }
+        if(user_cmd[0] == 'e' && user_cmd[1] == 'n' && user_cmd[2] == 'v' && user_cmd[3] == '\0')
+        {
+            print_env(ms->env);
+        }
         if (user_cmd[0] != '\0')
             add_history(user_cmd);
         free(user_cmd);

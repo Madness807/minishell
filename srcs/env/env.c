@@ -11,3 +11,22 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	print_env(char **env)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (env[i])
+	{
+		j = 0;
+		while (env[i][j])
+		{
+			ft_printf("%c", env[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
