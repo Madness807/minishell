@@ -6,21 +6,24 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:34:21 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/13 04:16:55 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/16 20:32:16 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	builtin_cd(char *destdir)
+{
+	chdir(const char *path);
+
+}
+
 /*
 void	builtin_echo()
 {
 
 }
 
-void	builtin_cd()
-{
-
-}
 
 void	builtin_pwd()
 {

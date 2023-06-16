@@ -1,6 +1,5 @@
-Librairie
+# Librairie
 --------------------------------------------------------------------
-
 - readline.h : Bibliothèque pour la lecture et l'édition de lignes de texte.
 - stdio.h : Bibliothèque standard d'entrée/sortie pour les opérations de lecture et d'écriture.
 - stdlib.h : Bibliothèque standard pour les opérations générales telles que l'allocation mémoire et la gestion des variables d'environnement.
@@ -15,8 +14,70 @@ Librairie
 - termios.h : Bibliothèque pour la gestion et la configuration des terminaux.
 - term.h : Bibliothèque pour les opérations sur la base de données terminfo et les capacités des terminaux.
 
-Fonctions
+# Fonctions autorisées
 --------------------------------------------------------------------
+## Bibliothèque Standard C (stdlib.h, stdio.h, string.h)
+### Gestion de la mémoire
+- Allouer de la mémoire dynamiquement
+    void *malloc(size_t size);
+
+- Libérer la mémoire allouée
+    void free(void *ptr);
+
+### Gestion des erreurs
+- Renvoyer un message d'erreur pour un code d'erreur
+    char *strerror(int errnum);
+
+- Afficher un message d'erreur pour un appel système
+    void perror(const char *s);
+
+### Autres
+- Terminer un processus
+    void exit(int status);
+
+- Afficher un texte formaté
+    int printf(const char *format, ...);
+
+- Obtenir la valeur d'une variable d'environnement
+    char *getenv(const char *name);
+
+## Bibliothèque de gestion des processus (unistd.h, sys/wait.h)
+- Créer un nouveau processus
+    pid_t fork(void);
+
+- Attendre la fin d'un processus fils
+    pid_t wait(int *status);
+
+- Attendre un processus fils spécifique
+    pid_t waitpid(pid_t pid, int *status, int options);
+
+- Attendre un processus fils (obsolète)
+    pid_t wait3(int *status, int options, struct rusage *rusage);
+
+- Attendre un processus fils avec usage de ressources
+    pid_t wait4(pid_t pid, int *status, int options, struct rusage *rusage);
+
+- Envoyer un signal à un processus
+    int kill(pid_t pid, int sig);
+
+- Exécuter un nouveau programme
+    int execve(const char *filename, char *const argv[], char *const envp[]);
+
+
+## Bibliothèque de gestion des signaux (signal.h)
+- Modifier le comportement lors d'un signal
+    void (*signal(int signum, void (*handler)(int)))(int);
+
+- Examine ou modifie l'action associée à un signal
+    int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact);
+
+- Initialise un ensemble de signaux vide
+    int sigemptyset(sigset_t *set);
+
+- Ajouter un signal à un ensemble de signaux
+    int sigaddset(sigset_t *set, int signum);
+
+## Bibliothèque readline (readline/readline.h, readline/history.h)
 - Lire une ligne de texte à partir d'une entrée
     char *readline(const char *prompt);
 
@@ -35,14 +96,10 @@ Fonctions
 - Ajouter une ligne à l'historique
     void add_history(const char *line);
 
-- Afficher un texte formaté
-    int printf(const char *format, ...);
 
-- Allouer de la mémoire dynamiquement
-    void *malloc(size_t size);
-
-- Libérer la mémoire allouée
-    void free(void *ptr);
+## Bibliothèque de gestion des fichiers et répertoires (fcntl.h, unistd.h, sys/stat.h, dirent.h)
+- Ouvrir un fichier
+    int open(const char *pathname, int flags, ...);
 
 - Écrire des données dans un descripteur de fichier
     ssize_t write(int fd, const void *buf, size_t count);
@@ -50,50 +107,14 @@ Fonctions
 - Vérifier les permissions d'accès d'un fichier
     int access(const char *pathname, int mode);
 
-- Ouvrir un fichier
-    int open(const char *pathname, int flags, ...);
-
 - Lire des données à partir d'un descripteur de fichier
     ssize_t read(int fd, void *buf, size_t count);
 
 - Fermer un descripteur de fichier
     int close(int fd);
 
-- Créer un nouveau processus
-    pid_t fork(void);
-
-- Attendre la fin d'un processus fils
-    pid_t wait(int *status);
-
-- Attendre un processus fils spécifique
-    pid_t waitpid(pid_t pid, int *status, int options);
-
-- Attendre un processus fils (obsolète)
-    pid_t wait3(int *status, int options, struct rusage *rusage);
-
-- Attendre un processus fils avec usage de ressources
-    pid_t wait4(pid_t pid, int *status, int options, struct rusage *rusage);
-
-- Modifier le comportement lors d'un signal
-    void (*signal(int signum, void (*handler)(int)))(int);
-
-- Examine ou modifie l'action associée à un signal
-    int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact);
-
-- Initialise un ensemble de signaux vide
-    int sigemptyset(sigset_t *set);
-
-- Ajouter un signal à un ensemble de signaux
-    int sigaddset(sigset_t *set, int signum);
-
-- Envoyer un signal à un processus
-    int kill(pid_t pid, int sig);
-
-- Terminer un processus
-    void exit(int status);
-
 - Obtenir le répertoire de travail actuel
-    char *getcwd(char *buf, size_t size);gi
+    char *getcwd(char *buf, size_t size);
 
 - Changer le répertoire de travail actuel
     int chdir(const char *path);
@@ -109,9 +130,6 @@ Fonctions
 
 - Supprimer un fichier ou un lien
     int unlink(const char *pathname);
-
-- Exécuter un nouveau programme
-    int execve(const char *filename, char *const argv[], char *const envp[]);
 
 - Dupliquer un descripteur de fichier
     int dup(int oldfd);
@@ -131,12 +149,8 @@ Fonctions
 - Fermer un répertoire
     int closedir(DIR *dirp);
 
-- Renvoyer un message d'erreur pour un code d'erreur
-    char *strerror(int errnum);
 
-- Afficher un message d'erreur pour un appel système
-    void perror(const char *s);
-
+## Bibliothèque de gestion des terminaux (termios.h, unistd.h, libgen.h)
 - Tester si un descripteur de fichier est un terminal
     int isatty(int fd);
 
@@ -148,9 +162,6 @@ Fonctions
 
 - Contrôler les opérations d'E/S
     int ioctl(int fd, unsigned long request, ...);
-
-- Obtenir la valeur d'une variable d'environnement
-    char *getenv(const char *name);
 
 - Modifier les attributs d'un terminal
     int tcsetattr(int fd, int optional_actions, const struct termios *termios_p);
