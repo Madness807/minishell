@@ -9,11 +9,20 @@ MAKEFLAGS += --no-print-directory
 #***** Sources / Objs *****#
 
 SRC				=		srcs/main.c \
-						srcs/check/check_arg.c \
-						srcs/init/init.c \
-						srcs/env/env.c \
-						srcs/lexer/input.c \
-						srcs/free_and_exit/free.c \
+						srcs/check/check_arg.c\
+						srcs/env/env.c\
+						srcs/error/error_handle.c\
+						srcs/execution/execution.c\
+						srcs/execution/pipe.c\
+						srcs/execution/redirection.c\
+						srcs/init/init.c\
+						srcs/lexer/input.c\
+						srcs/lexer/lexer.c\
+						srcs/parser/parser.c\
+						srcs/signal/signal.c\
+						srcs/free_and_exit/free.c\
+						srcs/builtins/builtins_1.c\
+						srcs/builtins/builtins_2.c\
 
 ##OBJS			=		$(SRC:.c=.o)
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))

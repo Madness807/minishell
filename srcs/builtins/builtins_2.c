@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:37:33 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/13 04:16:48 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/17 04:28:53 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ void	builtin_env()
 {
 
 }
-
 void	builtin_exit()
 {
-
+	void exit(0);
 }
 */
