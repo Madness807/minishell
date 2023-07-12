@@ -104,7 +104,7 @@ void		ft_is_pipe(char *str);
 
 //			BUILTINS FUNCTION
 void		builtin_echo(char *msg);
-void		builtin_cd(t_ms *ms);
+void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);
 void		builtin_export(t_ms *ms);
 void		builtin_unset(t_ms *ms);

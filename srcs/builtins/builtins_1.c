@@ -12,12 +12,27 @@
 
 #include "../../include/minishell.h"
 
-/*
-void	builtin_cd(char *destdir)
+
+void	builtin_cd(char *cmd)
 {
-	chdir(const char *path);
+	char	*dest;
+	int	i;
+
+	dest = malloc(1024);
+	i = 3;
+	while (cmd[i])
+	{
+		dest[i - 3] = cmd[i];
+		i++;
+	}
+	dest[i - 3] = '\0';
+	if (chdir(dest) != 0) 
+	{
+      ft_printf("minishell: cd: %s: No such file or directory\n", dest);
+    }
+	free(dest);
 }
-*/
+
 void	builtin_echo(char *msg)
 {
 	int	i;

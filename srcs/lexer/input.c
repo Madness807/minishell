@@ -41,6 +41,10 @@ void    user_input(t_ms *ms)
 		{
 			builtin_env(ms->env);
 		}
+		if(user_cmd[0] == 'c' && user_cmd[1] == 'd' && user_cmd[2] == ' ')
+		{
+			builtin_cd(user_cmd);
+		}
 		if(user_cmd[0] == 'e' && user_cmd[1] == 'c' && user_cmd[2] == 'h' && user_cmd[3] == 'o' && user_cmd[4] == ' ')
 		{
 			builtin_echo(user_cmd);
