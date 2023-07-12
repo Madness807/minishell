@@ -17,18 +17,36 @@ void	builtin_cd(char *destdir)
 {
 	chdir(const char *path);
 }
-
-void	builtin_echo()
+*/
+void	builtin_echo(char *msg)
 {
+	int	i;
 
+	if (msg[5] == '"')
+		i = 6;
+	else
+		i = 5;
+	while (msg[i] && msg[i] != '"')
+	{
+		ft_printf("%c", msg[i]);
+		i++;
+	}
+	ft_printf("\n");
 }
 
-
-void	builtin_pwd()
+void	builtin_pwd(char *current_folder)
 {
+	int	i;
 
+	i = 0;
+	while (current_folder[i])
+	{
+		ft_printf("%c", current_folder[i]);
+		i++;
+	}
+	ft_printf("\n");
 }
-
+/*
 void	builtin_export()
 {
 

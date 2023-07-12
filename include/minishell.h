@@ -78,6 +78,7 @@ typedef struct s_ms
 {
 	int			argc;
 	char		**env;
+	char		*current_folder;
 	int			stop;
 	struct	s_token	*token;
 	struct	s_command *cmd;
@@ -102,13 +103,12 @@ void		ft_is_pipe(char *str);
 //			PARSING FUNCTION
 
 //			BUILTINS FUNCTION
-void		builtin_echo(t_ms *ms);
+void		builtin_echo(char *msg);
 void		builtin_cd(t_ms *ms);
-void		builtin_pwd(t_ms *ms);
+void		builtin_pwd(char *current_folder);
 void		builtin_export(t_ms *ms);
 void		builtin_unset(t_ms *ms);
-void		builtin_env(t_ms *ms);
-void		builtin_exit();
+void		builtin_env(char **env);
 
 //			EXECUTION FUNCTION
 void		print_env(char **env);

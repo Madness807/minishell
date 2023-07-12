@@ -14,8 +14,9 @@
 
 void	free_and_exit(t_ms *ms, char *msg, int force_exit)
 {
-	(void)ms;
-	if (msg) 
+	if (ms->current_folder)
+		free(ms->current_folder);
+	if (msg)
 		ft_printf("Error : %s\n", msg);
 	if (force_exit != 0)
 		exit(1);

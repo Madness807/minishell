@@ -12,30 +12,49 @@
 
 #include "../../include/minishell.h"
 
+char	*def_prompt(t_ms *ms)
+{
+	if (ms->current_folder)
+	{
+		free(ms->current_folder);
+		ms->current_folder = NULL;
+	}
+	ms->current_folder = malloc(1024);
+	ms->current_folder = getcwd(ms->current_folder, 1024);
+	return (ft_strjoin(ms->current_folder, "> "));
+}
+
 void    user_input(t_ms *ms)
 {
-	char	*current_folder;
 	char	*user_cmd;
-
-	current_folder = malloc(1024);
-	current_folder = getcwd(current_folder, 1024);
-	strcat(current_folder, "> ");
+	char	*prompt;
 
 	while (ms->stop == 0)
 	{
-		user_cmd = readline(current_folder);
+		prompt = def_prompt(ms);
+		user_cmd = readline(prompt);
 		if(user_cmd[0] == 'e' && user_cmd[1] == 'x' && user_cmd[2] == 'i' && user_cmd[3] == 't' && user_cmd[4] == '\0')
 		{
 			ms->stop = 1;
 		}
 		if(user_cmd[0] == 'e' && user_cmd[1] == 'n' && user_cmd[2] == 'v' && user_cmd[3] == '\0')
 		{
-			print_env(ms->env);
+			builtin_env(ms->env);
+		}
+		if(user_cmd[0] == 'e' && user_cmd[1] == 'c' && user_cmd[2] == 'h' && user_cmd[3] == 'o' && user_cmd[4] == ' ')
+		{
+			builtin_echo(user_cmd);
+		}
+		if(user_cmd[0] == 'p' && user_cmd[1] == 'w' && user_cmd[2] == 'd' && user_cmd[3] == '\0')
+		{
+			builtin_pwd(ms->current_folder);
 		}
 		if (user_cmd[0] != '\0')
 			add_history(user_cmd);
 		free(user_cmd);
+		free(prompt);
 		user_cmd = NULL;
+		prompt = NULL;
 	}
 }
 
