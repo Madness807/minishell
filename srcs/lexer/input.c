@@ -33,23 +33,23 @@ void    user_input(t_ms *ms)
 	{
 		prompt = def_prompt(ms);
 		user_cmd = readline(prompt);
-		if(user_cmd[0] == 'e' && user_cmd[1] == 'x' && user_cmd[2] == 'i' && user_cmd[3] == 't' && user_cmd[4] == '\0')
+		if(ft_strncmp(user_cmd, "exit", 4) == 0)
 		{
 			ms->stop = 1;
 		}
-		if(user_cmd[0] == 'e' && user_cmd[1] == 'n' && user_cmd[2] == 'v' && user_cmd[3] == '\0')
+		if(ft_strncmp(user_cmd, "env", 3) == 0)
 		{
 			builtin_env(ms->env);
 		}
-		if(user_cmd[0] == 'c' && user_cmd[1] == 'd' && user_cmd[2] == ' ')
+		if(ft_strncmp(user_cmd, "cd", 2) == 0)
 		{
 			builtin_cd(user_cmd);
 		}
-		if(user_cmd[0] == 'e' && user_cmd[1] == 'c' && user_cmd[2] == 'h' && user_cmd[3] == 'o' && user_cmd[4] == ' ')
+		if(ft_strncmp(user_cmd, "echo", 4) == 0)
 		{
 			builtin_echo(user_cmd);
 		}
-		if(user_cmd[0] == 'p' && user_cmd[1] == 'w' && user_cmd[2] == 'd' && user_cmd[3] == '\0')
+		if(ft_strncmp(user_cmd, "pwd", 3) == 0)
 		{
 			builtin_pwd(ms->current_folder);
 		}
