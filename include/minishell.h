@@ -79,6 +79,7 @@ typedef struct s_ms
 	int			argc;
 	char		**env;
 	char		*current_folder;
+	char		*last_user_cmd;
 	int			stop;
 	struct	s_token	*token;
 	struct	s_command *cmd;

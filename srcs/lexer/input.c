@@ -54,7 +54,14 @@ void    user_input(t_ms *ms)
 			builtin_pwd(ms->current_folder);
 		}
 		if (user_cmd[0] != '\0')
-			add_history(user_cmd);
+		{
+			if (ft_strncmp(user_cmd, ms->last_user_cmd, ft_strlen(user_cmd)) != 0)
+			{
+				free(ms->last_user_cmd);
+				ms->last_user_cmd = ft_strdup(user_cmd);
+				add_history(user_cmd);
+			}
+		}
 		free(user_cmd);
 		free(prompt);
 		user_cmd = NULL;
