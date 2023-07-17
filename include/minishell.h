@@ -39,23 +39,24 @@ typedef enum
 {
 	TOKEN_WORD				= 0,	// Ce token est un mot
 	TOKEN_PIPE				= 1,	// Ce token est un pipe
-	TOKEN_EOF				= 2,	// Ce token definit la fin du fichier
-	TOKEN_BUILTINS			= 3,	// Ce token definit les builtins
-	TOKEN_SPACE 			= 4,	// Ce token definit les espaces
-	TOKEN_REDIC_SD			= 5,	// Ce token definit >
-	TOKEN_REDIC_SG			= 6,	// Ce token definit <
-	TOKEN_REDIC_DD			= 7,	// Ce token definit >>
-	TOKEN_REDIC_DG			= 8,	// Ce token definit <<
-	TOKEN_QUOTE				= 9,	// Ce token definit les quotes simple
-	TOKEN_DQUOTE			= 10,	// Ce token definit les quotes doubles
-	TOKEN_DOLLARS			= 11,	// Ce token definit les dollars
-	TOKEN_ECHO				= 12,	// Ce token definit echo
-	TOKEN_CD				= 13,	// Ce token definit builtin cd
-	TOKEN_PWD				= 14,	// Ce token definit builtin pwd
-	TOKEN_EXPORT			= 15,	// Ce token definit builtin export
-	TOKEN_UNSET				= 16,	// Ce token definit builtin unset
-	TOKEN_ENV				= 17,	// Ce token definit builtin env
-	TOKEN_EXIT				= 18,	// Ce token definit builtin exit
+	TOKEN_CMD_FLAG			= 2,	// Ce token est un flag de commande
+	TOKEN_EOF				= 3,	// Ce token definit la fin du fichier
+	TOKEN_BUILTINS			= 4,	// Ce token definit les builtins
+	TOKEN_SPACE				= 5,	// Ce token definit les espaces
+	TOKEN_REDIC_SD			= 6,	// Ce token definit >
+	TOKEN_REDIC_SG			= 7,	// Ce token definit <
+	TOKEN_REDIC_DD			= 8,	// Ce token definit >>
+	TOKEN_REDIC_DG			= 9,	// Ce token definit <<
+	TOKEN_QUOTE				= 10,	// Ce token definit les quotes simple
+	TOKEN_DQUOTE			= 11,	// Ce token definit les quotes doubles
+	TOKEN_DOLLARS			= 12,	// Ce token definit les dollars
+	TOKEN_ECHO				= 13,	// Ce token definit echo
+	TOKEN_CD				= 14,	// Ce token definit builtin cd
+	TOKEN_PWD				= 15,	// Ce token definit builtin pwd
+	TOKEN_EXPORT			= 16,	// Ce token definit builtin export
+	TOKEN_UNSET				= 17,	// Ce token definit builtin unset
+	TOKEN_ENV				= 18,	// Ce token definit builtin env
+	TOKEN_EXIT				= 19,	// Ce token definit builtin exit
 
 }Token_Type;
 
@@ -81,6 +82,7 @@ typedef struct s_token
 	struct s_token	*next;
 	
 }t_token;
+
 
 typedef struct s_command
 {
@@ -114,7 +116,7 @@ void		init_struct(t_ms *ms, int argc, char **argv, char **env);
 //			LEXER FUNCTION
 void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
-void		tokeniser(t_ms *ms);
+void		tokeniser(t_ms *ms)
 
 //			PARSING FUNCTION
 

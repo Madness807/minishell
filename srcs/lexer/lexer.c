@@ -12,24 +12,14 @@
 
 #include "../../include/minishell.h"
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/06/17 03:27:41 by joterret         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+char	*get_next_word(t_ms *ms)
+{
+	char *str;
+	int i;
 
-#include "../../include/minishell.h"
-
-//TODO -  *get_next_word(?????)
-//{
-	//TODO - cree la fonction qui permet d avoir le prochain mot 
-//}
+	str = 
+	while ()
+}
 
 void	tokeniser(t_ms *ms)
 {
@@ -85,6 +75,7 @@ void	tokeniser(t_ms *ms)
 /*
 	TOKEN_WORD				= 0,	// Ce token est un mot
 	TOKEN_EOF				= 2,	// Ce token definit la fin du fichier
+	il faut aussi un moyen de tchecker si c est un flag
 */
 
 //NOTE - oui je sais cela fait plus de 25 ligne mais j ai deja une idee pour
