@@ -24,7 +24,7 @@ char	*def_prompt(t_ms *ms)
 	return (ft_strjoin(ms->current_folder, "> "));
 }
 
-void    user_input(t_ms *ms)
+void	user_input(t_ms *ms)
 {
 	char	*user_cmd;
 	char	*prompt;

@@ -30,3 +30,5 @@ void	builtin_env(char **env)
 		i++;
 	}
 }
+
+//FIXME - on ne doit pas afficher l env de base mais le env de notre shell !
