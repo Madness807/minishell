@@ -116,7 +116,7 @@ void		init_struct(t_ms *ms, int argc, char **argv, char **env);
 //			LEXER FUNCTION
 void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
-void		tokeniser(t_ms *ms)
+void		tokeniser(t_ms *ms);
 
 //			PARSING FUNCTION
 

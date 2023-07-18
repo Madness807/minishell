@@ -6,12 +6,13 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:30:46 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/13 04:16:39 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:39:10 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+/*
 //NOTE - copie du pipex sans modification
 
 // int	main(int argc, char **argv, char **envp)
@@ -79,3 +80,4 @@ void	process(char **argv, t_pipex pipex)
 	while (wait(NULL) == -1)
 		continue ;
 }
+*/

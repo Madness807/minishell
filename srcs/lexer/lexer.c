@@ -6,12 +6,13 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/17 04:35:02 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:34:57 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+/*
 char	*get_next_word(t_ms *ms)
 {
 	char *str;
@@ -33,6 +34,7 @@ void	tokeniser(t_ms *ms)
 		//
 		ms->token->contenue = word;
 		ms->token->next = NULL;
+
 
 		if (ft_strcmp(word, '|') == 0 )
 			ms->token->type = TOKEN_PIPE;
@@ -72,11 +74,11 @@ void	tokeniser(t_ms *ms)
 }
 
 //TODO - 
-/*
+
 	TOKEN_WORD				= 0,	// Ce token est un mot
 	TOKEN_EOF				= 2,	// Ce token definit la fin du fichier
 	il faut aussi un moyen de tchecker si c est un flag
-*/
+
 
 //NOTE - oui je sais cela fait plus de 25 ligne mais j ai deja une idee pour
 //NOTE -  optimiser le code afin de le rendre plus petit
@@ -84,3 +86,5 @@ void	tokeniser(t_ms *ms)
 
 
 
+
+*/
