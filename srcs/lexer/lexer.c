@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/18 12:34:57 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:18:42 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	tokeniser(t_ms *ms)
 
 		if (ft_strcmp(word, '|') == 0 )
 			ms->token->type = TOKEN_PIPE;
+			ms->token->contenue = '|';
 		else if(ft_strcmp(word, ' ') == 0)
 			ms->token->type = TOKEN_SPACE;
 		else if (ft_strcmp(word, '>') == 0)
@@ -78,13 +79,5 @@ void	tokeniser(t_ms *ms)
 	TOKEN_WORD				= 0,	// Ce token est un mot
 	TOKEN_EOF				= 2,	// Ce token definit la fin du fichier
 	il faut aussi un moyen de tchecker si c est un flag
-
-
-//NOTE - oui je sais cela fait plus de 25 ligne mais j ai deja une idee pour
-//NOTE -  optimiser le code afin de le rendre plus petit
-
-
-
-
 
 */

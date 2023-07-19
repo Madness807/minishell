@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:55:27 by aschaefe          #+#    #+#             */
-/*   Updated: 2022/11/04 20:23:46 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:49:32 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -57,6 +58,7 @@ int		ft_isascii(int c);
 int		ft_isdigit(int nb);
 int		ft_isprint(int nb);
 int		ft_strncmp(const char *s1, const char *s2, size_t nb);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_toupper(int str);
 int		ft_tolower(int str);
 int		ft_memcmp(const void *ptr1, const void *ptr2, size_t size);

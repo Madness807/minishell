@@ -14,6 +14,7 @@ SRCS	=	ft_atoi.c \
 			ft_strlcpy.c \
 			ft_strlen.c \
 			ft_strncmp.c \
+			ft_strcmp.c \
 			ft_strnstr.c \
 			ft_strrchr.c \
 			ft_tolower.c \
@@ -60,7 +61,7 @@ SRCS	=	ft_atoi.c \
 			core_xx.c \
 			ft_puthex.c \
 
-OBJS	= ${SRCS:.c=.o}
+OBJS			=		$(SRCS:.c=.o)
 
 #***** Flags *****#
 

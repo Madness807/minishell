@@ -6,11 +6,32 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/06/17 03:27:41 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:25:06 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	clean_token(t_ms *ms)
+{
+	t_token	*tmp;
+	t_token	*current;
+	
+	tmp = ms->token;
+	while(tmp->next != NULL)
+	{
+		current = tmp;
+		tmp = tmp->next;
+		free(current->contenue);
+		current->contenue = NULL;
+		free(current);
+		current = NULL;
+	}
+	free(tmp->contenue);
+	tmp->contenue = NULL;
+	free(tmp);
+	ms->token = NULL;
+}
 
 char	*def_prompt(t_ms *ms)
 {
@@ -26,45 +47,52 @@ char	*def_prompt(t_ms *ms)
 
 void	user_input(t_ms *ms)
 {
-	char	*user_cmd;
 	char	*prompt;
 
 	while (ms->stop == 0)
 	{
 		prompt = def_prompt(ms);
-		user_cmd = readline(prompt);
-		if(ft_strncmp(user_cmd, "exit", 4) == 0)
+		ms->user_cmd = readline(prompt);
+		tokeniser(ms);
+		print_lst_token(ms);
+		if(ft_strncmp(ms->user_cmd, "exit", 4) == 0)
 		{
 			ms->stop = 1;
 		}
-		if(ft_strncmp(user_cmd, "env", 3) == 0)
+		else if(ft_strncmp(ms->user_cmd, "env", 3) == 0)
 		{
 			builtin_env(ms->env);
 		}
-		if(ft_strncmp(user_cmd, "cd", 2) == 0)
+		else if(ft_strncmp(ms->user_cmd, "cd", 2) == 0)
 		{
-			builtin_cd(user_cmd);
+			builtin_cd(ms->user_cmd);
 		}
-		if(ft_strncmp(user_cmd, "echo", 4) == 0)
+		else if(ft_strncmp(ms->user_cmd, "echo", 4) == 0)
 		{
-			builtin_echo(user_cmd);
+			builtin_echo(ms->user_cmd);
 		}
-		if(ft_strncmp(user_cmd, "pwd", 3) == 0)
+		else if(ft_strncmp(ms->user_cmd, "pwd", 3) == 0)
 		{
 			builtin_pwd(ms->current_folder);
 		}
-		if (user_cmd[0] != '\0')
+		
+		else
 		{
-			if (ft_strncmp(user_cmd, ms->last_user_cmd, ft_strlen(user_cmd)) != 0)
+			ft_printf("Command '%s' not found\n", ms->user_cmd);
+		}
+		if (ms->user_cmd[0] != '\0')
+		{
+			if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, ft_strlen(ms->user_cmd)) != 0)
 			{
 				free(ms->last_user_cmd);
-				ms->last_user_cmd = ft_strdup(user_cmd);
-				add_history(user_cmd);
+				ms->last_user_cmd = ft_strdup(ms->user_cmd);
+				add_history(ms->user_cmd);
 			}
 		}
-		free(user_cmd);
+		clean_token(ms);
+		free(ms->user_cmd);
 		free(prompt);
-		user_cmd = NULL;
+		ms->user_cmd = NULL;
 		prompt = NULL;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/06/17 04:39:36 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:46:04 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ typedef struct s_ms
 {
 	int				argc;
 	char			**env;
+	char			**bin_path;
 	char			*current_folder;
+	char			*user_cmd;
 	char			*last_user_cmd;
 	int				stop;
 	struct			s_token	*token;
@@ -117,6 +119,7 @@ void		init_struct(t_ms *ms, int argc, char **argv, char **env);
 void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
 void		tokeniser(t_ms *ms);
+char		**get_next_word(t_ms *ms);
 
 //			PARSING FUNCTION
 
@@ -136,5 +139,10 @@ void		handle_sigint(int sig);
 
 //			exit and free function 
 void		free_and_exit(t_ms *ms, char *msg, int force_exit);
+
+
+//zone de test
+void		print_lst_token(t_ms *ms);
+
 
 #endif
