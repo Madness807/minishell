@@ -22,7 +22,6 @@ SRC				=		srcs/main.c \
 						srcs/free_and_exit/free.c\
 						srcs/builtins/builtins_1.c\
 						srcs/builtins/builtins_2.c\
-						srcs/unit_test/print_lst_token.c\
 
 ##OBJS			=		$(SRC:.c=.o)
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))

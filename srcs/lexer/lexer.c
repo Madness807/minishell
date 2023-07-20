@@ -6,78 +6,76 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/19 14:18:42 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:18:50 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/*
-char	*get_next_word(t_ms *ms)
+char	**get_next_word(t_ms *ms)
 {
-	char *str;
-	int i;
+	char *str = ms->user_cmd;
+	char **tab_word = ft_split(str, ' ');
 
-	str = 
-	while ()
+	return(tab_word);
 }
 
 void	tokeniser(t_ms *ms)
 {
-	char *word; // chaque element de la string
+	char 	**tab_word;
+	char 	*word;
+	int 	i;
+	t_token	*new_token;
+	t_token	*tmp;
 
-	word = get_next_word;// obtenir le premier mot
-
-	while (word)// boucle qui me permet de cree dymaniquement la list chainer 
-	{
-		//TODO -  Crée un nouveau token
-		//
-		ms->token->contenue = word;
-		ms->token->next = NULL;
-
-
-		if (ft_strcmp(word, '|') == 0 )
-			ms->token->type = TOKEN_PIPE;
-			ms->token->contenue = '|';
-		else if(ft_strcmp(word, ' ') == 0)
-			ms->token->type = TOKEN_SPACE;
-		else if (ft_strcmp(word, '>') == 0)
-			ms->token->type = TOKEN_REDIC_SD;
-		else if (ft_strcmp(word, '<') == 0)
-			ms->token->type = TOKEN_REDIC_SG;
-		else if (ft_strcmp(word, '>>') == 0)
-			ms->token->type = TOKEN_REDIC_DD;
-		else if (ft_strcmp(word, '<<') == 0)
-			ms->token->type = TOKEN_REDIC_DG;
+	tab_word = get_next_word(ms);
+	i = 0;
+	while (tab_word[i])
+		{
+		word = tab_word[i];
+		new_token = ((t_token *)malloc(sizeof(t_token)));
+		new_token->contenue = word;
+		new_token->next = NULL;
+		if (ms->token == NULL)
+			ms->token = new_token;
+		else
+		{
+			tmp = ms->token;
+			while (tmp->next != NULL)
+				tmp = tmp->next;
+			tmp->next = new_token;
+		}
+		if (ft_strcmp(word, "|") == 0 )
+			new_token->type = TOKEN_PIPE;
+		else if (ft_strcmp(word, ">") == 0)
+			new_token->type = TOKEN_REDIC_SD;
+		else if (ft_strcmp(word, "<") == 0)
+			new_token->type = TOKEN_REDIC_SG;
+		else if (ft_strcmp(word, ">>") == 0)
+			new_token->type = TOKEN_REDIC_DD;
+		else if (ft_strcmp(word, "<<") == 0)
+			new_token->type = TOKEN_REDIC_DG;
 		else if (ft_strcmp(word, "'") == 0)
-			ms->token->type = TOKEN_QUOTE;
+			new_token->type = TOKEN_QUOTE;
 		else if (ft_strcmp(word, "\"") == 0)
-			ms->token->type = TOKEN_DQUOTE;
-		else if (ft_strcmp(word, '$') == 0)
-			ms->token->type = TOKEN_DOLLARS;
-		else if (ft_strcmp(word, "echo") == 0)
-			ms->token->type = TOKEN_ECHO;
-		else if (ft_strcmp(word, "cd") == 0)
-			ms->token->type = TOKEN_CD;
-		else if (ft_strcmp(word, "pwd") == 0)
-			ms->token->type = TOKEN_PWD;
-		else if (ft_strcmp(word, "export") == 0)
-			ms->token->type = TOKEN_EXPORT;
-		else if (ft_strcmp(word, "unset") == 0)
-			ms->token->type = TOKEN_UNSET;
-		else if (ft_strcmp(word, "env") == 0)
-			ms->token->type = TOKEN_ENV;
-		else if (ft_strcmp(word, "exit") == 0)
-			ms->token->type = TOKEN_EXIT;
-		
-		//TODO -  = get_next_word(?????);
-	}
+			new_token->type = TOKEN_DQUOTE;
+		else if (word[0] == '-')
+			new_token->type = TOKEN_CMD_FLAG;
+		else
+			new_token->type = TOKEN_WORD;
+		i++;
+		}
 }
 
-//TODO - 
+void	print_lst_token(t_ms *ms)
+{
+	t_token *cur;
 
-	TOKEN_WORD				= 0,	// Ce token est un mot
-	TOKEN_EOF				= 2,	// Ce token definit la fin du fichier
-	il faut aussi un moyen de tchecker si c est un flag
+	cur = ms->token;
 
-*/
+	while (cur)
+	{
+		printf("%d\n", cur->type);
+		cur = cur->next;
+	}	
+}
