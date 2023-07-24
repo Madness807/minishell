@@ -17,6 +17,8 @@ SRC				=		srcs/main.c \
 						srcs/init/init.c\
 						srcs/lexer/input.c\
 						srcs/lexer/lexer.c\
+						srcs/lexer/clean_lexer.c\
+						srcs/lexer/handle_quote.c\
 						srcs/parser/parser.c\
 						srcs/signal/signal.c\
 						srcs/free_and_exit/free.c\

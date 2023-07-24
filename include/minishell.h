@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/19 14:46:04 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:21:05 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
 void		tokeniser(t_ms *ms);
 char		**get_next_word(t_ms *ms);
+void		clean_token(t_ms *ms);
+char    	*handle_quote(char *str);
 
 //			PARSING FUNCTION
 

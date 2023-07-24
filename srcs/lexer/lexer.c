@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/20 17:18:50 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:20:27 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	**get_next_word(t_ms *ms)
 {
-	char *str = ms->user_cmd;
-	char **tab_word = ft_split(str, ' ');
+	char **tab_word;
 
+	tab_word = ft_split(handle_quote(ms->user_cmd), ' ');
 	return(tab_word);
 }
 
@@ -75,7 +75,7 @@ void	print_lst_token(t_ms *ms)
 
 	while (cur)
 	{
-		printf("%d\n", cur->type);
+		printf("%s type : %d\n", cur->contenue, cur->type);
 		cur = cur->next;
 	}	
 }
