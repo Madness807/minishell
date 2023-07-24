@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/24 16:21:05 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:19:23 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,25 @@ typedef enum
 {
 	TOKEN_WORD				= 0,	// Ce token est un mot
 	TOKEN_PIPE				= 1,	// Ce token est un pipe
-	TOKEN_CMD_FLAG			= 2,	// Ce token est un flag de commande
-	TOKEN_EOF				= 3,	// Ce token definit la fin du fichier
-	TOKEN_BUILTINS			= 4,	// Ce token definit les builtins
-	TOKEN_SPACE				= 5,	// Ce token definit les espaces
-	TOKEN_REDIC_SD			= 6,	// Ce token definit >
-	TOKEN_REDIC_SG			= 7,	// Ce token definit <
-	TOKEN_REDIC_DD			= 8,	// Ce token definit >>
-	TOKEN_REDIC_DG			= 9,	// Ce token definit <<
-	TOKEN_QUOTE				= 10,	// Ce token definit les quotes simple
-	TOKEN_DQUOTE			= 11,	// Ce token definit les quotes doubles
-	TOKEN_DOLLARS			= 12,	// Ce token definit les dollars
-	TOKEN_ECHO				= 13,	// Ce token definit echo
-	TOKEN_CD				= 14,	// Ce token definit builtin cd
-	TOKEN_PWD				= 15,	// Ce token definit builtin pwd
-	TOKEN_EXPORT			= 16,	// Ce token definit builtin export
-	TOKEN_UNSET				= 17,	// Ce token definit builtin unset
-	TOKEN_ENV				= 18,	// Ce token definit builtin env
-	TOKEN_EXIT				= 19,	// Ce token definit builtin exit
+	TOKEN_CMD				= 2,	// Ce token est une commande
+	TOKEN_CMD_FLAG			= 3,	// Ce token est un flag de commande
+	TOKEN_EOF				= 4,	// Ce token definit la fin du fichier
+	TOKEN_BUILTINS			= 5,	// Ce token definit les builtins
+	TOKEN_SPACE				= 6,	// Ce token definit les espaces
+	TOKEN_REDIC_SD			= 7,	// Ce token definit >
+	TOKEN_REDIC_SG			= 8,	// Ce token definit <
+	TOKEN_REDIC_DD			= 9,	// Ce token definit >>
+	TOKEN_REDIC_DG			= 10,	// Ce token definit <<
+	TOKEN_QUOTE				= 11,	// Ce token definit les quotes simple
+	TOKEN_DQUOTE			= 12,	// Ce token definit les quotes doubles
+	TOKEN_DOLLARS			= 13,	// Ce token definit les dollars
+	TOKEN_ECHO				= 14,	// Ce token definit echo
+	TOKEN_CD				= 15,	// Ce token definit builtin cd
+	TOKEN_PWD				= 16,	// Ce token definit builtin pwd
+	TOKEN_EXPORT			= 17,	// Ce token definit builtin export
+	TOKEN_UNSET				= 18,	// Ce token definit builtin unset
+	TOKEN_ENV				= 19,	// Ce token definit builtin env
+	TOKEN_EXIT				= 20,	// Ce token definit builtin exit
 
 }Token_Type;
 
@@ -75,6 +76,7 @@ typedef enum
 ////////////////////////////////////////////////////////////////////////////////
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
+
 typedef struct s_token
 {
 	char			*contenue;
@@ -83,13 +85,13 @@ typedef struct s_token
 	
 }t_token;
 
-
 typedef struct s_command
 {
 	char			*cmd_name;
-	char			**cmd_options;
+	char			*cmd_options;
+	char			**tab_cmd;
 	struct			s_command *next;
-	
+
 }t_command;
 
 typedef struct s_ms
@@ -102,7 +104,7 @@ typedef struct s_ms
 	char			*last_user_cmd;
 	int				stop;
 	struct			s_token	*token;
-	struct			s_command *cmd;
+	struct			s_command *command;
 	
 }t_ms;
 
@@ -122,8 +124,12 @@ void		tokeniser(t_ms *ms);
 char		**get_next_word(t_ms *ms);
 void		clean_token(t_ms *ms);
 char    	*handle_quote(char *str);
+int			is_valid_cmd(char *str, t_ms *ms);
+int			is_valid_builtin(char *str);
 
 //			PARSING FUNCTION
+void    	parser(t_ms *ms);
+void		clean_command(t_ms *ms);
 
 //			BUILTINS FUNCTION
 void		builtin_echo(char *msg);
@@ -135,6 +141,9 @@ void		builtin_env(char **env);
 
 //			EXECUTION FUNCTION
 void		print_env(char **env);
+char		*var_env_finder(t_ms *ms);
+char		*join_path_cmd(char **path_splited, char *command);
+void		execution(t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		handle_sigint(int sig);
@@ -145,6 +154,7 @@ void		free_and_exit(t_ms *ms, char *msg, int force_exit);
 
 //zone de test
 void		print_lst_token(t_ms *ms);
+void		print_lst_command(t_ms *ms);
 
 
 #endif

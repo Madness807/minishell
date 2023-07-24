@@ -19,6 +19,7 @@ SRC				=		srcs/main.c \
 						srcs/lexer/lexer.c\
 						srcs/lexer/clean_lexer.c\
 						srcs/lexer/handle_quote.c\
+						srcs/lexer/is_valid_cmd.c\
 						srcs/parser/parser.c\
 						srcs/signal/signal.c\
 						srcs/free_and_exit/free.c\
@@ -55,7 +56,7 @@ BS_N_TXT			=		echo "\n"
 #***** Flags *****#
 
 CC				=		gcc
-CFLAGS			=		-Wall -Wextra -Werror
+CFLAGS			=		-Wall -Wextra -Werror -g
 L				=		$(CFLAGS) -fsanitize=address
 RM				=		rm -f
 
@@ -92,17 +93,11 @@ $(NAME) :	${OBJS}
 
 l :			${OBJS}
 			${MLIBFT} all
-			${CC} ${L} -o ${NAME} ${OBJS} ${LIBFT}
+			${CC} ${L} -o ${NAME} ${OBJS} -lreadline ${LIBFT}
 			@$(END_COMP_TXT)
 
 leaks :		all
 			leaks -atExit -- ./${NAME} 
-
-test: 		all
-			@${CC} ${CFLAGS} ${OBJS} libft/libft.a
-			@$(TEST_TXT)
-			@./a.out
-			@rm -f ./a.out
 
 #***** Clean *****#
 

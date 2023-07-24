@@ -3,16 +3,16 @@
 ## Lexer
 [X] toknisation des fonctions
 [X] creation de la liste chainee pour le stockage 
-[] single quote
-[] double quote
+[X] single quote
+[X] double quote
 [X] <
 [X] >
 [X] <<
 [X] >>
 [X] |
-[] word
-[] cmd
-[] cmd args
+[X] word
+[X] cmd
+[X] cmd args
 
 
 ## Parsing
@@ -26,12 +26,12 @@
 
 # Builtins
 [X] cd
-[X] echo (-n)
+[1/2] echo (-n)
 [X] pwd
 [] export
 [] unset
 [X] env
-[] exit 
+[X] exit 
 
 
 ## Gestion des signaux

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/24 15:05:15 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:15:31 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	user_input(t_ms *ms)
 		ms->user_cmd = readline(prompt);
 		tokeniser(ms);
 		print_lst_token(ms);
+		parser(ms);
+		execution(ms);
+		printf("A\n");
 		if(ft_strncmp(ms->user_cmd, "exit", 4) == 0)
 		{
 			ms->stop = 1;
@@ -54,11 +57,6 @@ void	user_input(t_ms *ms)
 		{
 			builtin_pwd(ms->current_folder);
 		}
-		
-		else
-		{
-			ft_printf("Command '%s' not found\n", ms->user_cmd);
-		}
 		if (ms->user_cmd[0] != '\0')
 		{
 			if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, ft_strlen(ms->user_cmd)) != 0)
@@ -69,6 +67,7 @@ void	user_input(t_ms *ms)
 			}
 		}
 		clean_token(ms);
+		clean_command(ms);
 		free(ms->user_cmd);
 		free(prompt);
 		ms->user_cmd = NULL;

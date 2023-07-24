@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/24 16:20:27 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:06:07 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	tokeniser(t_ms *ms)
 				tmp = tmp->next;
 			tmp->next = new_token;
 		}
-		if (ft_strcmp(word, "|") == 0 )
+		if (ft_strcmp(word, "|") == 0)
 			new_token->type = TOKEN_PIPE;
 		else if (ft_strcmp(word, ">") == 0)
 			new_token->type = TOKEN_REDIC_SD;
@@ -62,7 +62,14 @@ void	tokeniser(t_ms *ms)
 		else if (word[0] == '-')
 			new_token->type = TOKEN_CMD_FLAG;
 		else
-			new_token->type = TOKEN_WORD;
+		{
+			if (is_valid_builtin(word) == 1)
+				new_token->type = TOKEN_BUILTINS;
+			else if (is_valid_cmd(word, ms) == 1)
+				new_token->type = TOKEN_CMD;
+			else
+				new_token->type = TOKEN_WORD;
+		}
 		i++;
 		}
 }
@@ -73,9 +80,11 @@ void	print_lst_token(t_ms *ms)
 
 	cur = ms->token;
 
+	printf("\n");
 	while (cur)
 	{
-		printf("%s type : %d\n", cur->contenue, cur->type);
+		printf("TOKEN Contenue = %s\t TOKEN Type = %d\n", cur->contenue, cur->type);
 		cur = cur->next;
 	}	
+	printf("\n");
 }

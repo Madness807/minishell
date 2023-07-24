@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/24 15:05:15 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:21:38 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,24 @@ void	clean_token(t_ms *ms)
 	tmp->contenue = NULL;
 	free(tmp);
 	ms->token = NULL;
+}
+
+void	clean_command(t_ms *ms)
+{
+	t_command	*tmp;
+	t_command	*current;
+	
+	if (ms->command)
+	{
+		tmp = ms->command;
+		while(tmp->next != NULL)
+		{
+			current = tmp;
+			tmp = tmp->next;
+			free(current);
+			current = NULL;
+		}
+		free(tmp);
+		ms->command = NULL;
+	}
 }

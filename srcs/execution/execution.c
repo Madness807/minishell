@@ -6,38 +6,39 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/20 17:33:08 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:21:21 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-/*
-char	*var_env_finder(char *command, t_pipex pipex)
+
+char	*var_env_finder(t_ms *ms)
 {
-	int		i;
-	char	*env_path;
 	char	**path_splited;
 	char	*path_access;
+	char	*command;
 
 	path_splited = NULL;
 	path_access = NULL;
-	command = ft_strjoin("/", command);
-	i = 0;
-	while (pipex.envp[i])
+
+	if (ms->command)
 	{
-		if (!ft_strncmp(pipex.envp[i], "PATH=", 5))
-		env_path = pipex.envp[i] + 5;
-		i++;
+		command = ms->command->cmd_name;
+		command = ft_strjoin("/", ms->command->cmd_name);
 	}
-	path_splited = ft_split(env_path, ':');
+	path_splited = ms->bin_path;
 	path_access = join_path_cmd(path_splited, command);
+
 	if (path_access == NULL)
 		return (NULL);
-	return (path_access);
-	}
 
-	char	*join_path_cmd(char **path_splited, char *command)
-	{
+	
+	printf("%s", path_access);
+	return (path_access);
+}
+
+char	*join_path_cmd(char **path_splited, char *command)
+{
 	int		i;
 	char	*tmp;
 
@@ -52,4 +53,14 @@ char	*var_env_finder(char *command, t_pipex pipex)
 	}	
 	return (NULL);
 }
-*/
+
+void	execution(t_ms *ms)
+{
+	char *path;
+
+	path = var_env_finder(ms);
+	if(path)
+	{
+		execve(path, &ms->command->cmd_options, ms->env);
+	}
+}
