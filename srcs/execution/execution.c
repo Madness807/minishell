@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/25 00:21:21 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 03:11:50 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ char	*var_env_finder(t_ms *ms)
 	if (path_access == NULL)
 		return (NULL);
 
-	
-	printf("%s", path_access);
+	//printf("%s", path_access);
 	return (path_access);
 }
 
@@ -58,9 +57,12 @@ void	execution(t_ms *ms)
 {
 	char *path;
 
+
 	path = var_env_finder(ms);
 	if(path)
 	{
-		execve(path, &ms->command->cmd_options, ms->env);
+		execve(path, ms->command->tab_options, ms->env);
+		//perror("execve");
 	}
+	
 }
