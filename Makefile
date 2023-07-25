@@ -25,6 +25,7 @@ SRC				=		srcs/main.c \
 						srcs/free_and_exit/free.c\
 						srcs/builtins/builtins_1.c\
 						srcs/builtins/builtins_2.c\
+						srcs/builtins/call_builtins.c\
 
 ##OBJS			=		$(SRC:.c=.o)
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))
@@ -75,6 +76,7 @@ logo :
 obj/%.o:	%.c 
 			@mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) -c $< -o $@
+			@$(CHARG_LINE_TXT)
 
 
 start:
@@ -84,7 +86,6 @@ start:
 
 %.o:		%.c ./libft/libft.h Makefile
 			@$(CC) $(CFLAGS) -c $< -o $@
-			@$(CHARG_LINE_TXT)
 
 $(NAME) :	${OBJS}
 			@$(BS_N_TXT)

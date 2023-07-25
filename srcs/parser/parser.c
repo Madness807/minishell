@@ -88,6 +88,10 @@ void    parser(t_ms *ms)
                 tmp->next = command;
             }
         }
+        if (token->type == TOKEN_BUILTINS)
+        {
+            call_builtins(token, ms);
+        }
         token = token->next;
     }
     print_lst_command(ms);

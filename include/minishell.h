@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/25 13:05:02 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:47:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void    	parser(t_ms *ms);
 void		clean_command(t_ms *ms);
 
 //			BUILTINS FUNCTION
+void    	call_builtins(t_token *token, t_ms *ms);
 void		builtin_echo(char *msg);
 void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);

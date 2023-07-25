@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/25 13:05:51 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:47:07 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,7 @@ void	user_input(t_ms *ms)
 		print_lst_token(ms);
 		parser(ms);
 		execution(ms);
-		if(ft_strncmp(ms->user_cmd, "exit", 4) == 0)
-		{
-			ms->stop = 1;
-		}
-		else if(ft_strncmp(ms->user_cmd, "env", 3) == 0)
-		{
-			builtin_env(ms->env);
-		}
-		else if(ft_strncmp(ms->user_cmd, "cd", 2) == 0)
-		{
-			builtin_cd(ms->user_cmd);
-		}
-		else if(ft_strncmp(ms->user_cmd, "echo", 4) == 0)
-		{
-			builtin_echo(ms->user_cmd);
-		}
-		else if(ft_strncmp(ms->user_cmd, "pwd", 3) == 0)
-		{
-			builtin_pwd(ms->current_folder);
-		}
+		//call_builtins(ms);
 		if (ms->user_cmd[0] != '\0')
 		{
 			if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, ft_strlen(ms->user_cmd)) != 0)

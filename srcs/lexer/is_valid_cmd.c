@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/24 18:04:37 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:07:18 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	is_valid_builtin(char *str)
     else if (ft_strcmp(str, "unset") == 0)
         return (1);
     else if (ft_strcmp(str, "env") == 0)
+        return (1);
+	else if (ft_strcmp(str, "exit") == 0)
         return (1);
 	else
         return (0);
