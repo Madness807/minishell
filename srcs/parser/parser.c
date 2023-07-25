@@ -1,6 +1,5 @@
 #include "../../include/minishell.h"
 
-
 char	*cmd_path(char *str, t_ms *ms)
 {
 	char	**path_splited;
@@ -102,18 +101,38 @@ void	print_lst_command(t_ms *ms)
 {
 	t_command *cur;
     int i = 0;
+    int j = 0;
 
 	cur = ms->command;
 
+	printf(BLU"LISTE CHAINEE COMMANDES\n"RESET);
 	while (cur)
-	{
-		printf("COMMAND = %s\n", cur->cmd_name);
+	{   
+        printf(BLU"-------------------------------------------------------------------\n"RESET);
+        printf(BLU"|  "RESET);
+        printf("[%i]\t\t",j);
+        j++;
+		printf(GRN "CMD_NAME = %s\t\t" RESET, cur->cmd_name);
+        i = 0;
         while (cur->tab_options[i])
         {
-            printf("flag[%i] = %s\n",i, cur->tab_options[i]);
+            if (i == 0)
+            {
+                printf(YEL "flag[%i] =  %s\t" RESET,i, cur->tab_options[i]);
+                printf(BLU"  |"RESET);
+                printf("\n");
+        }
+            else
+            {
+                printf(BLU"|  "RESET);
+                printf(YEL "\t\t\t\t\tflag[%i] =  %s" RESET,i, cur->tab_options[i]);
+                printf(BLU"\t\t  |"RESET);
+                printf("\n");
+            }
             i++;
         }
 		cur = cur->next;
 	}
+    printf(BLU"-------------------------------------------------------------------\n"RESET);
     printf("\n");
 }

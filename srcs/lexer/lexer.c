@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/24 19:06:07 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 22:09:06 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,23 @@ void	tokeniser(t_ms *ms)
 void	print_lst_token(t_ms *ms)
 {
 	t_token *cur;
+	int i;
 
 	cur = ms->token;
-
+	i = 0;
 	printf("\n");
+	printf(MAG"LISTE CHAINEE TOKENS\n"RESET);
+	printf(MAG"----------------------------------------------------\n"RESET);
 	while (cur)
-	{
-		printf("TOKEN Contenue = %s\t TOKEN Type = %d\n", cur->contenue, cur->type);
+	{	
+		printf(MAG"|  "RESET);
+		printf("[%i]\t\t",i);
+		printf(GRN "Contenue = %s\t\t"RESET, cur->contenue);
+		printf(YEL "Type = %d  "RESET, cur->type);
+		printf(MAG" |\n"RESET);
 		cur = cur->next;
-	}	
+		i++;
+	}
+	printf(MAG"----------------------------------------------------\n"RESET);
 	printf("\n");
 }
