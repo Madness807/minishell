@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/25 13:47:07 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:11:04 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,44 @@ char	*def_prompt(t_ms *ms)
 	return (ft_strjoin(ms->current_folder, "> "));
 }
 
+void	update_history(t_ms *ms)
+{
+	if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, ft_strlen(ms->user_cmd)) != 0)
+	{
+		free(ms->last_user_cmd);
+		ms->last_user_cmd = ft_strdup(ms->user_cmd);
+		add_history(ms->user_cmd);
+	}
+}
+
 void	user_input(t_ms *ms)
 {
 	char	*prompt;
 
 	while (ms->stop == 0)
 	{
+		use_signal();
 		prompt = def_prompt(ms);
 		ms->user_cmd = readline(prompt);
-		tokeniser(ms);
-		print_lst_token(ms);
-		parser(ms);
-		execution(ms);
-		//call_builtins(ms);
-		if (ms->user_cmd[0] != '\0')
+		if (ms->user_cmd)
 		{
-			if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, ft_strlen(ms->user_cmd)) != 0)
+			if (ms->user_cmd[0] != '\0')
 			{
-				free(ms->last_user_cmd);
-				ms->last_user_cmd = ft_strdup(ms->user_cmd);
-				add_history(ms->user_cmd);
+				tokeniser(ms);
+				print_lst_token(ms);
+				parser(ms);
+				execution(ms);
+				update_history(ms);
+				clean_token(ms);
+				clean_command(ms);
 			}
+			free(ms->user_cmd);
 		}
-		clean_token(ms);
-		clean_command(ms);
-		free(ms->user_cmd);
+		else
+		{
+			write(1, "exit\n", 5);
+			ms->stop = 1;
+		}
 		free(prompt);
 		ms->user_cmd = NULL;
 		prompt = NULL;

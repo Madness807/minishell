@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:18 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/19 15:18:09 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:06:25 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,22 @@
 void    init_env(t_ms *ms, char **env)
 {
     int     i;
-    //char	*new_number;
+    char	*new_number;
+    int     new_int;
 
     i = 0;
     while (ft_strncmp(env[i], "SHLVL=", 6) != 0)
         i++;
+    new_number = ft_strtrim(env[i], "SHLVL=");
+    new_int = ft_atoi(new_number);
+    new_int++;
+    free(new_number);
+    new_number = NULL; 
+    new_number = ft_itoa(new_int);
+    env[i] = NULL;
+    env[i] = ft_strjoin("SHLVL=", new_number);
     ms->env = env;
-    ms->env[i][6] = '2';
-    /*
-    ms->env = env;
-    new_number = itoa(atoi(env[i][6]) + 1);
-	ms->env[i] = strjoin("SHLVL=", new_number); 
-    */
 }
-//FIXME - ligne SHLVL, doit etre +1 par minishell
 
 void    init_bin_path(t_ms *ms)
 {

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/25 13:47:20 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:03:29 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void    	call_builtins(t_token *token, t_ms *ms);
 void		builtin_echo(char *msg);
 void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);
-void		builtin_export(t_ms *ms);
+void		builtin_export(t_token *token, t_ms *ms);
 void		builtin_unset(t_ms *ms);
 void		builtin_env(char **env);
 
@@ -147,7 +147,7 @@ char		*join_path_cmd(char **path_splited, char *command);
 void		execution(t_ms *ms);
 
 //			SIGNAL FUNCTION
-void		handle_sigint(int sig);
+void		use_signal();
 
 //			exit and free function 
 void		free_and_exit(t_ms *ms, char *msg, int force_exit);
