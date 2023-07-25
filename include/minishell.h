@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/25 00:19:23 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:05:02 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ typedef struct s_token
 typedef struct s_command
 {
 	char			*cmd_name;
-	char			*cmd_options;
-	char			**tab_cmd;
+	char			*cmd_path;
+	char			**tab_options;
 	struct			s_command *next;
 
 }t_command;

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/24 23:15:31 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:05:51 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	user_input(t_ms *ms)
 		print_lst_token(ms);
 		parser(ms);
 		execution(ms);
-		printf("A\n");
 		if(ft_strncmp(ms->user_cmd, "exit", 4) == 0)
 		{
 			ms->stop = 1;
