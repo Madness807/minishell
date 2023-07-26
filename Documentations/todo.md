@@ -35,8 +35,8 @@
 [X] cd
 [1/2] echo (-n)
 [X] pwd
-[X] export
-[] unset
+[1/2] export //TODO - reste a gerer le cas ou il n ya pas d option pour export 
+[X] unset
 [X] env
 [X] exit 
 
@@ -46,3 +46,5 @@
 [X] ctrl-D quitte le shell.
 [X] ctrl-\ ne fait rien.
 
+## Autre truc remarquer
+- l-historique ne se comporte pas comme dans bash

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/25 16:11:04 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/26 02:06:42 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ char	*def_prompt(t_ms *ms)
 }
 
 void	update_history(t_ms *ms)
-{
-	if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, ft_strlen(ms->user_cmd)) != 0)
+{	
+	int	len_cmd;
+
+	len_cmd = ft_strlen(ms->user_cmd);
+	if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, len_cmd) != 0)
 	{
 		free(ms->last_user_cmd);
 		ms->last_user_cmd = ft_strdup(ms->user_cmd);
@@ -67,4 +70,3 @@ void	user_input(t_ms *ms)
 		prompt = NULL;
 	}
 }
-

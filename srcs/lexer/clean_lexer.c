@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/24 19:21:38 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:59:56 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	clean_token(t_ms *ms)
 {
 	t_token	*tmp;
 	t_token	*current;
-	
+
 	tmp = ms->token;
-	while(tmp->next != NULL)
+	while (tmp->next != NULL)
 	{
 		current = tmp;
 		tmp = tmp->next;
@@ -37,11 +37,11 @@ void	clean_command(t_ms *ms)
 {
 	t_command	*tmp;
 	t_command	*current;
-	
+
 	if (ms->command)
 	{
 		tmp = ms->command;
-		while(tmp->next != NULL)
+		while (tmp->next != NULL)
 		{
 			current = tmp;
 			tmp = tmp->next;

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_2.c                                       :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 03:37:33 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/18 11:55:10 by joterret         ###   ########.fr       */
+/*   Created: 2023/07/26 02:13:13 by joterret          #+#    #+#             */
+/*   Updated: 2023/07/26 02:13:50 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	builtin_env(char **env)
+void	builtin_cd(char *cmd)
 {
-	int i;
-	int j;
+	char	*dest;
+	int		i;
 
-	i = 0;
-	while (env[i])
+	dest = malloc(1024);
+	i = 3;
+	while (cmd[i])
 	{
-		j = 0;
-		while (env[i][j])
-		{
-			ft_printf("%c", env[i][j]);
-			j++;
-		}
-		ft_printf("\n");
+		dest[i - 3] = cmd[i];
 		i++;
 	}
+	dest[i - 3] = '\0';
+	if (chdir(dest) != 0)
+	{
+		ft_printf("minishell: cd: %s: No such file or directory\n", dest);
+	}
+	free(dest);
 }

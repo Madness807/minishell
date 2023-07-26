@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/25 14:07:18 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/26 01:01:18 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_valid_cmd(char *str, t_ms *ms)
 	char	*tmp;
 	char	*tmp_add_slash;
 	int		i;
-    
+
 	i = 0;
 	while (ms->bin_path[i])
 	{
@@ -26,7 +26,7 @@ int	is_valid_cmd(char *str, t_ms *ms)
 		if (access(tmp, F_OK) == 0)
 		{
 			free(tmp_add_slash);
-            free(tmp);
+			free(tmp);
 			return (1);
 		}
 		free(tmp_add_slash);
@@ -39,19 +39,19 @@ int	is_valid_cmd(char *str, t_ms *ms)
 int	is_valid_builtin(char *str)
 {
 	if (ft_strcmp(str, "cd") == 0)
-        return (1);
-    else if (ft_strcmp(str, "echo") == 0)
-        return (1);
-    else if (ft_strcmp(str, "pwd") == 0)
-        return (1);
-    else if (ft_strcmp(str, "export") == 0)
-        return (1);
-    else if (ft_strcmp(str, "unset") == 0)
-        return (1);
-    else if (ft_strcmp(str, "env") == 0)
-        return (1);
+		return (1);
+	else if (ft_strcmp(str, "echo") == 0)
+		return (1);
+	else if (ft_strcmp(str, "pwd") == 0)
+		return (1);
+	else if (ft_strcmp(str, "export") == 0)
+		return (1);
+	else if (ft_strcmp(str, "unset") == 0)
+		return (1);
+	else if (ft_strcmp(str, "env") == 0)
+		return (1);
 	else if (ft_strcmp(str, "exit") == 0)
-        return (1);
+		return (1);
 	else
-        return (0);
+		return (0);
 }

@@ -23,9 +23,14 @@ SRC				=		srcs/main.c \
 						srcs/parser/parser.c\
 						srcs/signal/signal.c\
 						srcs/free_and_exit/free.c\
-						srcs/builtins/builtins_1.c\
-						srcs/builtins/builtins_2.c\
+						srcs/builtins/builtins_cd.c\
+						srcs/builtins/builtins_pwd.c\
+						srcs/builtins/builtins_echo.c\
+						srcs/builtins/builtins_export.c\
+						srcs/builtins/builtins_unset.c\
+						srcs/builtins/builtins_env.c\
 						srcs/builtins/call_builtins.c\
+						verbose/print_state.c\
 
 ##OBJS			=		$(SRC:.c=.o)
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))

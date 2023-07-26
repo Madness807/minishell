@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/25 13:01:21 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:58:56 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*var_env_finder(t_ms *ms)
 
 	path_splited = NULL;
 	path_access = NULL;
-
 	if (ms->command)
 	{
 		command = ms->command->cmd_name;
@@ -30,11 +29,8 @@ char	*var_env_finder(t_ms *ms)
 	}
 	path_splited = ms->bin_path;
 	path_access = join_path_cmd(path_splited, command);
-
 	if (path_access == NULL)
 		return (NULL);
-
-	//printf("%s", path_access);
 	return (path_access);
 }
 
@@ -57,11 +53,12 @@ char	*join_path_cmd(char **path_splited, char *command)
 
 void	execution(t_ms *ms)
 {
-	char *path;
-	pid_t pid;
+	char	*path;
+	pid_t	pid;
+	int		status;
 
 	path = var_env_finder(ms);
-	if(path)
+	if (path)
 	{
 		pid = fork();
 		if (pid == -1)
@@ -74,11 +71,8 @@ void	execution(t_ms *ms)
 			execve(path, ms->command->tab_options, ms->env);
 			perror("execve");
 			exit(EXIT_FAILURE);
-		} 
-		else 
-		{
-			int status;
-			waitpid(pid, &status, 0);
 		}
+		else
+			waitpid(pid, &status, 0);
 	}
 }

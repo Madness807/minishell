@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   builtins_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 18:30:49 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 01:19:44 by joterret         ###   ########.fr       */
+/*   Created: 2023/07/26 02:15:19 by joterret          #+#    #+#             */
+/*   Updated: 2023/07/26 02:15:47 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ctrl_c(int key)
+void	builtin_env(char **env)
 {
-	(void)key;
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	write(1, "\n", 1);
-	rl_redisplay();
-}
+	int	i;
+	int	j;
 
-void	other_ctrl(int key)
-{
-	(void)key;
-	rl_on_new_line();
-}
-
-void	use_signal(void)
-{
-	signal(SIGINT, ctrl_c);
-	signal(SIGQUIT, other_ctrl);
+	i = 0;
+	while (env[i])
+	{
+		j = 0;
+		while (env[i][j])
+		{
+			ft_printf("%c", env[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
 }
