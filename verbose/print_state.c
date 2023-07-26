@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:25:50 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 03:53:52 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/26 04:34:52 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	print_lst_command(t_ms *ms)
 	j = 0;
 	cur = ms->command;
 	printf(BLU"LISTE CHAINEE COMMANDES\n"RESET);
+	printf(BLU"===================================================================\n"RESET);
+	
 	while (cur)
 	{
 		printf(BLU"-------------------------------------------------------------------\n"RESET);
@@ -35,21 +37,22 @@ void	print_lst_command(t_ms *ms)
 			if (i == 0)
 			{
 				printf(YEL "flag[%i] =  %s\t" RESET,i , cur->tab_options[i]);
-				printf(BLU"  |"RESET);
+				//printf(BLU"  |"RESET);
 				printf("\n");
 			}
 			else
 			{
-				printf(BLU"|  "RESET);
+				//printf(BLU"|  "RESET);
 				printf(YEL "\t\t\t\t\tflag[%i] =  %s" RESET,i , cur->tab_options[i]);
-				printf(BLU"\t\t  |"RESET);
+				//printf(BLU"\t\t  |"RESET);
 				printf("\n");
 			}
 			i++;
 		}
 		cur = cur->next;
 	}
-	printf(BLU"-------------------------------------------------------------------\n"RESET);
+	printf("\n\n");
+	printf(GRN"[*********************RESULTAS DE LA COMMANDE*********************]\n"RESET);
 	printf("\n");
 }
 
@@ -62,19 +65,17 @@ void	print_lst_token(t_ms *ms)
 	i = 0;
 	printf("\n");
 	printf(MAG"LISTE CHAINEE TOKENS\n"RESET);
-	printf(MAG"----------------------------------------------------\n"RESET);
+	printf(MAG"===================================================================\n"RESET);
 	while (cur)
 	{	
 		printf(MAG"|  "RESET);
 		printf("[%i]\t\t", i);
 		printf(GRN "Contenue = %s\t\t"RESET, cur->contenue);
-		printf(YEL "Type = %d  "RESET, cur->type);
-		printf(MAG" |\n"RESET);
+		printf(CYN "Type = %d\n"RESET, cur->type);
+		//printf(MAG" |\n"RESET);
 		cur = cur->next;
 		i++;
 	}
-	printf(MAG"----------------------------------------------------\n"RESET);
 	printf("\n");
-
-	print_error(ERR_SUCCESS);
+	printf("\n");
 }
