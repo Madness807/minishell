@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/26 02:55:12 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/26 03:53:18 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # include "../libft/libft.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-// 									PRINTF_COLOR						      //
+// 									DEFINE								      //
 ////////////////////////////////////////////////////////////////////////////////
 # define RED   "\x1B[31m"
 # define GRN   "\x1B[32m"
@@ -43,6 +43,15 @@
 # define CYN   "\x1B[36m"
 # define WHT   "\x1B[37m"
 # define RESET "\x1B[0m"
+
+# define ERR_MSG_SUCCESS "Succès.\n"
+# define ERR_MSG_CMD_NOT_FOUND "Erreur: Commande non trouvée.\n"
+# define ERR_MSG_SYNTAX "Erreur: Problème de syntaxe.\n"
+# define ERR_MSG_ARG_REQUIRED "Erreur: Argument requis.\n"
+# define ERR_MSG_TOO_MANY_ARGS "Erreur: Trop d'arguments.\n"
+# define ERR_MSG_PERMISSION_DENIED "Erreur: Permission refusée.\n"
+# define ERR_MSG_FILE_NOT_FOUND "Erreur: Fichier non trouvé.\n"
+# define ERR_MSG_UNKNOWN "Erreur: Type d'erreur non reconnu.\n"
 
 ////////////////////////////////////////////////////////////////////////////////
 // 									enum								      //
@@ -81,7 +90,7 @@ typedef enum e_error_type
 	ERR_TOO_MANY_ARGS		= 4,
 	ERR_PERMISSION_DENIED	= 5,
 	ERR_FILE_NOT_FOUND		= 6,
-}t_Error_Type;
+}t_error_type;
 
 ////////////////////////////////////////////////////////////////////////////////
 // 									structs								      //
@@ -114,6 +123,7 @@ typedef struct s_ms
 	int					stop;
 	struct s_token		*token;
 	struct s_command	*command;
+	t_error_type		e_error_type;
 }t_ms;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -158,6 +168,9 @@ void		execution(t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);
+
+//			HANDLE_ERROR
+void		print_error(t_error_type e_error_type);
 
 //			exit and free function 
 void		free_and_exit(t_ms *ms, char *msg, int force_exit);
