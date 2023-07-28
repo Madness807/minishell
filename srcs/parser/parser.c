@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 02:57:28 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/28 23:09:21 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,21 @@ void	tab_maker(t_token *curr_token, t_command *command)
 
 	tmp = curr_token;
 	i = 0;
-	while (tmp && tmp->type == TOKEN_CMD_FLAG)
+	while (tmp && (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_WORD || tmp->type == TOKEN_BUILTINS))
 	{
 		tmp = tmp->next;
 		i++;
 	}
 	command->tab_options = malloc ((i + 2) * sizeof(char *));
 	tmp = curr_token;
-	command->tab_options[0] = command->cmd_path;
-	i = 1;
-	while (tmp && tmp->type == TOKEN_CMD_FLAG)
+	if (tmp->type == TOKEN_CMD_FLAG)
+	{
+		command->tab_options[0] = command->cmd_path;
+		i = 1;
+	}
+	else
+		i = 0;
+	while (tmp && (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_WORD))
 	{
 		command->tab_options[i] = tmp->contenue;
 		tmp = tmp->next;
@@ -59,42 +64,15 @@ void	tab_maker(t_token *curr_token, t_command *command)
 
 void	parser(t_ms *ms)
 {
-	t_command	*command;
-	t_command	*tmp;
 	t_token		*token;
 
 	token = ms->token;
 	while (token != NULL)
 	{
 		if (token->type == TOKEN_CMD)
-		{
-			command = ((t_command *)malloc(sizeof(t_command)));
-			command->cmd_path = cmd_path(token->contenue, ms);
-			command->cmd_name = token->contenue;
-			command->next = NULL;
-			if (token->next != NULL)
-			{
-				if (token->next->type == TOKEN_CMD_FLAG)
-					tab_maker(token->next, command);
-				else
-					tab_maker(token, command);
-			}
-			else
-				tab_maker(token, command);
-			if (ms->command == NULL)
-				ms->command = command;
-			else
-			{
-				tmp = ms->command;
-				while (tmp->next != NULL)
-					tmp = tmp->next;
-				tmp->next = command;
-			}
-		}
-		if (token->type == TOKEN_BUILTINS)
-		{
-			call_builtins(token, ms);
-		}
+			add_envcmd_to_lst_cmd(token, ms);
+		else if (token->type == TOKEN_BUILTINS)
+			add_builtins_to_lst_cmd(token, ms);
 		token = token->next;
 	}
 	print_lst_command(ms);

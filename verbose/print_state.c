@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:25:50 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 04:34:52 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/28 23:10:27 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	print_lst_command(t_ms *ms)
 		{
 			if (i == 0)
 			{
-				printf(YEL "flag[%i] =  %s\t" RESET,i , cur->tab_options[i]);
+				printf(YEL "Options[%i] =  %s\t" RESET,i , cur->tab_options[i]);
 				//printf(BLU"  |"RESET);
 				printf("\n");
 			}
 			else
 			{
 				//printf(BLU"|  "RESET);
-				printf(YEL "\t\t\t\t\tflag[%i] =  %s" RESET,i , cur->tab_options[i]);
+				printf(YEL "\t\t\t\t\tOptions[%i] =  %s" RESET,i , cur->tab_options[i]);
 				//printf(BLU"\t\t  |"RESET);
 				printf("\n");
 			}

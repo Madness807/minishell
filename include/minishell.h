@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/26 03:53:18 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/28 22:30:49 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,10 @@ void		add_token_to_list(t_ms *ms, t_token *new_token);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);
+void		add_envcmd_to_lst_cmd(t_token *token, t_ms *ms);
+void		add_builtins_to_lst_cmd(t_token *token, t_ms *ms);
+void		tab_maker(t_token *curr_token, t_command *command);
+char		*cmd_path(char *str, t_ms *ms);
 void		clean_command(t_ms *ms);
 
 //			BUILTINS FUNCTION
