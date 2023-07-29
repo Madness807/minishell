@@ -43,6 +43,7 @@ void	user_input(t_ms *ms)
 
 	while (ms->stop == 0)
 	{
+		init_boucle_infinie(ms);
 		use_signal();
 		prompt = def_prompt(ms);
 		ms->user_cmd = readline(prompt);
@@ -51,6 +52,7 @@ void	user_input(t_ms *ms)
 			if (ms->user_cmd[0] != '\0')
 			{
 				tokeniser(ms);
+				handle_quote(ms);
 				print_lst_token(ms);
 				parser(ms);
 				execution(ms);

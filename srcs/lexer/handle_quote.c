@@ -14,5 +14,17 @@
 
 void	handle_quote(t_ms *ms)
 {
-	(void)ms;
+	int	quote_impair;
+
+	if ((ms->info_user->nb_SQ % 2) != 0 || (ms->info_user->nb_DQ % 2) != 0)
+		quote_impair = 1;
+	else
+		quote_impair = 0;
+	if (ms->info_user->nb_SQ != 0 || ms->info_user->nb_DQ != 0)
+	{
+		if (quote_impair == 1)
+		{
+			printf("Demande nouvelle ligne pour completage\n");
+		}
+	}
 }

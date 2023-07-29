@@ -54,11 +54,22 @@ void	init_bin_path(t_ms *ms)
 
 void	init_struct(t_ms *ms, int argc, char **argv, char **env)
 {
+	t_info_user	*info_user;
+
 	(void)argv;
 	ms->argc = argc;
 	init_env(ms, env);
 	init_bin_path(ms);
 	using_history();
 	ms->last_user_cmd = malloc (1);
+	info_user = ((t_info_user *)malloc(sizeof(t_info_user)));
+	ms->info_user = info_user;
 	ms->stop = 0;
+}
+
+void	init_boucle_infinie(t_ms *ms)
+{
+	ms->info_user->nb_pipe = 0;
+	ms->info_user->nb_SQ = 0;
+	ms->info_user->nb_DQ = 0;
 }

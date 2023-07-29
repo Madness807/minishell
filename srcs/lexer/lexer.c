@@ -16,7 +16,7 @@ char	**get_next_word(t_ms *ms)
 {
 	char	**tab_word;
 
-	tab_word = ft_split(add_spaces(ms->user_cmd), ' ');
+	tab_word = ft_split(add_spaces(ms), ' ');
 	return (tab_word);
 }
 

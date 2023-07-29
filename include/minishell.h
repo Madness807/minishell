@@ -114,6 +114,13 @@ typedef struct s_command
 	struct s_command	*next;
 }t_command;
 
+typedef struct s_info_user
+{
+	int					nb_pipe;
+	int					nb_SQ;
+	int					nb_DQ;
+}t_info_user;
+
 typedef struct s_ms
 {
 	int					argc;
@@ -121,6 +128,7 @@ typedef struct s_ms
 	char				**bin_path;
 	char				*current_folder;
 	char				*user_cmd;
+	struct s_info_user	*info_user;
 	char				*last_user_cmd;
 	int					stop;
 	struct s_token		*token;
@@ -136,6 +144,7 @@ typedef struct s_ms
 //			Initialisation
 void		check_arg(t_ms *ms, int argc, char **argv, char **env);
 void		init_struct(t_ms *ms, int argc, char **argv, char **env);
+void		init_boucle_infinie(t_ms *ms);
 
 //			LEXER FUNCTION
 void		user_input(t_ms *ms);
@@ -143,7 +152,7 @@ void		history_proc(t_ms *ms, char *cmd);
 void		tokeniser(t_ms *ms);
 char		**get_next_word(t_ms *ms);
 void		clean_token(t_ms *ms);
-char		*add_spaces(char *user_cmd);
+char		*add_spaces(t_ms *ms);
 void		handle_quote(t_ms *ms);
 int			is_valid_cmd(char *str, t_ms *ms);
 int			is_valid_builtin(char *str);

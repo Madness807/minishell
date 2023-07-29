@@ -12,19 +12,19 @@
 
 #include "../../include/minishell.h"
 
-char	*single_double_redirection(char *str);
-char	*quote_and_pipe(char *str);
+char	*single_double_redirection(t_ms *ms, char *str);
+char	*quote_and_pipe(t_ms *ms, char *str);
 
-char	*add_spaces(char *user_cmd)
+char	*add_spaces(t_ms *ms)
 {
 	char	*res;
 	
-	res = quote_and_pipe(user_cmd);
-	res = single_double_redirection(res);
+	res = quote_and_pipe(ms, ms->user_cmd);
+	res = single_double_redirection(ms, res);
 	return (res);
 }
 
-char	*quote_and_pipe(char *str)
+char	*quote_and_pipe(t_ms *ms, char *str)
 {
 	char	*res;
 	int		i;
@@ -37,6 +37,12 @@ char	*quote_and_pipe(char *str)
 	{
 		if (str[i] == '\'' || str[i] == '\"' || str[i] == '|')
 			nb_char++;
+		if (str[i] == '|')
+			ms->info_user->nb_pipe++;
+		if (str[i] == '\'')
+			ms->info_user->nb_SQ++;
+		if (str[i] == '\"')
+			ms->info_user->nb_DQ++;
 		i++;
 	}
 	res = malloc((i + 1 + (nb_char * 2)) * sizeof(char));
@@ -62,7 +68,7 @@ char	*quote_and_pipe(char *str)
 	return (res);
 }
 
-char	*single_double_redirection(char *str)
+char	*single_double_redirection(t_ms *ms, char *str)
 {
 	char	*res;
 	int 	i;
@@ -70,6 +76,7 @@ char	*single_double_redirection(char *str)
 	int		nb_single;
 	int		nb_double;
 
+	(void)ms;
 	i = 0;
 	nb_single = 0;
 	nb_double = 0;
