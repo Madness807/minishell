@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 01:56:25 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/29 01:22:43 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**get_next_word(t_ms *ms)
 {
 	char	**tab_word;
 
-	tab_word = ft_split(handle_quote(ms->user_cmd), ' ');
+	tab_word = ft_split(add_spaces(ms->user_cmd), ' ');
 	return (tab_word);
 }
 

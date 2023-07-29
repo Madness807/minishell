@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/28 22:30:49 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/29 02:29:57 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,22 @@ typedef enum e_token_type
 	TOKEN_CMD_FLAG			= 3,
 	TOKEN_EOF				= 4,
 	TOKEN_BUILTINS			= 5,
-	TOKEN_SPACE				= 6,
-	TOKEN_REDIC_SD			= 7,
-	TOKEN_REDIC_SG			= 8,
-	TOKEN_REDIC_DD			= 9,
-	TOKEN_REDIC_DG			= 10,
-	TOKEN_QUOTE				= 11,
-	TOKEN_DQUOTE			= 12,
-	TOKEN_DOLLARS			= 13,
-	TOKEN_ECHO				= 14,
-	TOKEN_CD				= 15,
-	TOKEN_PWD				= 16,
-	TOKEN_EXPORT			= 17,
-	TOKEN_UNSET				= 18,
-	TOKEN_ENV				= 19,
-	TOKEN_EXIT				= 20,
+	TOKEN_FILE				= 6,
+	TOKEN_SPACE				= 7,
+	TOKEN_REDIC_SD			= 8,
+	TOKEN_REDIC_SG			= 9,
+	TOKEN_REDIC_DD			= 10,
+	TOKEN_REDIC_DG			= 11,
+	TOKEN_QUOTE				= 12,
+	TOKEN_DQUOTE			= 13,
+	TOKEN_DOLLARS			= 14,
+	TOKEN_ECHO				= 15,
+	TOKEN_CD				= 16,
+	TOKEN_PWD				= 17,
+	TOKEN_EXPORT			= 18,
+	TOKEN_UNSET				= 19,
+	TOKEN_ENV				= 20,
+	TOKEN_EXIT				= 21,
 }t_token_type;
 
 typedef enum e_error_type
@@ -108,8 +109,9 @@ typedef struct s_command
 	char				*cmd_name;
 	char				*cmd_path;
 	char				**tab_options;
+	int					fd_in;
+	int					fd_out;
 	struct s_command	*next;
-
 }t_command;
 
 typedef struct s_ms
@@ -141,7 +143,8 @@ void		history_proc(t_ms *ms, char *cmd);
 void		tokeniser(t_ms *ms);
 char		**get_next_word(t_ms *ms);
 void		clean_token(t_ms *ms);
-char		*handle_quote(char *str);
+char		*add_spaces(char *user_cmd);
+void		handle_quote(t_ms *ms);
 int			is_valid_cmd(char *str, t_ms *ms);
 int			is_valid_builtin(char *str);
 void		fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token);
