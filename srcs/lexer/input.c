@@ -51,8 +51,13 @@ void	user_input(t_ms *ms)
 		{
 			if (ms->user_cmd[0] != '\0')
 			{
+				is_closed(ms);
+				//printf("userinput after is closed :\n%s\n", ms->user_cmd);
 				tokeniser(ms);
+				printf("Avant handle quote");
+				print_lst_token(ms);
 				handle_quote(ms);
+				printf("Apres handle quote");
 				print_lst_token(ms);
 				parser(ms);
 				execution(ms);

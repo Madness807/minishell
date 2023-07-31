@@ -21,6 +21,7 @@ SRC				=		srcs/main.c \
 						srcs/lexer/handle_quote.c\
 						srcs/lexer/add_spaces.c\
 						srcs/lexer/is_valid_cmd.c\
+						srcs/lexer/is_closed.c\
 						srcs/parser/parser.c\
 						srcs/parser/add_to_lst_cmd.c\
 						srcs/signal/signal.c\
