@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/29 02:09:09 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:11:32 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,21 @@ int		update_i_user(int i, char quote, char *str)
 	{
 		if (str[i] == quote)
 		{
-			return (i);
+			if (i != 0)
+			{
+				if (str[i-1] != '\\')
+				{
+					return (i);
+				}
+				else
+				{
+					i++;
+				}
+			}
+			else
+			{
+				return (i);
+			}
 		}
 		i++;
 	}
@@ -48,10 +62,9 @@ void	handle_quote(t_ms *ms)
 				free(tmp->contenue);
 				tmp->contenue = NULL;
 				tmp->contenue = ft_substr(ms->user_cmd, i_user, i_user_end - i_user);
-				printf("new contenue :%s\n", tmp->contenue);
 				fill_node_tokeniser(tmp->contenue, ms, tmp);
 				tmp_end = tmp->next;
-				while (tmp_end && (ft_strchr(tmp_end->contenue, (int)quote) == NULL))
+				while (tmp_end && tmp_end->contenue[0] != quote)
 				{
 					free(tmp_end->contenue);
 					tmp_end->contenue = NULL;

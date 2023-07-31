@@ -13,7 +13,7 @@ SRC				=		srcs/main.c \
 						srcs/error/error_handle.c\
 						srcs/execution/execution.c\
 						srcs/execution/pipe.c\
-						srcs/execution/redirection.c\
+						srcs/execution/fork.c\
 						srcs/init/init.c\
 						srcs/lexer/input.c\
 						srcs/lexer/lexer.c\

@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,7 +7,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/29 03:46:49 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:40:46 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +41,33 @@ char	*quote_and_pipe(t_ms *ms, char *str)
 		if (str[i] == '|')
 			ms->info_user->nb_pipe++;
 		if (str[i] == '\'')
-			ms->info_user->nb_SQ++;
+		{
+			if (i != 0)
+			{
+				if (str[i-1] != '\\')
+				{
+					ms->info_user->nb_SQ++;
+				}
+			}
+			else
+			{
+				ms->info_user->nb_SQ++;
+			}
+		}
 		if (str[i] == '\"')
-			ms->info_user->nb_DQ++;
+		{
+			if (i != 0)
+			{
+				if (str[i - 1] != '\\')
+				{
+					ms->info_user->nb_DQ++;
+				}
+			}
+			else
+			{
+				ms->info_user->nb_DQ++;
+			}
+		}
 		i++;
 	}
 	res = malloc((i + 1 + (nb_char * 2)) * sizeof(char));
@@ -52,10 +77,28 @@ char	*quote_and_pipe(t_ms *ms, char *str)
 	{
 		if (str[i] == '\'' || str[i] == '\"' || str[i] == '|')
 		{
-			res[res_i] = ' ';
-			res[res_i + 1] = str[i];
-			res[res_i + 2] = ' ';
-			res_i += 3;
+			if (i != 0)
+			{
+				if (str[i - 1] != '\\')
+				{
+					res[res_i] = ' ';
+					res[res_i + 1] = str[i];
+					res[res_i + 2] = ' ';
+					res_i += 3;
+				}
+				else
+				{
+					res[res_i] = str[i];
+					res_i++;
+				}
+			}
+			else
+			{
+				res[res_i] = ' ';
+				res[res_i + 1] = str[i];
+				res[res_i + 2] = ' ';
+				res_i += 3;
+			}
 		}
 		else
 		{
@@ -71,7 +114,7 @@ char	*quote_and_pipe(t_ms *ms, char *str)
 char	*single_double_redirection(t_ms *ms, char *str)
 {
 	char	*res;
-	int 	i;
+	int		i;
 	int		res_i;
 	int		nb_single;
 	int		nb_double;
@@ -80,7 +123,7 @@ char	*single_double_redirection(t_ms *ms, char *str)
 	i = 0;
 	nb_single = 0;
 	nb_double = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '<' || str[i] == '>')
 		{

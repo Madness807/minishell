@@ -6,33 +6,18 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:30:46 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/20 17:17:56 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 19:24:45 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 /*
-int	main(int argc, char **argv, char **envp)
-{
-	t_pipex	pipex;
 
 	pipex.envp = envp;
-	if (argc < 5)
-	{	
-		ft_putstr_fd("Pas assez d'argument. Il faut minimum 5 arguments\n", 2);
-		exit (1);
-	}
-	if (envp[0] == NULL)
-		return (0);
-	if (!argv[2][0] || !argv[3][0])
-	{
-	ft_putstr_fd("Il manque 1 ou les deux commmandes\n", 2);
-	exit(1);
-	}
 	open_file(argv, argc, &pipex);
 	process(argv, pipex);
 	return (0);
-	}
+
 
 void	open_file(char **argv, int argc, t_pipex *pipex)
 {

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:25:50 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/28 23:34:26 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:45:22 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,4 @@ void	print_lst_token(t_ms *ms)
 	printf("\n");
 	printf("\n");
 }
+

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/07/26 02:06:42 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:26:03 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,9 @@ void	user_input(t_ms *ms)
 			if (ms->user_cmd[0] != '\0')
 			{
 				is_closed(ms);
-				//printf("userinput after is closed :\n%s\n", ms->user_cmd);
 				tokeniser(ms);
-				printf("Avant handle quote");
 				print_lst_token(ms);
 				handle_quote(ms);
-				printf("Apres handle quote");
 				print_lst_token(ms);
 				parser(ms);
 				execution(ms);

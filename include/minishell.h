@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/29 02:29:57 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:35:57 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ void		print_env(char **env);
 char		*var_env_finder(t_ms *ms);
 char		*join_path_cmd(char **path_splited, char *command);
 void		execution(t_ms *ms);
+void		execution_v2(t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);

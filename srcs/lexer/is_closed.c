@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/29 02:09:09 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:49:43 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ void	is_closed(t_ms *ms)
 			{
 				i++;
 				if (ms->user_cmd[i] == quote)
-					stop = 1;
+				{
+					if (ms->user_cmd[i-1] != '\\')
+					{
+						stop = 1;
+					}
+				}
 				if (ms->user_cmd[i] == '\0')
 				{
 					ask_more(ms);
