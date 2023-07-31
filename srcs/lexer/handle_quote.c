@@ -40,16 +40,18 @@ void	handle_quote(t_ms *ms)
 	{
 		while (tmp)
 		{
-			if (ft_strchr(tmp->contenue, '\'') || ft_strchr(tmp->contenue, '\"'))
+			if (tmp->contenue[0] == '\'' || tmp->contenue[0] == '\"')
 			{
 				quote = tmp->contenue[0];
 				i_user = update_i_user(i_user, quote, ms->user_cmd) + 1;
 				i_user_end = update_i_user(i_user, quote, ms->user_cmd);
 				free(tmp->contenue);
+				tmp->contenue = NULL;
 				tmp->contenue = ft_substr(ms->user_cmd, i_user, i_user_end - i_user);
+				printf("new contenue :%s\n", tmp->contenue);
 				fill_node_tokeniser(tmp->contenue, ms, tmp);
 				tmp_end = tmp->next;
-				while (tmp_end && (ft_strchr(tmp_end->contenue, quote) == NULL))
+				while (tmp_end && (ft_strchr(tmp_end->contenue, (int)quote) == NULL))
 				{
 					free(tmp_end->contenue);
 					tmp_end->contenue = NULL;
