@@ -80,8 +80,7 @@ void	handle_quote(t_ms *ms)
 				tmp_end = NULL;
 				i_user = i_user_end + 1;
 			}
-			else
-				tmp = tmp->next;
+			tmp = tmp->next;
 		}
 	}
 }

@@ -52,6 +52,7 @@ void	user_input(t_ms *ms)
 			if (ms->user_cmd[0] != '\0')
 			{
 				is_closed(ms);
+				handle_dollars(ms);
 				tokeniser(ms);
 				print_lst_token(ms);
 				handle_quote(ms);

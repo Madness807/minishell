@@ -171,6 +171,7 @@ int			is_valid_builtin(char *str);
 void		fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token);
 void		add_token_to_list(t_ms *ms, t_token *new_token);
 void		is_closed(t_ms *ms);
+void		handle_dollars(t_ms *ms);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);
