@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/01 03:13:31 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:01:11 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	user_input(t_ms *ms)
 				execution(ms);
 				update_history(ms);
 				clean_token(ms);
-				//clean_redir(ms);
 				clean_command(ms);
+				clean_redir(ms);
 				
 			}
 			free(ms->user_cmd);

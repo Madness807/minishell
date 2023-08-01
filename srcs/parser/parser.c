@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 03:13:25 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 20:21:10 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*cmd_path(char *str, t_ms *ms)
 	}
 	path_splited = ms->bin_path;
 	path_access = join_path_cmd(path_splited, command);
+	free(command);
 	if (path_access == NULL)
 		return (NULL);
 	return (path_access);

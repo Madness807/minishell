@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:18 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 00:00:35 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 20:49:07 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_env(t_ms *ms, char **env)
 	env[i] = NULL;
 	env[i] = ft_strjoin("SHLVL=", new_number);
 	ms->env = env;
+	free(new_number);
 }
 
 void	init_bin_path(t_ms *ms)
