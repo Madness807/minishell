@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/29 01:22:43 by joterret         ###   ########.fr       */
+/*   Updated: 2023/07/31 22:28:58 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,6 @@ void	tokeniser(t_ms *ms)
 		fill_node_tokeniser(word, ms, new_token);
 		i++;
 	}
+	free(tab_word);
+	tab_word = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/07/31 18:35:57 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 03:03:24 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,41 +99,53 @@ typedef enum e_error_type
 
 typedef struct s_token
 {
-	char			*contenue;
-	t_token_type	type;
-	struct s_token	*next;
+	char					*contenue;
+	t_token_type			type;
+	struct s_token			*next;
 }t_token;
 
 typedef struct s_command
 {
-	char				*cmd_name;
-	char				*cmd_path;
-	char				**tab_options;
-	int					fd_in;
-	int					fd_out;
-	struct s_command	*next;
+	char					*cmd_name;
+	char					*cmd_path;
+	char					**tab_options;
+	int						fd_in;
+	int						fd_out;
+	int						cmd_id;
+	struct s_command		*next;
 }t_command;
+
+typedef struct s_redirection
+{
+	t_token_type			type;
+	char					*contenue;
+	int						fd_in;
+	int						fd_out;
+	struct s_redirection	*next;
+}t_redirection;
+
 
 typedef struct s_info_user
 {
-	int					nb_pipe;
-	int					nb_SQ;
-	int					nb_DQ;
+	int						nb_pipe;
+	int						nb_SQ;
+	int						nb_DQ;
 }t_info_user;
 
 typedef struct s_ms
 {
-	int					argc;
-	char				**env;
-	char				**bin_path;
-	char				*current_folder;
-	char				*user_cmd;
-	struct s_info_user	*info_user;
-	char				*last_user_cmd;
-	int					stop;
-	struct s_token		*token;
-	struct s_command	*command;
-	t_error_type		e_error_type;
+	int						argc;
+	char					**env;
+	char					**bin_path;
+	char					*current_folder;
+	char					*user_cmd;
+	struct s_info_user		*info_user;
+	char					*last_user_cmd;
+	int						stop;
+	struct s_token			*token;
+	struct s_command		*command;
+	struct s_redirection	*redir;
+	t_error_type			e_error_type;
 }t_ms;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -164,9 +176,11 @@ void		is_closed(t_ms *ms);
 void		parser(t_ms *ms);
 void		add_envcmd_to_lst_cmd(t_token *token, t_ms *ms);
 void		add_builtins_to_lst_cmd(t_token *token, t_ms *ms);
+void		add_to_lst_redir(t_token *token, t_ms *ms);
 void		tab_maker(t_token *curr_token, t_command *command);
 char		*cmd_path(char *str, t_ms *ms);
 void		clean_command(t_ms *ms);
+void		clean_redir(t_ms *ms);
 
 //			BUILTINS FUNCTION
 void		call_builtins(t_token *token, t_ms *ms);
@@ -181,8 +195,8 @@ void		builtin_env(char **env);
 void		print_env(char **env);
 char		*var_env_finder(t_ms *ms);
 char		*join_path_cmd(char **path_splited, char *command);
+//void		open_file(char **argv, int argc, t_pipex *pipex);
 void		execution(t_ms *ms);
-void		execution_v2(t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);
@@ -196,5 +210,6 @@ void		free_and_exit(t_ms *ms, char *msg, int force_exit);
 //zone de test
 void		print_lst_token(t_ms *ms);
 void		print_lst_command(t_ms *ms);
+void		print_lst_redir(t_ms *ms);
 
 #endif

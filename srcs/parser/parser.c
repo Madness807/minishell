@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/28 23:09:21 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 03:13:25 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	tab_maker(t_token *curr_token, t_command *command)
 
 void	parser(t_ms *ms)
 {
-	t_token		*token;
+	t_token			*token;
 
 	token = ms->token;
 	while (token != NULL)
@@ -73,7 +73,18 @@ void	parser(t_ms *ms)
 			add_envcmd_to_lst_cmd(token, ms);
 		else if (token->type == TOKEN_BUILTINS)
 			add_builtins_to_lst_cmd(token, ms);
+		else if (token->type == TOKEN_PIPE)
+			add_to_lst_redir(token, ms);
+		else if (token->type == TOKEN_REDIC_DD)
+			add_to_lst_redir(token, ms);
+		else if (token->type == TOKEN_REDIC_DG)
+			add_to_lst_redir(token, ms);
+		else if (token->type == TOKEN_REDIC_SD)
+			add_to_lst_redir(token, ms);
+		else if (token->type == TOKEN_REDIC_SG)
+			add_to_lst_redir(token, ms);
 		token = token->next;
 	}
 	print_lst_command(ms);
+	print_lst_redir(ms);
 }

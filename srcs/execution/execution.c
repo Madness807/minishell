@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/31 19:25:01 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 02:53:47 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	execution(t_ms *ms)
 	char	*path;
 	pid_t	pid;
 	int		status;
-
+	ms->command->cmd_id = 0;
+	
+	
 	path = var_env_finder(ms);
 	if (path)
 	{
@@ -66,6 +68,7 @@ void	execution(t_ms *ms)
 		}
 		if (pid == 0)
 		{
+			ms->command->cmd_id += 1;
 			execve(path, ms->command->tab_options, ms->env);
 			perror("execve");
 			exit(EXIT_FAILURE);
