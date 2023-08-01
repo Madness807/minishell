@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/01 20:43:36 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:06:50 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	clean_token(t_ms *ms)
 	t_token	*current;
 
 	tmp = ms->token;
-	if(!tmp)
-		return;
+	if (!tmp)
+		return ;
 	while (tmp->next != NULL)
 	{
 		current = tmp;
@@ -65,8 +65,8 @@ void	clean_redir(t_ms *ms)
 	t_redirection	*current;
 
 	tmp = ms->redir;
-	if(!tmp)
-		return;
+	if (!tmp)
+		return ;
 	while (tmp->next != NULL)
 	{
 		current = tmp;

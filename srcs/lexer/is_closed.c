@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/31 20:49:43 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:03:13 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	ask_more(t_ms *ms)
 void	is_closed(t_ms *ms)
 {
 	char	quote;
-	int 	i;
+	int		i;
 	int		stop;
 
 	i = 0;
 	while (ms->user_cmd[i])
 	{
-		if(ms->user_cmd[i] == '\'' || ms->user_cmd[i] == '\"')
+		if (ms->user_cmd[i] == '\'' || ms->user_cmd[i] == '\"')
 		{
 			quote = ms->user_cmd[i];
 			stop = 0;
@@ -52,7 +52,7 @@ void	is_closed(t_ms *ms)
 				i++;
 				if (ms->user_cmd[i] == quote)
 				{
-					if (ms->user_cmd[i-1] != '\\')
+					if (ms->user_cmd[i - 1] != '\\')
 					{
 						stop = 1;
 					}

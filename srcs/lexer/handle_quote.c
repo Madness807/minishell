@@ -6,13 +6,13 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/31 21:11:32 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:11:59 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int		update_i_user(int i, char quote, char *str)
+int	update_i_user(int i, char quote, char *str)
 {
 	while (str[i])
 	{
@@ -20,7 +20,7 @@ int		update_i_user(int i, char quote, char *str)
 		{
 			if (i != 0)
 			{
-				if (str[i-1] != '\\')
+				if (str[i - 1] != '\\')
 				{
 					return (i);
 				}

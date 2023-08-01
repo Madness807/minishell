@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/31 21:40:46 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:07:40 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +18,7 @@ char	*quote_and_pipe(t_ms *ms, char *str);
 char	*add_spaces(t_ms *ms)
 {
 	char	*res;
-	
+
 	res = quote_and_pipe(ms, ms->user_cmd);
 	res = single_double_redirection(ms, res);
 	return (res);
@@ -44,7 +43,7 @@ char	*quote_and_pipe(t_ms *ms, char *str)
 		{
 			if (i != 0)
 			{
-				if (str[i-1] != '\\')
+				if (str[i - 1] != '\\')
 				{
 					ms->info_user->nb_SQ++;
 				}

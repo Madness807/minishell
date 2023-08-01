@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:30:40 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 03:53:16 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:07:09 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_error(t_error_type e_error_type)
 		printf(ERR_MSG_ARG_REQUIRED);
 	else if (e_error_type == ERR_TOO_MANY_ARGS)
 		printf(ERR_MSG_TOO_MANY_ARGS);
-	else if (e_error_type== ERR_PERMISSION_DENIED)
+	else if (e_error_type == ERR_PERMISSION_DENIED)
 		printf(ERR_MSG_PERMISSION_DENIED);
 	else if (e_error_type == ERR_FILE_NOT_FOUND)
 		printf(ERR_MSG_FILE_NOT_FOUND);

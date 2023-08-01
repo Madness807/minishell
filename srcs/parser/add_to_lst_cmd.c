@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:07:53 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 19:17:30 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:04:28 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	add_envcmd_to_lst_cmd(t_token *token, t_ms *ms)
 {
-	t_command *command;
-	t_command *tmp;
+	t_command	*command;
+	t_command	*tmp;
 
 	command = ((t_command *)malloc(sizeof(t_command)));
 	command->cmd_path = cmd_path(token->contenue, ms);
@@ -43,8 +43,8 @@ void	add_envcmd_to_lst_cmd(t_token *token, t_ms *ms)
 
 void	add_builtins_to_lst_cmd(t_token *token, t_ms *ms)
 {
-	t_command *command;
-	t_command *tmp;
+	t_command	*command;
+	t_command	*tmp;
 
 	command = ((t_command *)malloc(sizeof(t_command)));
 	command->cmd_path = NULL;
@@ -73,23 +73,22 @@ void	add_builtins_to_lst_cmd(t_token *token, t_ms *ms)
 
 void	add_to_lst_redir(t_token *token, t_ms *ms)
 {
-	t_redirection *redir;
-	t_redirection *tmp;
+	t_redirection	*redir;
+	t_redirection	*tmp;
 
 	redir = ((t_redirection *)malloc(sizeof(t_redirection)));
 	redir->contenue = token->contenue;
 	redir->type = token->type;
 	redir->next = NULL;
-	
 	if (ms->redir == NULL)
-    {
-        ms->redir = redir;
-    }
-    else
-    {
-        tmp = ms->redir;
-        while (tmp->next != NULL)
-            tmp = tmp->next;
-        tmp->next = redir;
-    }
+	{
+		ms->redir = redir;
+	}
+	else
+	{
+		tmp = ms->redir;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = redir;
+	}
 }

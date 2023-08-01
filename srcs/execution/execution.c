@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 20:31:02 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:06:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ void	execution(t_ms *ms)
 	char	*path;
 	pid_t	pid;
 	int		status;
+
 	ms->command->cmd_id = 0;
-	
-	
 	path = var_env_finder(ms);
-	if(path == NULL)
+	if (path == NULL)
 		free(path);
 	if (path)
 	{
