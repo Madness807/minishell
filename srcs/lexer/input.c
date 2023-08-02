@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/01 21:08:43 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:18:11 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	user_input(t_ms *ms)
 			if (ms->user_cmd[0] != '\0')
 			{
 				is_closed(ms);
+				update_history(ms);
 				handle_dollars(ms);
 				tokeniser(ms);
 				print_lst_token(ms);
@@ -59,7 +60,6 @@ void	user_input(t_ms *ms)
 				print_lst_token(ms);
 				parser(ms);
 				execution(ms);
-				update_history(ms);
 				clean_token(ms);
 				clean_command(ms);
 				clean_redir(ms);

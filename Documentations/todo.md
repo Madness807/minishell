@@ -25,11 +25,16 @@
 [] gestion des quotes double
 [] gestion du dollars $$$
 
-
 ## Execution
-[] re implementer pipex version minishell
-[X] variables d'environement et les substituer par leur contenu
-
+[] Comprendre les bases
+[] Implémenter l'exécution simple:
+    Commence par implémenter l'exécution d'une commande simple sans pipe ni redirection. Utilise fork et exec pour créer un nouveau processus et exécuter la commande.
+[] Gérer les redirections:
+    Une fois que tu peux exécuter une commande simple, tu peux commencer à ajouter le support des redirections. Tu devras manipuler les descripteurs de fichier en utilisant des appels système comme open, close, dup2, etc.
+[] Ajouter le support des pipes:
+    Les pipes seront probablement la partie la plus complexe. Tu devras utiliser pipe pour créer un tube entre les commandes et dup2 pour rediriger l'entrée et la sortie standard. Cela implique probablement de gérer plusieurs processus et de les synchroniser correctement.
+[] Gérer les erreurs et les cas limites:
+    Assure-toi de bien gérer les erreurs et les cas limites. Cela inclut la gestion des erreurs d'appels système, le nettoyage des ressources (comme fermer les descripteurs de fichier), et s'assurer que ton code fonctionne correctement dans tous les scénarios possibles.
 
 # Builtins
 [X] cd

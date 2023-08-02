@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 21:10:38 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:15:47 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,74 @@ int	is_in_sq(int start, int end, char *str)
 	return (is_enclosed(str, start, end, '\'') && !find_double_quote(str, start, end, 0)) ? 1 : 0;
 }
 
-/*
-int     is_in_sq(int start, int end, char *str)
+int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 {
-	
-	if (si se trouve dans une SQ)
+	int		i;
+	int		j;
+	int		ret;
+	char	*new_user_cmd;
+
+	printf("env_value /%s\n", env_value);
+	printf("new_size/%d start/%d end/%d\n", new_size, start, end);
+
+	new_user_cmd = malloc((new_size + 1) * sizeof(char));
+	i = 0;
+	while (i < start)
 	{
-		return (1);
+		new_user_cmd[i] = ms->user_cmd[i];
+		i++;
 	}
-	else
-		return (0);
+	printf("A\n");
+	j = 0;
+	if (env_value != NULL)
+	{
+		while (env_value[j] != '\0')
+		{
+			new_user_cmd[i] = env_value[j];
+			i++;
+			j++;
+		}
+	}
+	printf("B\n");
+	printf("i = %d / char at new %s\n", i, ms->user_cmd);
+	ret = i;
+	j = end;
+	while (ms->user_cmd[j] != '\0')
+	{
+		new_user_cmd[i] = ms->user_cmd[j];
+		i++;
+		j++;
+	}
+	printf("C\n");
+	new_user_cmd[i] = '\0';
+	free(ms->user_cmd);
+	ms->user_cmd = new_user_cmd;
+	return (ret);
 }
-*/
+
+int swap_process(t_ms *ms, int start, int end)
+{
+    int     new_size;
+	int		ret;
+    char    *looking_name;
+	char    *env_value;
+
+    looking_name = ft_substr(ms->user_cmd, start + 1, end - start - 1);
+	env_value = getenv(looking_name);
+    new_size = ft_strlen(ms->user_cmd) - (end - start);
+	if (env_value)
+	{
+		new_size += ft_strlen(env_value);
+	}
+	printf("ms->user_cmd /%s\n", ms->user_cmd);
+	ret = swap_text(ms, new_size, start, end, env_value);
+	printf("ms->user_cmd /%s\n", ms->user_cmd);
+    if (looking_name)
+	{
+        free(looking_name);
+	}
+	return (ret);
+}
 
 int	dollar_process(t_ms *ms, int curr_dollar)
 {
@@ -53,15 +109,13 @@ int	dollar_process(t_ms *ms, int curr_dollar)
 	{
 		end++;
 	}
-	printf("WAA %d", is_in_sq(curr_dollar, end - 1, ms->user_cmd));
 	if (is_in_sq(curr_dollar, end - 1, ms->user_cmd) == 1)
 	{
 		return (end);
 	}
 	else
 	{
-		//swap_text();
-		return (curr_dollar + 1);
+		return (swap_process(ms, curr_dollar, end));
 	}
 }
 
