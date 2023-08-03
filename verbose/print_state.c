@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:25:50 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 02:45:19 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:02:22 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_lst_command(t_ms *ms)
 	printf("\n");
 }
 
-void	print_lst_token(t_ms *ms)
+void	print_lst_token_1(t_ms *ms)
 {
 	t_token	*cur;
 	int		i;
@@ -62,6 +62,52 @@ void	print_lst_token(t_ms *ms)
 	i = 0;
 	printf("\n");
 	printf(MAG"LISTE CHAINEE TOKENS\n"RESET);
+	printf(MAG"===================================================================\n"RESET);
+	while (cur)
+	{	
+		printf(MAG"|  "RESET);
+		printf("[%i]\t\t", i);
+		printf(GRN "Contenue = %s\t\t"RESET, cur->contenue);
+		printf(CYN "Type = %d\n"RESET, cur->type);
+		cur = cur->next;
+		i++;
+	}
+	printf("\n");
+	printf("\n");
+}
+
+void	print_lst_token_2(t_ms *ms)
+{
+	t_token	*cur;
+	int		i;
+
+	cur = ms->token;
+	i = 0;
+	printf("\n");
+	printf(MAG"LISTE CHAINEE TOKENS APRES GESTION DES QUOTES\n"RESET);
+	printf(MAG"===================================================================\n"RESET);
+	while (cur)
+	{	
+		printf(MAG"|  "RESET);
+		printf("[%i]\t\t", i);
+		printf(GRN "Contenue = %s\t\t"RESET, cur->contenue);
+		printf(CYN "Type = %d\n"RESET, cur->type);
+		cur = cur->next;
+		i++;
+	}
+	printf("\n");
+	printf("\n");
+}
+
+void	print_lst_token_3(t_ms *ms)
+{
+	t_token	*cur;
+	int		i;
+
+	cur = ms->token;
+	i = 0;
+	printf("\n");
+	printf(MAG"LISTE CHAINEE TOKENS APRES TYPAGE DES MOTS\n"RESET);
 	printf(MAG"===================================================================\n"RESET);
 	while (cur)
 	{	

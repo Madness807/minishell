@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/01 03:03:24 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:03:27 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_token
 {
 	char					*contenue;
 	t_token_type			type;
+	struct s_token			*previous;
 	struct s_token			*next;
 }t_token;
 
@@ -168,10 +169,13 @@ char		*add_spaces(t_ms *ms);
 void		handle_quote(t_ms *ms);
 int			is_valid_cmd(char *str, t_ms *ms);
 int			is_valid_builtin(char *str);
+int			is_file_or_folder(int token_type);
 void		fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token);
 void		add_token_to_list(t_ms *ms, t_token *new_token);
 void		is_closed(t_ms *ms);
 void		handle_dollars(t_ms *ms);
+void		add_previous(t_ms *ms);
+void		update_word_token_type(t_ms *ms);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);
@@ -209,7 +213,9 @@ void		print_error(t_error_type e_error_type);
 void		free_and_exit(t_ms *ms, char *msg, int force_exit);
 
 //zone de test
-void		print_lst_token(t_ms *ms);
+void		print_lst_token_1(t_ms *ms);
+void		print_lst_token_2(t_ms *ms);
+void		print_lst_token_3(t_ms *ms);
 void		print_lst_command(t_ms *ms);
 void		print_lst_redir(t_ms *ms);
 

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 20:56:41 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/03 20:52:45 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**get_next_word(t_ms *ms)
 
 void	fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token)
 {
+
 	if (ft_strcmp(word, "|") == 0)
 		new_token->type = TOKEN_PIPE;
 	else if (ft_strcmp(word, ">") == 0)
@@ -82,6 +83,7 @@ void	tokeniser(t_ms *ms)
 		new_token = ((t_token *)malloc(sizeof(t_token)));
 		new_token->contenue = word;
 		new_token->next = NULL;
+		new_token->previous = NULL;
 		add_token_to_list(ms, new_token);
 		fill_node_tokeniser(word, ms, new_token);
 		i++;

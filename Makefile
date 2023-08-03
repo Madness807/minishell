@@ -14,6 +14,7 @@ SRC				=		srcs/main.c \
 						srcs/execution/execution.c\
 						srcs/execution/pipe.c\
 						srcs/execution/fork.c\
+						srcs/execution/file_folder_check.c\
 						srcs/init/init.c\
 						srcs/lexer/input.c\
 						srcs/lexer/lexer.c\
@@ -23,6 +24,8 @@ SRC				=		srcs/main.c \
 						srcs/lexer/add_spaces.c\
 						srcs/lexer/is_valid_cmd.c\
 						srcs/lexer/is_closed.c\
+						srcs/lexer/add_previous.c\
+						srcs/lexer/update_word_token_type.c\
 						srcs/parser/parser.c\
 						srcs/parser/add_to_lst_cmd.c\
 						srcs/signal/signal.c\

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/02 17:18:11 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:03:36 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ void	user_input(t_ms *ms)
 				update_history(ms);
 				handle_dollars(ms);
 				tokeniser(ms);
-				print_lst_token(ms);
+				print_lst_token_1(ms);
 				handle_quote(ms);
-				print_lst_token(ms);
+				add_previous(ms);
+				print_lst_token_2(ms);
+				update_word_token_type(ms);
+				print_lst_token_3(ms);
 				parser(ms);
 				execution(ms);
 				clean_token(ms);

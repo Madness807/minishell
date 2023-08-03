@@ -1,0 +1,188 @@
+{
+  "main": {
+    "id": "a75ea35ebe772188",
+    "type": "split",
+    "children": [
+      {
+        "id": "bb76dcfb42dc74a1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bd34a86c05ca02ae",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "085bbeca89f861c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documentations/obsidian/Minishell.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1b6adabe58a7d405",
+    "type": "split",
+    "children": [
+      {
+        "id": "f4d2bbc30d9e3b90",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "93327070fc569645",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b2e327f06d1d012b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f528abb2d24239a4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a322e02f7e0c38a9",
+    "type": "split",
+    "children": [
+      {
+        "id": "1a8f368e72d2c2b2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0903744129de1c8b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a590dc14b3c04694",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "65085a775e11207c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "9913abfbd86d9385",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false
+    }
+  },
+  "active": "bd34a86c05ca02ae",
+  "lastOpenFiles": [
+    "minishell",
+    "obj/verbose/print_state.o",
+    "obj/srcs/builtins/call_builtins.o",
+    "obj/srcs/builtins/builtins_env.o",
+    "obj/srcs/builtins/builtins_unset.o",
+    "obj/srcs/builtins/builtins_export.o",
+    "obj/srcs/builtins/builtins_echo.o",
+    "obj/srcs/builtins/builtins_pwd.o",
+    "obj/srcs/builtins/builtins_cd.o",
+    "obj/srcs/free_and_exit/free.o",
+    "obj/srcs/signal/signal.o",
+    "- Fonction autorisée.md",
+    "README.md",
+    "Documentations/Donnee/allow_function.md",
+    "Documentations/Doc/Doc_pipe.md",
+    "Documentations/Doc/Doc_builtins.md",
+    "Documentations/obsidian/Minishell.md",
+    "Documentations/enum.md",
+    "Documentations/todo.md",
+    "Documentation.md",
+    "Documentations/Doc/Doc_quote.md",
+    "Documentations/Doc/Doc_PATH.md",
+    "Documentations/Doc/Doc_fork.md",
+    "Documentations/Doc/Doc_execution.md"
+  ]
+}

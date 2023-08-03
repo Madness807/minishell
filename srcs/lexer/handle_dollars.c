@@ -6,12 +6,16 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/02 17:15:47 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/03 19:42:15 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+/*
 
+
+
+*/
 int	is_enclosed(char *str, int start, int end, char c)
 {
 	return ((start > 0 && str[start - 1] == c) && (str[end + 1] != '\0' && str[end + 1] == c)) ? 1 : 0;
@@ -38,9 +42,6 @@ int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 	int		ret;
 	char	*new_user_cmd;
 
-	printf("env_value /%s\n", env_value);
-	printf("new_size/%d start/%d end/%d\n", new_size, start, end);
-
 	new_user_cmd = malloc((new_size + 1) * sizeof(char));
 	i = 0;
 	while (i < start)
@@ -48,7 +49,6 @@ int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 		new_user_cmd[i] = ms->user_cmd[i];
 		i++;
 	}
-	printf("A\n");
 	j = 0;
 	if (env_value != NULL)
 	{
@@ -59,8 +59,6 @@ int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 			j++;
 		}
 	}
-	printf("B\n");
-	printf("i = %d / char at new %s\n", i, ms->user_cmd);
 	ret = i;
 	j = end;
 	while (ms->user_cmd[j] != '\0')
@@ -69,7 +67,6 @@ int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 		i++;
 		j++;
 	}
-	printf("C\n");
 	new_user_cmd[i] = '\0';
 	free(ms->user_cmd);
 	ms->user_cmd = new_user_cmd;
@@ -90,9 +87,7 @@ int swap_process(t_ms *ms, int start, int end)
 	{
 		new_size += ft_strlen(env_value);
 	}
-	printf("ms->user_cmd /%s\n", ms->user_cmd);
 	ret = swap_text(ms, new_size, start, end, env_value);
-	printf("ms->user_cmd /%s\n", ms->user_cmd);
     if (looking_name)
 	{
         free(looking_name);

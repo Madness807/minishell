@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_file.c                                      :+:      :+:    :+:   */
+/*   update_word_token_type.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 20:59:48 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/03 19:37:07 by joterret         ###   ########.fr       */
+/*   Created: 2023/08/03 21:04:37 by joterret          #+#    #+#             */
+/*   Updated: 2023/08/03 21:58:50 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-/*
-void	open_file(char **argv, int argc, t_pipex *pipex)
+
+void    update_word_token_type(t_ms *ms)
 {
-	pipex->fd1 = open(argv[1], O_RDONLY);
-	if (pipex->fd1 < 0)
+	t_token	*curr;
+
+	curr = ms->token;
+	curr = curr->next;
+	while (curr)
 	{
-		perror("Erreur de FD, Impossible d ouvrir le fichier");
-		exit (1);
-	}
-	pipex->fd2 = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
-	if (pipex->fd2 < 0)
-	{
-		perror("Erreur de FD");
-		exit (1);
+		if (curr->previous->type == TOKEN_REDIC_SD)
+			curr->type = TOKEN_FILE;	
+		else if (curr->previous->type == TOKEN_REDIC_SG)
+			curr->type = TOKEN_FILE;
+		else if (curr->previous->type == TOKEN_REDIC_DG)
+			curr->type = TOKEN_FILE;
+		curr = curr->next;
 	}
 }
-*/o

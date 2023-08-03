@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_file.c                                      :+:      :+:    :+:   */
+/*   add_previous.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 20:59:48 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/03 19:37:07 by joterret         ###   ########.fr       */
+/*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
+/*   Updated: 2023/08/03 21:35:07 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-/*
-void	open_file(char **argv, int argc, t_pipex *pipex)
+
+void    add_previous(t_ms *ms)
 {
-	pipex->fd1 = open(argv[1], O_RDONLY);
-	if (pipex->fd1 < 0)
-	{
-		perror("Erreur de FD, Impossible d ouvrir le fichier");
-		exit (1);
-	}
-	pipex->fd2 = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
-	if (pipex->fd2 < 0)
-	{
-		perror("Erreur de FD");
-		exit (1);
-	}
+    t_token *tmp;
+    t_token *tmp_last;
+
+	tmp = ms->token;
+    tmp_last = NULL;
+    while (tmp)
+    {
+        tmp->previous = tmp_last;
+        tmp_last = tmp;
+        tmp = tmp->next;
+    }
 }
-*/o
