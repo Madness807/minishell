@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/03 22:03:27 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/04 22:39:05 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_command
 	char					*cmd_name;
 	char					*cmd_path;
 	char					**tab_options;
+	char					*args;
 	int						fd_in;
 	int						fd_out;
 	int						cmd_id;
@@ -202,6 +203,7 @@ char		*var_env_finder(t_ms *ms);
 char		*join_path_cmd(char **path_splited, char *command);
 //void		open_file(char **argv, int argc, t_pipex *pipex);
 void		execution(t_ms *ms);
+void    	redir_simple_droite(char *filename);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/03 22:03:36 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/04 21:13:58 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	user_input(t_ms *ms)
 	while (ms->stop == 0)
 	{
 		init_boucle_infinie(ms);
-		use_signal();
+		//use_signal();
 		prompt = def_prompt(ms);
 		ms->user_cmd = readline(prompt);
 		if (ms->user_cmd)

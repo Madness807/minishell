@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/02 16:37:37 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:12:30 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*var_env_finder(t_ms *ms)
 
 	path_splited = NULL;
 	path_access = NULL;
+	command = NULL;
 	if (ms->command)
 	{
 		command = ms->command->cmd_name;
@@ -86,43 +87,3 @@ void	execution(t_ms *ms)
 	}
 	free(path);
 }
-/*
-void	execution_v2(t_ms *ms)
-{
-	t_command	*curr;
-	//int			fd_in;
-	//int			fd_out;
-
-	curr = ms->command;
-
-	while (curr != NULL)
-	{
-		char	*path;
-		pid_t	pid;
-		int		status;
-
-		//fd_in = curr->fd_in;
-		//fd_out = curr->fd_out;
-
-		path = var_env_finder(ms);
-		if (path)
-		{
-			pid = fork();
-			if (pid == -1)
-			{
-				perror("fork");
-				exit(EXIT_FAILURE);
-			}
-			if (pid == 0)
-			{
-				execve(path, ms->command->tab_options, ms->env);
-				perror("execve");
-				exit(EXIT_FAILURE);
-			}
-			else
-				waitpid(pid, &status, 0);
-		}
-	curr = curr->next;
-	}
-}
-*/

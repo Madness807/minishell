@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 20:21:10 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/04 22:23:44 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ char	*cmd_path(char *str, t_ms *ms)
 	char	**path_splited;
 	char	*path_access;
 	char	*command;
+	
 
 	path_splited = NULL;
 	path_access = NULL;
+	command = NULL;
 	if (str)
 	{
 		command = str;
 		command = ft_strjoin("/", str);
 	}
-	path_splited = ms->bin_path;
+	path_splited = ms->bin_path;	
 	path_access = join_path_cmd(path_splited, command);
 	free(command);
 	if (path_access == NULL)
@@ -40,14 +42,14 @@ void	tab_maker(t_token *curr_token, t_command *command)
 
 	tmp = curr_token;
 	i = 0;
-	while (tmp && (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_WORD || tmp->type == TOKEN_BUILTINS))
+	while (tmp && (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_BUILTINS))
 	{
 		tmp = tmp->next;
 		i++;
 	}
 	command->tab_options = malloc ((i + 2) * sizeof(char *));
 	tmp = curr_token;
-	if (tmp->type == TOKEN_CMD_FLAG)
+	if (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_CMD)
 	{
 		command->tab_options[0] = command->cmd_path;
 		i = 1;

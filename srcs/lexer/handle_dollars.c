@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/03 19:42:15 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/04 21:16:10 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-/*
-
-
-
-*/
-int	is_enclosed(char *str, int start, int end, char c)
-{
-	return ((start > 0 && str[start - 1] == c) && (str[end + 1] != '\0' && str[end + 1] == c)) ? 1 : 0;
-}
-
-int	find_double_quote(char *str, int start, int end, int index)
-{
-	if (index >= start)
-		return (0);
-	if (str[index] == '"')
-		return (1);
-	return (find_double_quote(str, start, end, index + 1));
-}
-
-int	is_in_sq(int start, int end, char *str)
-{
-	return (is_enclosed(str, start, end, '\'') && !find_double_quote(str, start, end, 0)) ? 1 : 0;
-}
 
 int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 {
@@ -93,6 +70,42 @@ int swap_process(t_ms *ms, int start, int end)
         free(looking_name);
 	}
 	return (ret);
+}
+
+int	is_in_sq(int start, int end, char *str)
+{
+	int		i;
+	int		j;
+	char	quote;
+	
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+		{
+			quote = str[i];
+			j = i + 1;
+			while (str[j] != quote)
+			{
+				j++;
+			}
+			if (i < start && j > end)
+			{
+				if (quote == '\'')
+				{
+					return (1);
+				}
+				else
+				{ 
+					return (0);
+				}
+			}
+			else
+				i = j;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	dollar_process(t_ms *ms, int curr_dollar)
