@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:18 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/03 16:46:35 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/05 04:49:56 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ void	init_struct(t_ms *ms, int argc, char **argv, char **env)
 void	init_boucle_infinie(t_ms *ms)
 {
 	ms->info_user->nb_pipe = 0;
-	ms->info_user->nb_SQ = 0;
-	ms->info_user->nb_DQ = 0;
+	ms->info_user->nb_sq = 0;
+	ms->info_user->nb_dq = 0;
 }

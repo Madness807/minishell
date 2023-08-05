@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/04 22:23:44 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/05 05:00:31 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*cmd_path(char *str, t_ms *ms)
 	char	**path_splited;
 	char	*path_access;
 	char	*command;
-	
 
 	path_splited = NULL;
 	path_access = NULL;
@@ -27,7 +26,7 @@ char	*cmd_path(char *str, t_ms *ms)
 		command = str;
 		command = ft_strjoin("/", str);
 	}
-	path_splited = ms->bin_path;	
+	path_splited = ms->bin_path;
 	path_access = join_path_cmd(path_splited, command);
 	free(command);
 	if (path_access == NULL)

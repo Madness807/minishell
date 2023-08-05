@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_spaces.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 21:07:40 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/05 04:50:34 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ char	*quote_and_pipe(t_ms *ms, char *str)
 			{
 				if (str[i - 1] != '\\')
 				{
-					ms->info_user->nb_SQ++;
+					ms->info_user->nb_sq++;
 				}
 			}
 			else
 			{
-				ms->info_user->nb_SQ++;
+				ms->info_user->nb_sq++;
 			}
 		}
 		if (str[i] == '\"')
@@ -59,12 +59,12 @@ char	*quote_and_pipe(t_ms *ms, char *str)
 			{
 				if (str[i - 1] != '\\')
 				{
-					ms->info_user->nb_DQ++;
+					ms->info_user->nb_dq++;
 				}
 			}
 			else
 			{
-				ms->info_user->nb_DQ++;
+				ms->info_user->nb_dq++;
 			}
 		}
 		i++;

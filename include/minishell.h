@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/05 03:14:29 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/05 04:49:33 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,11 @@ typedef struct s_redirection
 	struct s_redirection	*next;
 }t_redirection;
 
-
 typedef struct s_info_user
 {
 	int						nb_pipe;
-	int						nb_SQ;
-	int						nb_DQ;
+	int						nb_sq;
+	int						nb_dq;
 }t_info_user;
 
 typedef struct s_ms
@@ -205,7 +204,7 @@ char		*var_env_finder(t_command *curr_cmd, t_ms *ms);
 char		*join_path_cmd(char **path_splited, char *command);
 //void		open_file(char **argv, int argc, t_pipex *pipex);
 void		execution(t_ms *ms);
-void    	redir_simple_droite(char *filename);
+void		redir_simple_droite(char *filename);
 void		init_fd(t_ms *ms);
 void		close_fd(t_ms *ms);
 

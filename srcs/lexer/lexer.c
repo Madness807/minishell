@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/03 20:52:45 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/05 05:02:56 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	**get_next_word(t_ms *ms)
 
 void	fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token)
 {
-
 	if (ft_strcmp(word, "|") == 0)
 		new_token->type = TOKEN_PIPE;
 	else if (ft_strcmp(word, ">") == 0)

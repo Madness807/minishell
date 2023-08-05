@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/04 21:16:10 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/05 04:58:45 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,24 @@ int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 	return (ret);
 }
 
-int swap_process(t_ms *ms, int start, int end)
+int	swap_process(t_ms *ms, int start, int end)
 {
-    int     new_size;
+	int		new_size;
 	int		ret;
-    char    *looking_name;
-	char    *env_value;
+	char	*looking_name;
+	char	*env_value;
 
-    looking_name = ft_substr(ms->user_cmd, start + 1, end - start - 1);
+	looking_name = ft_substr(ms->user_cmd, start + 1, end - start - 1);
 	env_value = getenv(looking_name);
-    new_size = ft_strlen(ms->user_cmd) - (end - start);
+	new_size = ft_strlen(ms->user_cmd) - (end - start);
 	if (env_value)
 	{
 		new_size += ft_strlen(env_value);
 	}
 	ret = swap_text(ms, new_size, start, end, env_value);
-    if (looking_name)
+	if (looking_name)
 	{
-        free(looking_name);
+		free(looking_name);
 	}
 	return (ret);
 }
@@ -77,7 +77,7 @@ int	is_in_sq(int start, int end, char *str)
 	int		i;
 	int		j;
 	char	quote;
-	
+
 	i = 0;
 	while (str[i])
 	{
@@ -96,7 +96,7 @@ int	is_in_sq(int start, int end, char *str)
 					return (1);
 				}
 				else
-				{ 
+				{
 					return (0);
 				}
 			}

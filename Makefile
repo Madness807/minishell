@@ -11,10 +11,10 @@ MAKEFLAGS += --no-print-directory
 SRC				=		srcs/main.c \
 						srcs/check/check_arg.c\
 						srcs/error/error_handle.c\
+						srcs/execution/build_path.c\
 						srcs/execution/execution.c\
-						srcs/execution/pipe.c\
-						srcs/execution/fork.c\
 						srcs/execution/file_folder_check.c\
+						srcs/execution/redirection.c\
 						srcs/execution/redirection.c\
 						srcs/init/init.c\
 						srcs/lexer/input.c\

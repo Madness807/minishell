@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 21:11:59 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/05 04:50:57 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	handle_quote(t_ms *ms)
 
 	i_user = 0;
 	tmp = ms->token;
-	if (ms->info_user->nb_SQ != 0 || ms->info_user->nb_DQ != 0)
+	if (ms->info_user->nb_sq != 0 || ms->info_user->nb_dq != 0)
 	{
 		while (tmp)
 		{
