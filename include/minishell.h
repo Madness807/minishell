@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/04 22:39:05 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/05 03:14:29 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <errno.h>
 # include <signal.h>
 # include <sys/stat.h>
 # include <dirent.h>
@@ -113,6 +114,7 @@ typedef struct s_command
 	char					*args;
 	int						fd_in;
 	int						fd_out;
+	pid_t					pid;
 	int						cmd_id;
 	struct s_command		*next;
 }t_command;
@@ -199,11 +201,13 @@ void		builtin_env(char **env);
 
 //			EXECUTION FUNCTION
 void		print_env(char **env);
-char		*var_env_finder(t_ms *ms);
+char		*var_env_finder(t_command *curr_cmd, t_ms *ms);
 char		*join_path_cmd(char **path_splited, char *command);
 //void		open_file(char **argv, int argc, t_pipex *pipex);
 void		execution(t_ms *ms);
 void    	redir_simple_droite(char *filename);
+void		init_fd(t_ms *ms);
+void		close_fd(t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);
@@ -220,5 +224,10 @@ void		print_lst_token_2(t_ms *ms);
 void		print_lst_token_3(t_ms *ms);
 void		print_lst_command(t_ms *ms);
 void		print_lst_redir(t_ms *ms);
+
+////////////////////////////////////////////////////////////////////////////////
+// 							Variable global						              //
+////////////////////////////////////////////////////////////////////////////////
+extern int	g_wait_status;
 
 #endif

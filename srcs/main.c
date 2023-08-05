@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:33:20 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/02 15:04:02 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/05 03:10:07 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+int g_wait_status;
 
 int	main(int argc, char **argv, char **env)
 {
