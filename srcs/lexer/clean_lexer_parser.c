@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_lexer.c                                      :+:      :+:    :+:   */
+/*   clean_lexer_parser.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/01 21:06:50 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/07 01:34:10 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void	clean_command(t_ms *ms)
 		{
 			current = tmp;
 			tmp = tmp->next;
-			free(current->tab_options);
+			if (current->tab_options)
+				free(current->tab_options);
 			free(current->cmd_path);
+			if (current->args)
+				free(current->args);
 			free(current);
 			current = NULL;
 		}

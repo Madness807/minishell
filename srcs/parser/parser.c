@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 05:00:31 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/07 01:07:36 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,34 @@ void	tab_maker(t_token *curr_token, t_command *command)
 	tmp = curr_token;
 	if (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_CMD)
 	{
-		command->tab_options[0] = command->cmd_path;
+		command->tab_options[0] = ft_strdup(command->cmd_path);
 		i = 1;
 	}
 	else
 		i = 0;
 	while (tmp && (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_WORD))
 	{
-		command->tab_options[i] = tmp->contenue;
+		command->tab_options[i] = ft_strdup(tmp->contenue);
 		tmp = tmp->next;
 		i++;
 	}
 	command->tab_options[i] = NULL;
+}
+
+void	fill_cmd_args(t_token *curr_token, t_command *command)
+{
+		char 	*argument;
+		int		arg_len;
+		
+		argument = curr_token->contenue;
+		arg_len = ft_strlen(argument);
+		command->args = malloc((arg_len + 1) * sizeof (char));
+	
+		if (curr_token->type == TOKEN_WORD)
+			command->args = curr_token->contenue;
+		else 
+			command->args = NULL;
+
 }
 
 void	parser(t_ms *ms)

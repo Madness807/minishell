@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:07:53 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 04:45:37 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/07 01:21:23 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ void	add_envcmd_to_lst_cmd(t_token *token, t_ms *ms)
 	command = ((t_command *)malloc(sizeof(t_command)));
 	command->cmd_path = cmd_path(token->contenue, ms);
 	command->cmd_name = token->contenue;
+	command->args = NULL;
 	command->next = NULL;
 	if (token->next != NULL)
 	{
 		if (token->next->type == TOKEN_CMD_FLAG)
 			tab_maker(token->next, command);
+		else if (token->next->type == TOKEN_WORD)
+		{
+			tab_maker(token->next, command);
+			fill_cmd_args(token->next, command);
+		}
 		else
 			tab_maker(token, command);
 	}
@@ -52,8 +58,13 @@ void	add_builtins_to_lst_cmd(t_token *token, t_ms *ms)
 	command->next = NULL;
 	if (token->next != NULL)
 	{
-		if (token->next->type == TOKEN_WORD)
+		if (token->next->type == TOKEN_CMD_FLAG)
 			tab_maker(token->next, command);
+		else if (token->next->type == TOKEN_WORD)
+		{
+			tab_maker(token->next, command);
+			fill_cmd_args(token->next, command);
+		}
 		else
 			tab_maker(token, command);
 	}

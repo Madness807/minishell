@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/05 04:49:33 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/06 23:40:13 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ void		add_builtins_to_lst_cmd(t_token *token, t_ms *ms);
 void		add_to_lst_redir(t_token *token, t_ms *ms);
 void		tab_maker(t_token *curr_token, t_command *command);
 char		*cmd_path(char *str, t_ms *ms);
+void		fill_cmd_args(t_token *curr_token, t_command *command);
 
 //			BUILTINS FUNCTION
 void		call_builtins(t_token *token, t_ms *ms);
@@ -228,6 +229,7 @@ void		print_lst_token_2(t_ms *ms);
 void		print_lst_token_3(t_ms *ms);
 void		print_lst_command(t_ms *ms);
 void		print_lst_redir(t_ms *ms);
+void		print_lst_execution_cmd(t_ms *ms);
 
 ////////////////////////////////////////////////////////////////////////////////
 // 							Variable global						              //

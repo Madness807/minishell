@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/05 02:12:35 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/06 23:36:34 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	user_input(t_ms *ms)
 				print_lst_token_1(ms);
 				parser(ms);
 				init_fd(ms);
+				print_lst_execution_cmd(ms);
 				execution(ms);
 				clean_lexer_parser(ms);
 			}

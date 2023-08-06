@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   print_state.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:25:50 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/03 22:02:22 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/07 01:10:53 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	print_lst_execution_cmd(t_ms *ms)
+{
+	t_command	*cur;
+	int			j;
+
+	j = 0;
+	cur = ms->command;
+	printf(BLU"LISTE CHAINEE EXECUTION DES COMMANDES\n"RESET);
+	printf(BLU"======================================================================================\n"RESET);
+	
+	while (cur)
+	{
+		printf("\n");
+		printf(BLU"|  "RESET);
+		printf("[%i]\t\t",j);
+		j++;
+		printf(GRN "CMD_NAME = %s\t\t" RESET, cur->cmd_name);
+		printf("FD IN = [%i] -----> FD OUT = [%i]\t",cur->fd_in, cur->fd_out);
+		printf("\n");
+		
+		cur = cur->next;
+	}
+	printf("\n");
+}
+
 
 void	print_lst_command(t_ms *ms)
 {
@@ -21,8 +47,8 @@ void	print_lst_command(t_ms *ms)
 	i = 0;
 	j = 0;
 	cur = ms->command;
-	printf(BLU"LISTE CHAINEE COMMANDES\n"RESET);
-	printf(BLU"===================================================================\n"RESET);
+	printf(BLU"LISTE CHAINEE COMMANDES AVANT EXECUTION\n"RESET);
+	printf(BLU"======================================================================================\n"RESET);
 	
 	while (cur)
 	{
@@ -33,23 +59,26 @@ void	print_lst_command(t_ms *ms)
 		j++;
 		printf(GRN "CMD_NAME = %s\t\t" RESET, cur->cmd_name);
 		i = 0;
-		while (cur->tab_options[i])
+		if (cur->tab_options)
 		{
-			if (i == 0)
+			while (cur->tab_options[i])
 			{
-				printf(YEL "Options[%i] =  %s\t" RESET,i , cur->tab_options[i]);
-				printf("\n");
+				if (i == 0)
+				{
+					printf(YEL "Options[%i] =  %s\t\t" RESET,i , cur->tab_options[i]);
+					printf("ARGS = %s", cur->args);
+					printf("\n");
+				}
+				else
+				{
+					printf(YEL "\t\t\t\t\tOptions[%i] =  %s" RESET,i , cur->tab_options[i]);
+					printf("\n");
+				}
+				i++;
 			}
-			else
-			{
-				printf(YEL "\t\t\t\t\tOptions[%i] =  %s" RESET,i , cur->tab_options[i]);
-				printf("\n");
-			}
-			i++;
 		}
 		cur = cur->next;
 	}
-	
 	printf("\n");
 }
 
@@ -62,7 +91,7 @@ void	print_lst_token_1(t_ms *ms)
 	i = 0;
 	printf("\n");
 	printf(MAG"LISTE CHAINEE TOKENS\n"RESET);
-	printf(MAG"===================================================================\n"RESET);
+	printf(MAG"======================================================================================\n"RESET);
 	while (cur)
 	{	
 		printf(MAG"|  "RESET);
@@ -85,7 +114,7 @@ void	print_lst_token_2(t_ms *ms)
 	i = 0;
 	printf("\n");
 	printf(MAG"LISTE CHAINEE TOKENS APRES GESTION DES QUOTES\n"RESET);
-	printf(MAG"===================================================================\n"RESET);
+	printf(MAG"======================================================================================\n"RESET);
 	while (cur)
 	{	
 		printf(MAG"|  "RESET);
@@ -108,7 +137,7 @@ void	print_lst_token_3(t_ms *ms)
 	i = 0;
 	printf("\n");
 	printf(MAG"LISTE CHAINEE TOKENS APRES TYPAGE DES MOTS\n"RESET);
-	printf(MAG"===================================================================\n"RESET);
+	printf(MAG"======================================================================================\n"RESET);
 	while (cur)
 	{	
 		printf(MAG"|  "RESET);
@@ -131,7 +160,7 @@ void	print_lst_redir(t_ms *ms)
 	i = 0;
 	printf("\n");
 	printf(RED"LISTE CHAINEE REDIRECTIONS\n"RESET);
-	printf(RED"===================================================================\n"RESET);
+	printf(RED"======================================================================================\n"RESET);
 	while (cur)
 	{	
 		printf(RED"|  "RESET);
