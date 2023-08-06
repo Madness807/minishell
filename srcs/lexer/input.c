@@ -54,19 +54,13 @@ void	user_input(t_ms *ms)
 				is_closed(ms);
 				update_history(ms);
 				handle_dollars(ms);
+				handle_quote(ms);
 				tokeniser(ms);
 				print_lst_token_1(ms);
-				handle_quote(ms);
-				add_previous(ms);
-				print_lst_token_2(ms);
-				update_word_token_type(ms);
-				print_lst_token_3(ms);
 				parser(ms);
 				init_fd(ms);
 				execution(ms);
-				clean_token(ms);
-				clean_command(ms);
-				clean_redir(ms);
+				clean_lexer_parser(ms);
 			}
 			free(ms->user_cmd);
 		}

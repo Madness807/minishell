@@ -79,3 +79,10 @@ void	clean_redir(t_ms *ms)
 	free(tmp);
 	ms->redir = NULL;
 }
+
+void	clean_lexer_parser(t_ms *ms)
+{
+	clean_token(ms);
+	clean_command(ms);
+	clean_redir(ms);
+}

@@ -94,6 +94,13 @@ typedef enum e_error_type
 	ERR_FILE_NOT_FOUND		= 6,
 }t_error_type;
 
+typedef enum e_quote_state
+{
+    NONE,
+    SINGLE_QUOTE,
+    DOUBLE_QUOTE
+}t_quote_state;
+
 ////////////////////////////////////////////////////////////////////////////////
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +173,6 @@ void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
 void		tokeniser(t_ms *ms);
 char		**get_next_word(t_ms *ms);
-void		clean_token(t_ms *ms);
 char		*add_spaces(t_ms *ms);
 void		handle_quote(t_ms *ms);
 int			is_valid_cmd(char *str, t_ms *ms);
@@ -186,8 +192,6 @@ void		add_builtins_to_lst_cmd(t_token *token, t_ms *ms);
 void		add_to_lst_redir(t_token *token, t_ms *ms);
 void		tab_maker(t_token *curr_token, t_command *command);
 char		*cmd_path(char *str, t_ms *ms);
-void		clean_command(t_ms *ms);
-void		clean_redir(t_ms *ms);
 
 //			BUILTINS FUNCTION
 void		call_builtins(t_token *token, t_ms *ms);
@@ -216,6 +220,7 @@ void		print_error(t_error_type e_error_type);
 
 //			exit and free function 
 void		free_and_exit(t_ms *ms, char *msg, int force_exit);
+void		clean_lexer_parser(t_ms *ms);
 
 //zone de test
 void		print_lst_token_1(t_ms *ms);
