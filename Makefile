@@ -15,13 +15,14 @@ SRC				=		srcs/main.c \
 						srcs/execution/execution.c\
 						srcs/execution/file_folder_check.c\
 						srcs/execution/redirection.c\
-						srcs/execution/redirection.c\
 						srcs/init/init.c\
 						srcs/lexer/input.c\
+						srcs/lexer/forbiden_char.c\
 						srcs/lexer/tokeniser.c\
 						srcs/lexer/clean_lexer_parser.c\
 						srcs/lexer/handle_quote.c\
 						srcs/lexer/handle_dollars.c\
+						srcs/lexer/add_spaces.c\
 						srcs/lexer/is_valid_cmd.c\
 						srcs/lexer/is_closed.c\
 						srcs/parser/parser.c\
@@ -37,7 +38,6 @@ SRC				=		srcs/main.c \
 						srcs/builtins/call_builtins.c\
 						verbose/print_state.c\
 
-##OBJS			=		$(SRC:.c=.o)
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))
 
 #***** Libft *****#

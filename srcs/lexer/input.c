@@ -53,15 +53,18 @@ void	user_input(t_ms *ms)
 			{
 				is_closed(ms);
 				update_history(ms);
-				handle_dollars(ms);
-				handle_quote(ms);
-				tokeniser(ms);
-				print_lst_token_1(ms);
-				parser(ms);
-				init_fd(ms);
-				print_lst_execution_cmd(ms);
-				execution(ms);
-				clean_lexer_parser(ms);
+				if (forbiden_char(ms) == 0)
+				{
+					handle_dollars(ms);
+					add_spaces(ms);
+					handle_quote(ms);
+					tokeniser(ms);
+					print_lst_token_1(ms);
+					parser(ms);
+					init_fd(ms);
+					execution(ms);
+					clean_lexer_parser(ms);
+				}
 			}
 			free(ms->user_cmd);
 		}

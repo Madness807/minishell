@@ -171,9 +171,9 @@ void		init_boucle_infinie(t_ms *ms);
 //			LEXER FUNCTION
 void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
+int 		forbiden_char(t_ms *ms);
 void		tokeniser(t_ms *ms);
-char		**get_next_word(t_ms *ms);
-char		*add_spaces(t_ms *ms);
+void		add_spaces(t_ms *ms);
 void		handle_quote(t_ms *ms);
 int			is_valid_cmd(char *str, t_ms *ms);
 int			is_valid_builtin(char *str);
