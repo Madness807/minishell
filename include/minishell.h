@@ -42,7 +42,6 @@
 # define BLU   "\x1B[34m"
 # define MAG   "\x1B[35m"
 # define CYN   "\x1B[36m"
-# define WHT   "\x1B[37m"
 # define RESET "\x1B[0m"
 
 # define ERR_MSG_SUCCESS "Succès.\n"
@@ -195,7 +194,7 @@ char		*cmd_path(char *str, t_ms *ms);
 void		fill_cmd_args(t_token *curr_token, t_command *command);
 
 //			BUILTINS FUNCTION
-void		call_builtins(t_token *token, t_ms *ms);
+void		call_builtins(char *command, t_ms *ms);
 void		builtin_echo(char *msg);
 void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);

@@ -61,7 +61,7 @@ void	print_lst_command(t_ms *ms)
 		i = 0;
 		if (cur->tab_options)
 		{
-			while (cur->tab_options[i])
+			while (cur->tab_options)
 			{
 				if (i == 0)
 				{

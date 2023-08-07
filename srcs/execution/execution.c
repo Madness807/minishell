@@ -71,17 +71,23 @@ void	execution(t_ms *ms)
 	curr_cmd = ms->command;
 	while (curr_cmd)
 	{
-		curr_cmd->pid = fork();
-		if (curr_cmd->pid == 0)
+		if (is_valid_builtin(curr_cmd->cmd_name) == 1)
+			call_builtins(curr_cmd->cmd_name, ms);
+
+		else
 		{
-			if (curr_cmd->fd_in > 2)
-				dup2(curr_cmd->fd_in, STDIN_FILENO);
-			if (curr_cmd->fd_out > 2)
-				dup2(curr_cmd->fd_out, STDOUT_FILENO);
-			close_fd(ms);
-			path = var_env_finder(curr_cmd, ms);
-			if (execve(path, curr_cmd->tab_options, ms->env) == -1)
-				exit(1);
+			curr_cmd->pid = fork();
+			if (curr_cmd->pid == 0)
+			{
+				if (curr_cmd->fd_in > 2)
+					dup2(curr_cmd->fd_in, STDIN_FILENO);
+				if (curr_cmd->fd_out > 2)
+					dup2(curr_cmd->fd_out, STDOUT_FILENO);
+				close_fd(ms);
+				path = var_env_finder(curr_cmd, ms);
+				if (execve(path, curr_cmd->tab_options, ms->env) == -1)
+					exit(1);
+			}
 		}
 		curr_cmd = curr_cmd->next;
 	}	

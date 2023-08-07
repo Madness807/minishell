@@ -46,12 +46,15 @@ void	tab_maker(t_token *curr_token, t_command *command)
 		tmp = tmp->next;
 		i++;
 	}
-	command->tab_options = malloc ((i + 2) * sizeof(char *));
 	tmp = curr_token;
-	if (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_CMD)
+	if (tmp->type == TOKEN_CMD_FLAG)
 	{
-		command->tab_options[0] = ft_strdup(command->cmd_path);
-		i = 1;
+		command->tab_options = malloc ((i + 2) * sizeof(char *));
+		if (tmp->previous == NULL || (tmp->previous != NULL && tmp->previous->type == TOKEN_CMD))
+		{
+			command->tab_options[0] = ft_strdup(command->cmd_path);
+			i = 1;
+		}
 	}
 	else
 		i = 0;
@@ -61,7 +64,10 @@ void	tab_maker(t_token *curr_token, t_command *command)
 		tmp = tmp->next;
 		i++;
 	}
-	command->tab_options[i] = NULL;
+	if (tmp->type == TOKEN_CMD_FLAG)
+		command->tab_options[i] = NULL;
+	else
+		command->tab_options = NULL;
 }
 
 void	fill_cmd_args(t_token *curr_token, t_command *command)

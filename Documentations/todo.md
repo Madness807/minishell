@@ -18,15 +18,15 @@
 ## Parsing
 [X] gestion des commandes
 [X] gestion des builtins
-[] gestion des commandes simple sans pipe
-[] gestion des commandes complexe avec pipe
+[X] gestion des commandes simple sans pipe
+[X] gestion des commandes complexe avec pipe
 [] gestion du cas /bin/(une commande)
-[] gestion des quotes simple
-[] gestion des quotes double
-[] gestion du dollars $$$
+[X] gestion des quotes simple
+[X] gestion des quotes double
+[X] gestion du dollars $$$
 
 ## Execution
-[] Comprendre les bases
+[X] Comprendre les bases
 [] Implémenter l'exécution simple:
     Commence par implémenter l'exécution d'une commande simple sans pipe ni redirection. Utilise fork et exec pour créer un nouveau processus et exécuter la commande.
 [] Gérer les redirections:
@@ -38,7 +38,7 @@
 
 # Builtins
 [X] cd
-[1/2] echo (-n)
+[1/2] echo (-n) []impossible de revenir en arriere
 [X] pwd
 [1/2] export //TODO - reste a gerer le cas ou il n ya pas d option pour export 
 [X] unset

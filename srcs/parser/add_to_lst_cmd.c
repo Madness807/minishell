@@ -79,7 +79,6 @@ void	add_builtins_to_lst_cmd(t_token *token, t_ms *ms)
 			tmp = tmp->next;
 		tmp->next = command;
 	}
-	call_builtins(token, ms);
 }
 
 void	add_to_lst_redir(t_token *token, t_ms *ms)
