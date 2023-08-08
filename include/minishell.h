@@ -180,7 +180,7 @@ int			is_valid_builtin(char *str);
 int			is_file_or_folder(int token_type);
 void		fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token);
 void		add_token_to_list(t_ms *ms, t_token *new_token);
-void		is_closed(t_ms *ms);
+void		is_closed(t_ms *ms, int i);
 void		handle_dollars(t_ms *ms);
 void		add_previous(t_ms *ms);
 void		update_word_token_type(t_ms *ms);

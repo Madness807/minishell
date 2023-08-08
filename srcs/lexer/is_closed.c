@@ -34,13 +34,11 @@ void	ask_more(t_ms *ms)
 	}
 }
 
-void	is_closed(t_ms *ms)
+void	is_closed(t_ms *ms, int i)
 {
 	char	quote;
-	int		i;
 	int		stop;
 
-	i = 0;
 	while (ms->user_cmd[i])
 	{
 		if (ms->user_cmd[i] == '\'' || ms->user_cmd[i] == '\"')
@@ -51,12 +49,8 @@ void	is_closed(t_ms *ms)
 			{
 				i++;
 				if (ms->user_cmd[i] == quote)
-				{
 					if (ms->user_cmd[i - 1] != '\\')
-					{
 						stop = 1;
-					}
-				}
 				if (ms->user_cmd[i] == '\0')
 				{
 					ask_more(ms);

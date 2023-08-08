@@ -32,8 +32,27 @@ void	update_history(t_ms *ms)
 	if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, len_cmd) != 0)
 	{
 		free(ms->last_user_cmd);
+		ms->last_user_cmd = NULL;
 		ms->last_user_cmd = ft_strdup(ms->user_cmd);
 		add_history(ms->user_cmd);
+	}
+}
+
+void	hard_work(t_ms *ms)
+{
+	is_closed(ms, 0);
+	update_history(ms);
+	if (forbiden_char(ms) == 0)
+	{
+		handle_dollars(ms);
+		add_spaces(ms);
+		handle_quote(ms);
+		tokeniser(ms);
+		print_lst_token_1(ms);
+		parser(ms);
+		init_fd(ms);
+		execution(ms);
+		clean_lexer_parser(ms);
 	}
 }
 
@@ -50,22 +69,7 @@ void	user_input(t_ms *ms)
 		if (ms->user_cmd)
 		{
 			if (ms->user_cmd[0] != '\0')
-			{
-				is_closed(ms);
-				update_history(ms);
-				if (forbiden_char(ms) == 0)
-				{
-					handle_dollars(ms);
-					add_spaces(ms);
-					handle_quote(ms);
-					tokeniser(ms);
-					print_lst_token_1(ms);
-					parser(ms);
-					init_fd(ms);
-					execution(ms);
-					clean_lexer_parser(ms);
-				}
-			}
+				hard_work(ms);
 			free(ms->user_cmd);
 		}
 		else

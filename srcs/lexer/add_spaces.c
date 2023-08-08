@@ -41,27 +41,14 @@ int	is_in_quote(int start, int end, char *str)
 	return (0);
 }
 
-char	*single_pipe(t_ms *ms, char *str)
+char	*follow_pipe(char *str, int nb_char, int i)
 {
-	char	*res;
-	int		i;
 	int		res_i;
-	int		nb_char;
+	char	*res;
 
-	i = 0;
-	nb_char = 0;
-	while (str[i])
-	{
-		if (str[i] == '|' && is_in_quote(i, i, str) == 0)
-		{
-			ms->info_user->nb_pipe++;
-			nb_char++;
-		}
-		i++;
-	}
 	res = malloc((i + 1 + (nb_char * 2)) * sizeof(char));
-	i = 0;
 	res_i = 0;
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '|' && is_in_quote(i, i, str) == 0)
@@ -82,18 +69,55 @@ char	*single_pipe(t_ms *ms, char *str)
 	return (res);
 }
 
-char	*single_double_redirection(t_ms *ms, char *str)
+char	*single_pipe(char *str)
 {
 	char	*res;
 	int		i;
-	int		res_i;
+	int		nb_char;
+
+	i = 0;
+	nb_char = 0;
+	while (str[i])
+	{
+		if (str[i] == '|' && is_in_quote(i, i, str) == 0)
+		{
+			nb_char++;
+		}
+		i++;
+	}
+	res = follow_pipe(str, nb_char, i);
+	return (res);
+}
+
+int		add_double(int i, int res_i, char *str, char *res)
+{
+	res[res_i] = ' ';
+	res[res_i + 1] = str[i];
+	res[res_i + 2] = str[i + 1];
+	res[res_i + 3] = ' ';
+	res_i += 4;
+	return (res_i);
+}
+
+int		add_single(int i, int res_i, char *str, char *res)
+{
+	res[res_i] = ' ';
+	res[res_i + 1] = str[i];
+	res[res_i + 2] = ' ';
+	res_i += 3;
+	return (res_i);
+}
+
+int	create_malloc(char *str)
+{
 	int		nb_single;
 	int		nb_double;
+	int		i;
+	int		res;
 
-	(void)ms;
-	i = 0;
 	nb_single = 0;
 	nb_double = 0;
+	i = 0;
 	while (str[i])
 	{
 		if ((str[i] == '<' || str[i] == '>') && is_in_quote(i, i, str) == 0)
@@ -108,35 +132,29 @@ char	*single_double_redirection(t_ms *ms, char *str)
 		}
 		i++;
 	}
-	res = malloc((i + 1 + (nb_single * 2) + (nb_double * 2)) * sizeof(char));
-	i = 0;
-	res_i = 0;
+	res = i + 1 + (nb_single * 2) + (nb_double * 2);
+	return (res);
+}
+
+char	*single_double_redirection(char *str, int i, int res_i)
+{
+	char	*res;
+
+	res = malloc(create_malloc(str) * sizeof (char));
 	while (str[i])
 	{
 		if ((str[i] == '<' || str[i] == '>') && is_in_quote(i, i, str) == 0)
 		{
 			if (str[i + 1] == '<' || str[i + 1] == '>')
 			{
-				res[res_i] = ' ';
-				res[res_i + 1] = str[i];
-				res[res_i + 2] = str[i + 1];
-				res[res_i + 3] = ' ';
-				res_i += 4;
+				res_i = add_double(i, res_i, str, res);
 				i++;
 			}
 			else
-			{
-				res[res_i] = ' ';
-				res[res_i + 1] = str[i];
-				res[res_i + 2] = ' ';
-				res_i += 3;
-			}
+				res_i += add_single(i, res_i, str, res);
 		}
 		else
-		{
-			res[res_i] = str[i];
-			res_i++;
-		}
+			res[res_i++] = str[i];
 		i++;
 	}
 	res[res_i] = '\0';
@@ -149,8 +167,8 @@ void	add_spaces(t_ms *ms)
 {
 	char	*res;
 
-	res = single_pipe(ms, ms->user_cmd);
-	res = single_double_redirection(ms, res);
+	res = single_pipe(ms->user_cmd);
+	res = single_double_redirection(res, 0, 0);
 	free(ms->user_cmd);
 	ms->user_cmd = NULL;
 	ms->user_cmd = res;
