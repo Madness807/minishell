@@ -64,7 +64,7 @@ void	tab_maker(t_token *curr_token, t_command *command)
 		tmp = tmp->next;
 		i++;
 	}
-	if (tmp->type == TOKEN_CMD_FLAG)
+	if (tmp && tmp->type == TOKEN_CMD_FLAG)
 		command->tab_options[i] = NULL;
 	else
 		command->tab_options = NULL;

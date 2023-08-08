@@ -12,59 +12,75 @@
 
 #include "../../include/minishell.h"
 
-void handle_quote(t_ms *ms) 
+t_token *create_new_token(t_ms *ms, int *buffer_idx, char *buffer, \
+                        t_token *last_token)
 {
-    char *p;
-    char *buffer;
-    int buffer_idx;
+    t_token *new_token;
+
+    if (*buffer_idx > 0)
+	{
+        buffer[*buffer_idx] = '\0';
+        new_token = (t_token *)malloc(sizeof(t_token));
+        new_token->contenue = ft_strdup(buffer);
+        new_token->next = NULL;
+        new_token->previous = last_token;
+        if (last_token)
+        	last_token->next = new_token;
+        else
+        	ms->token = new_token;
+        *buffer_idx = 0;
+	}
+    return (new_token);
+}
+
+void    switch_state(t_quote_state *state, int curr)
+{
+    t_quote_state tmp;
+    tmp = curr;
+    if (*state == tmp)
+    	*state = NONE;
+	else
+    	*state = tmp;
+}
+
+void    nice_while(t_ms *ms, char *buffer, int *buffer_idx, \
+                    char *p)
+{
     t_quote_state state;
     t_token *last_token;
 
-	p = ms->user_cmd;
-	buffer = malloc((ft_strlen(ms->user_cmd) + 1) * sizeof(char));
-	buffer_idx = 0;
 	state = NONE;
-	last_token = NULL;
+    last_token = NULL;
     while (1)
     {
         if (state == NONE && (*p == ' ' || *p == '\0')) 
         {
-			if (buffer_idx > 0)
-			{
-            	buffer[buffer_idx] = '\0';
-            	t_token *new_token = (t_token *)malloc(sizeof(t_token));
-            	new_token->contenue = ft_strdup(buffer);
-            	new_token->next = NULL;
-            	new_token->previous = last_token;
-            	if (last_token) 
-                	last_token->next = new_token;
-            	else 
-               		ms->token = new_token;
-            	last_token = new_token;
-            	buffer_idx = 0;
-			}
+            last_token = create_new_token(ms, buffer_idx, buffer, last_token);
             if (*p == '\0') 
                 break;
         } 
         else if (*p == '"' && state != SINGLE_QUOTE) 
+            switch_state(&state, DOUBLE_QUOTE);
+        else if (*p == '\'' && state != DOUBLE_QUOTE)
+            switch_state(&state, SINGLE_QUOTE);
+        else
         {
-            if (state == DOUBLE_QUOTE)
-    			state = NONE;
-			else
-    			state = DOUBLE_QUOTE;
-        } 
-        else if (*p == '\'' && state != DOUBLE_QUOTE) 
-        {
-            if (state == SINGLE_QUOTE)
-    			state = NONE;
-			else
-    			state = SINGLE_QUOTE;
-        } 
-        else 
-        {
-            buffer[buffer_idx++] = *p;
+            buffer[*buffer_idx] = *p;
+            *buffer_idx += 1;
         }
         p++;
     }
+}
+
+void    handle_quote(t_ms *ms)
+{
+    char *p;
+    char *buffer;
+    int buffer_idx;
+
+	p = ms->user_cmd;
+	buffer = malloc((ft_strlen(ms->user_cmd) + 1) * sizeof(char));
+	buffer_idx = 0;
+    nice_while(ms, buffer, &buffer_idx, p);
     free(buffer); 
 }
