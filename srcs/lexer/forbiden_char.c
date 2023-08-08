@@ -29,3 +29,6 @@ int forbiden_char(t_ms *ms)
     }
     return (0);
 }
+
+// ATTENTION il faut faire une petit modif car on a besoin de garder les \ et ; 
+// en temps que text si entre quote. a modifier aussi dans tokeniser pour add cet exeption

@@ -12,18 +12,16 @@
 
 #include "../../include/minishell.h"
 
-void	builtin_echo(char *msg)
+void	builtin_echo(t_command *command)
 {
 	int	i;
 
-	if (msg[5] == '"')
-		i = 6;
-	else
-		i = 5;
-	while (msg[i] && msg[i] != '"')
+	i = 0;
+	while (command->tab_options[i])
 	{
-		ft_printf("%c", msg[i]);
+		printf("%s\n", command->tab_options[i]);
 		i++;
 	}
+	
 	ft_printf("\n");
 }

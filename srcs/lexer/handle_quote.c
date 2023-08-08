@@ -25,7 +25,7 @@ void handle_quote(t_ms *ms)
 	buffer_idx = 0;
 	state = NONE;
 	last_token = NULL;
-    while (1) 
+    while (1)
     {
         if (state == NONE && (*p == ' ' || *p == '\0')) 
         {

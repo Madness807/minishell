@@ -12,14 +12,26 @@
 
 #include "../../include/minishell.h"
 
-int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
+char	*creat_new_malloc(t_ms *ms, int start, int end, char *env_value)
+{
+	int 	new_size;
+	char	*res;
+
+	new_size = ft_strlen(ms->user_cmd) - (end - start);
+	if (env_value)
+		new_size += ft_strlen(env_value);
+	res = malloc((new_size + 1) * sizeof(char));
+	return (res);
+}
+
+int	swap_text(t_ms *ms, int start, int end, char *env_value)
 {
 	int		i;
 	int		j;
 	int		ret;
 	char	*new_user_cmd;
 
-	new_user_cmd = malloc((new_size + 1) * sizeof(char));
+	new_user_cmd = creat_new_malloc(ms, start, end, env_value);
 	i = 0;
 	while (i < start)
 	{
@@ -52,24 +64,26 @@ int	swap_text(t_ms *ms, int new_size, int start, int end, char *env_value)
 
 int	swap_process(t_ms *ms, int start, int end)
 {
-	int		new_size;
 	int		ret;
 	char	*looking_name;
 	char	*env_value;
 
 	looking_name = ft_substr(ms->user_cmd, start + 1, end - start - 1);
 	env_value = getenv(looking_name);
-	new_size = ft_strlen(ms->user_cmd) - (end - start);
-	if (env_value)
-	{
-		new_size += ft_strlen(env_value);
-	}
-	ret = swap_text(ms, new_size, start, end, env_value);
+	ret = swap_text(ms, start, end, env_value);
 	if (looking_name)
 	{
 		free(looking_name);
 	}
 	return (ret);
+}
+
+int	last_check(char quote)
+{
+	if (quote == '\'')
+		return (1);
+	else
+		return (0);
 }
 
 int	is_in_sq(int start, int end, char *str)
@@ -86,20 +100,9 @@ int	is_in_sq(int start, int end, char *str)
 			quote = str[i];
 			j = i + 1;
 			while (str[j] != quote)
-			{
 				j++;
-			}
 			if (i < start && j > end)
-			{
-				if (quote == '\'')
-				{
-					return (1);
-				}
-				else
-				{
-					return (0);
-				}
-			}
+				return (last_check(quote));
 			else
 				i = j;
 		}
@@ -113,7 +116,8 @@ int	dollar_process(t_ms *ms, int curr_dollar)
 	int	end;
 
 	end = curr_dollar;
-	while (ms->user_cmd[end] != ' ' && ms->user_cmd[end] != '\'' && ms->user_cmd[end] != '\"' && ms->user_cmd[end])
+	while (ms->user_cmd[end] != ' ' && ms->user_cmd[end] != '\'' && 
+		ms->user_cmd[end] != '\"' && ms->user_cmd[end])
 	{
 		end++;
 	}

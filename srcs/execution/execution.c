@@ -72,7 +72,7 @@ void	execution(t_ms *ms)
 	while (curr_cmd)
 	{
 		if (is_valid_builtin(curr_cmd->cmd_name) == 1)
-			call_builtins(curr_cmd->cmd_name, ms);
+			call_builtins(curr_cmd->cmd_name, curr_cmd, ms);
 
 		else
 		{

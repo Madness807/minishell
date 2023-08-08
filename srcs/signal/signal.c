@@ -32,4 +32,7 @@ void	use_signal(void)
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, other_ctrl);
 }
+// ajouter les signaux dans les commandes bloquantes (exemple cat qui attend une
+// entree user, le ctrl \ + c ne fait pas la meme quand dans minishell de base
+// le ctrl d ferme tout dans tout les cas
 */

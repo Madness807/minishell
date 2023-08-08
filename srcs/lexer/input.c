@@ -44,7 +44,7 @@ void	user_input(t_ms *ms)
 	while (ms->stop == 0)
 	{
 		init_boucle_infinie(ms);
-		//use_signal();
+		// use_signal();
 		prompt = def_prompt(ms);
 		ms->user_cmd = readline(prompt);
 		if (ms->user_cmd)

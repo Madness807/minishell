@@ -194,8 +194,8 @@ char		*cmd_path(char *str, t_ms *ms);
 void		fill_cmd_args(t_token *curr_token, t_command *command);
 
 //			BUILTINS FUNCTION
-void		call_builtins(char *command, t_ms *ms);
-void		builtin_echo(char *msg);
+void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);
+void		builtin_echo(t_command *command);
 void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);
 void		builtin_export(t_token *token, t_ms *ms);
