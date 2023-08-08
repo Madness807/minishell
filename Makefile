@@ -18,6 +18,7 @@ SRC				=		srcs/main.c \
 						srcs/init/init.c\
 						srcs/lexer/input.c\
 						srcs/lexer/forbiden_char.c\
+						srcs/lexer/swap.c\
 						srcs/lexer/tokeniser.c\
 						srcs/lexer/clean_lexer_parser.c\
 						srcs/lexer/handle_quote.c\

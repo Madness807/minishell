@@ -171,6 +171,7 @@ void		init_boucle_infinie(t_ms *ms);
 void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
 int 		forbiden_char(t_ms *ms);
+int			swap_process(t_ms *ms, int start, int end);
 void		tokeniser(t_ms *ms);
 void		add_spaces(t_ms *ms);
 void		handle_quote(t_ms *ms);
