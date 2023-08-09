@@ -30,7 +30,7 @@ char	*ft_strrchr(const char *str, int param)
 	if ((char)param == '\0')
 	{
 		return (&(s[i]));
-	}		
+	}
 	while (i > 0 && s[i] != (char)param)
 	{
 		i--;

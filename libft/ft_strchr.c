@@ -31,7 +31,7 @@ char	*ft_strchr(const char *str, int param)
 	{
 		i = ft_strlen(str);
 		return (&(s[i]));
-	}	
+	}
 	while ((s[i]) && (s[i] != (char)param))
 	{
 		i++;

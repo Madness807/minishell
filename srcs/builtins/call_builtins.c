@@ -27,10 +27,10 @@ void	call_builtins(char *command, t_command *curr_cmd, t_ms *ms)
 		builtin_echo(curr_cmd);
 	else if (ft_strcmp(command, "pwd") == 0)
 		builtin_pwd(ms->current_folder);
-	//else if (ft_strncmp(command, "export", 6) == 0)
-	//	builtin_export(token, ms);
-	//else if (ft_strncmp(command, "unset", 5) == 0)
-	//	builtin_unset(token, ms);
+	else if (ft_strcmp(command, "export") == 0)
+		builtin_export(curr_cmd->tab_options[0], ms);
+	else if (ft_strcmp(command, "unset") == 0)
+		builtin_unset(curr_cmd->tab_options[0], ms);
 }
 
 //FIXME - reparer les appels a export et a unset 

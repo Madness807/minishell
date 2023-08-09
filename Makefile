@@ -23,7 +23,8 @@ SRC				=		srcs/main.c \
 						srcs/lexer/clean_lexer_parser.c\
 						srcs/lexer/handle_quote.c\
 						srcs/lexer/handle_dollars.c\
-						srcs/lexer/add_spaces.c\
+						srcs/lexer/add_spaces_1.c\
+						srcs/lexer/add_spaces_2.c\
 						srcs/lexer/is_valid_cmd.c\
 						srcs/lexer/is_closed.c\
 						srcs/parser/parser.c\

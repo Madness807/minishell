@@ -50,8 +50,6 @@ void	clean_command(t_ms *ms)
 			if (current->tab_options)
 				free(current->tab_options);
 			free(current->cmd_path);
-			if (current->args)
-				free(current->args);
 			free(current);
 			current = NULL;
 		}

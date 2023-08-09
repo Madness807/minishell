@@ -19,9 +19,8 @@ void	builtin_echo(t_command *command)
 	i = 0;
 	while (command->tab_options[i])
 	{
-		printf("%s\n", command->tab_options[i]);
+		ft_printf("%s\n", command->tab_options[i]);
 		i++;
 	}
-	
 	ft_printf("\n");
 }

@@ -25,7 +25,7 @@ char	*def_prompt(t_ms *ms)
 }
 
 void	update_history(t_ms *ms)
-{	
+{
 	int	len_cmd;
 
 	len_cmd = ft_strlen(ms->user_cmd);
@@ -63,7 +63,6 @@ void	user_input(t_ms *ms)
 	while (ms->stop == 0)
 	{
 		init_boucle_infinie(ms);
-		// use_signal();
 		prompt = def_prompt(ms);
 		ms->user_cmd = readline(prompt);
 		if (ms->user_cmd)
@@ -82,3 +81,5 @@ void	user_input(t_ms *ms)
 		prompt = NULL;
 	}
 }
+
+//TODO - ne pas oublier de remettre signal a la ligne 66

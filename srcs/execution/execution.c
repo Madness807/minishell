@@ -60,37 +60,40 @@ void	wait_child(t_ms *ms)
 				g_wait_status = WEXITSTATUS(g_wait_status);
 		}
 		curr_cmd = curr_cmd->next;
-	}	
+	}
+}
+
+void	fork_execve(t_command *curr_cmd, t_ms *ms)
+{
+	char	*path;
+
+	curr_cmd->pid = fork();
+	if (curr_cmd->pid == 0)
+	{
+		if (curr_cmd->fd_in > 2)
+			dup2(curr_cmd->fd_in, STDIN_FILENO);
+		if (curr_cmd->fd_out > 2)
+			dup2(curr_cmd->fd_out, STDOUT_FILENO);
+		close_fd(ms);
+		path = var_env_finder(curr_cmd, ms);
+		if (execve(path, curr_cmd->tab_options, ms->env) == -1)
+			exit(1);
+	}
 }
 
 void	execution(t_ms *ms)
 {
 	t_command	*curr_cmd;
-	char		*path;
 
 	curr_cmd = ms->command;
 	while (curr_cmd)
 	{
 		if (is_valid_builtin(curr_cmd->cmd_name) == 1)
 			call_builtins(curr_cmd->cmd_name, curr_cmd, ms);
-
 		else
-		{
-			curr_cmd->pid = fork();
-			if (curr_cmd->pid == 0)
-			{
-				if (curr_cmd->fd_in > 2)
-					dup2(curr_cmd->fd_in, STDIN_FILENO);
-				if (curr_cmd->fd_out > 2)
-					dup2(curr_cmd->fd_out, STDOUT_FILENO);
-				close_fd(ms);
-				path = var_env_finder(curr_cmd, ms);
-				if (execve(path, curr_cmd->tab_options, ms->env) == -1)
-					exit(1);
-			}
-		}
+			fork_execve(curr_cmd, ms);
 		curr_cmd = curr_cmd->next;
-	}	
+	}
 	close_fd(ms);
 	wait_child(ms);
 }

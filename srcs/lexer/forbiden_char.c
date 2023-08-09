@@ -12,23 +12,24 @@
 
 #include "../../include/minishell.h"
 
-int forbiden_char(t_ms *ms)
+int	forbiden_char(t_ms *ms)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (ms->user_cmd[i])
-    {
-        if (ms->user_cmd[i] == '\\' || ms->user_cmd[i] == ';')
-        {
-            ft_printf("Error42subj: forbidden char detected\n");
-            ft_printf("It's minishell, not shell tout court\n");
-            return (1);
-        }
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (ms->user_cmd[i])
+	{
+		if (ms->user_cmd[i] == '\\' || ms->user_cmd[i] == ';')
+		{
+			ft_printf("Error42subj: forbidden char detected\n");
+			ft_printf("It's minishell, not shell tout court\n");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 // ATTENTION il faut faire une petit modif car on a besoin de garder les \ et ; 
-// en temps que text si entre quote. a modifier aussi dans tokeniser pour add cet exeption
+// en temps que text si entre quote. a modifier aussi dans tokeniser pour add
+// cet exeption

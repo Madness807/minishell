@@ -14,7 +14,6 @@
 
 void	fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token)
 {
-
 	if (ft_strcmp(word, "|") == 0)
 		new_token->type = TOKEN_PIPE;
 	else if (ft_strcmp(word, ">") == 0)
@@ -41,7 +40,7 @@ void	fill_node_tokeniser(char *word, t_ms *ms, t_token *new_token)
 void	tokeniser(t_ms *ms)
 {
 	t_token	*curr;
-	
+
 	curr = ms->token;
 	while (curr)
 	{

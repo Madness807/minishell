@@ -12,6 +12,38 @@
 
 #include "../../include/minishell.h"
 
+char	*cmd_path(char *str, t_ms *ms)
+{
+	char	**path_splited;
+	char	*path_access;
+	char	*command;
+
+	path_splited = NULL;
+	path_access = NULL;
+	command = NULL;
+	if (str)
+	{
+		command = str;
+		command = ft_strjoin("/", str);
+	}
+	path_splited = ms->bin_path;
+	path_access = join_path_cmd(path_splited, command);
+	free(command);
+	if (path_access == NULL)
+		return (NULL);
+	return (path_access);
+}
+
+void	fill_tab_options(t_token *token, t_command *command)
+{
+	if (token->next->type == TOKEN_CMD_FLAG)
+		tab_maker_flag(token->next, command);
+	else if (token->next->type == TOKEN_WORD)
+		tab_maker_word(token->next, command);
+	else
+		tab_maker_flag(token, command);
+}
+
 void	add_envcmd_to_lst_cmd(t_token *token, t_ms *ms)
 {
 	t_command	*command;
@@ -20,22 +52,11 @@ void	add_envcmd_to_lst_cmd(t_token *token, t_ms *ms)
 	command = ((t_command *)malloc(sizeof(t_command)));
 	command->cmd_path = cmd_path(token->contenue, ms);
 	command->cmd_name = token->contenue;
-	command->args = NULL;
 	command->next = NULL;
 	if (token->next != NULL)
-	{
-		if (token->next->type == TOKEN_CMD_FLAG)
-			tab_maker(token->next, command);
-		else if (token->next->type == TOKEN_WORD)
-		{
-			tab_maker(token->next, command);
-			fill_cmd_args(token->next, command);
-		}
-		else
-			tab_maker(token, command);
-	}
+		fill_tab_options(token, command);
 	else
-		tab_maker(token, command);
+		tab_maker_flag(token, command);
 	if (ms->command == NULL)
 		ms->command = command;
 	else
@@ -57,19 +78,9 @@ void	add_builtins_to_lst_cmd(t_token *token, t_ms *ms)
 	command->cmd_name = token->contenue;
 	command->next = NULL;
 	if (token->next != NULL)
-	{
-		if (token->next->type == TOKEN_CMD_FLAG)
-			tab_maker(token->next, command);
-		else if (token->next->type == TOKEN_WORD)
-		{
-			tab_maker(token->next, command);
-			fill_cmd_args(token->next, command);
-		}
-		else
-			tab_maker(token, command);
-	}
+		fill_tab_options(token, command);
 	else
-		tab_maker(token, command);
+		tab_maker_flag(token, command);
 	if (ms->command == NULL)
 		ms->command = command;
 	else

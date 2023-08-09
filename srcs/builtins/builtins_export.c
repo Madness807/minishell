@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-void	builtin_export(t_token *token, t_ms *ms)
+void	builtin_export(char *command, t_ms *ms)
 {
 	int		len_env;
 	int		i;
@@ -22,11 +22,13 @@ void	builtin_export(t_token *token, t_ms *ms)
 
 	len_env = 0;
 	i = 0;
-	tok_val_len = ft_strlen(token->next->contenue) + 1;
+	tok_val_len = ft_strlen(command) + 1;
 	while (ms->env[len_env] != 0)
 		len_env++;
 	new_var = malloc((tok_val_len) * sizeof(char));
-	ft_strlcpy(new_var, token->next->contenue, tok_val_len);
+	if (new_var == NULL)
+		return ;
+	ft_strlcpy(new_var, command, tok_val_len);
 	tmp_env = malloc((len_env) * sizeof(char *));
 	while (i < len_env)
 	{
@@ -35,6 +37,6 @@ void	builtin_export(t_token *token, t_ms *ms)
 		i++;
 	}
 	tmp_env[i] = new_var;
-	tmp_env[i + 1] = 0;
+	tmp_env[i + 1] = NULL;
 	ms->env = tmp_env;
 }

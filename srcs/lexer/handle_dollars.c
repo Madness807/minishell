@@ -51,7 +51,7 @@ int	dollar_process(t_ms *ms, int curr_dollar)
 
 	end = curr_dollar;
 	while (ms->user_cmd[end] != ' ' && ms->user_cmd[end] != '\'' && 
-	ms->user_cmd[end] != '\"' && ms->user_cmd[end])
+		ms->user_cmd[end] != '\"' && ms->user_cmd[end])
 	{
 		end++;
 	}

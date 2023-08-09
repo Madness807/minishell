@@ -31,7 +31,7 @@ void	*ft_memmove(void *dst, const void *src, size_t size)
 		{
 			((unsigned char *)dst)[size - 1] = ((unsigned char *)src)[size - 1];
 			size--;
-		}	
+		}
 	}
 	else
 	{

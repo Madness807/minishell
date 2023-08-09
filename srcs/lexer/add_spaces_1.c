@@ -31,7 +31,7 @@ int	is_in_quote(int start, int end, char *str)
 			}
 			if (i < start && j > end)
 			{
-					return (1);
+				return (1);
 			}
 			else
 				i = j;
@@ -53,10 +53,10 @@ char	*follow_pipe(char *str, int nb_char, int i)
 	{
 		if (str[i] == '|' && is_in_quote(i, i, str) == 0)
 		{
-				res[res_i] = ' ';
-				res[res_i + 1] = str[i];
-				res[res_i + 2] = ' ';
-				res_i += 3;
+			res[res_i] = ' ';
+			res[res_i + 1] = str[i];
+			res[res_i + 2] = ' ';
+			res_i += 3;
 		}
 		else
 		{
@@ -89,7 +89,7 @@ char	*single_pipe(char *str)
 	return (res);
 }
 
-int		add_double(int i, int res_i, char *str, char *res)
+int	add_double(int i, int res_i, char *str, char *res)
 {
 	res[res_i] = ' ';
 	res[res_i + 1] = str[i];
@@ -99,77 +99,11 @@ int		add_double(int i, int res_i, char *str, char *res)
 	return (res_i);
 }
 
-int		add_single(int i, int res_i, char *str, char *res)
+int	add_single(int i, int res_i, char *str, char *res)
 {
 	res[res_i] = ' ';
 	res[res_i + 1] = str[i];
 	res[res_i + 2] = ' ';
 	res_i += 3;
 	return (res_i);
-}
-
-int	create_malloc(char *str)
-{
-	int		nb_single;
-	int		nb_double;
-	int		i;
-	int		res;
-
-	nb_single = 0;
-	nb_double = 0;
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] == '<' || str[i] == '>') && is_in_quote(i, i, str) == 0)
-		{
-			if (str[i + 1] == '<' || str[i + 1] == '>')
-			{
-				nb_double++;
-				i++;
-			}
-			else
-				nb_single++;
-		}
-		i++;
-	}
-	res = i + 1 + (nb_single * 2) + (nb_double * 2);
-	return (res);
-}
-
-char	*single_double_redirection(char *str, int i, int res_i)
-{
-	char	*res;
-
-	res = malloc(create_malloc(str) * sizeof (char));
-	while (str[i])
-	{
-		if ((str[i] == '<' || str[i] == '>') && is_in_quote(i, i, str) == 0)
-		{
-			if (str[i + 1] == '<' || str[i + 1] == '>')
-			{
-				res_i = add_double(i, res_i, str, res);
-				i++;
-			}
-			else
-				res_i += add_single(i, res_i, str, res);
-		}
-		else
-			res[res_i++] = str[i];
-		i++;
-	}
-	res[res_i] = '\0';
-	free(str);
-	str = NULL;
-	return (res);
-}
-
-void	add_spaces(t_ms *ms)
-{
-	char	*res;
-
-	res = single_pipe(ms->user_cmd);
-	res = single_double_redirection(res, 0, 0);
-	free(ms->user_cmd);
-	ms->user_cmd = NULL;
-	ms->user_cmd = res;
 }

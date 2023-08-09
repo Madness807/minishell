@@ -95,9 +95,9 @@ typedef enum e_error_type
 
 typedef enum e_quote_state
 {
-    NONE,
-    SINGLE_QUOTE,
-    DOUBLE_QUOTE
+	NONE,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE
 }t_quote_state;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,6 @@ typedef struct s_command
 	char					*cmd_name;
 	char					*cmd_path;
 	char					**tab_options;
-	char					*args;
 	int						fd_in;
 	int						fd_out;
 	pid_t					pid;
@@ -170,7 +169,7 @@ void		init_boucle_infinie(t_ms *ms);
 //			LEXER FUNCTION
 void		user_input(t_ms *ms);
 void		history_proc(t_ms *ms, char *cmd);
-int 		forbiden_char(t_ms *ms);
+int			forbiden_char(t_ms *ms);
 int			swap_process(t_ms *ms, int start, int end);
 void		tokeniser(t_ms *ms);
 void		add_spaces(t_ms *ms);
@@ -184,23 +183,30 @@ void		is_closed(t_ms *ms, int i);
 void		handle_dollars(t_ms *ms);
 void		add_previous(t_ms *ms);
 void		update_word_token_type(t_ms *ms);
+char		*single_pipe(char *str);
+char		*single_double_redirection(char *str, int i, int res_i);
+int			create_malloc(char *str);
+int			is_in_quote(int start, int end, char *str);
+int			add_double(int i, int res_i, char *str, char *res);
+int			add_single(int i, int res_i, char *str, char *res);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);
 void		add_envcmd_to_lst_cmd(t_token *token, t_ms *ms);
 void		add_builtins_to_lst_cmd(t_token *token, t_ms *ms);
 void		add_to_lst_redir(t_token *token, t_ms *ms);
-void		tab_maker(t_token *curr_token, t_command *command);
+void		tab_maker_flag(t_token *curr_token, t_command *command);
+void		tab_maker_word(t_token *curr_token, t_command *command);
+void		creat_malloc_tab_options(t_token *tmp, t_command *command);
 char		*cmd_path(char *str, t_ms *ms);
-void		fill_cmd_args(t_token *curr_token, t_command *command);
 
 //			BUILTINS FUNCTION
 void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);
 void		builtin_echo(t_command *command);
 void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);
-void		builtin_export(t_token *token, t_ms *ms);
-void		builtin_unset(t_token *token, t_ms *ms);
+void		builtin_export(char *command, t_ms *ms);
+void		builtin_unset(char *command, t_ms *ms);
 void		builtin_env(char **env);
 
 //			EXECUTION FUNCTION
@@ -209,6 +215,7 @@ char		*var_env_finder(t_command *curr_cmd, t_ms *ms);
 char		*join_path_cmd(char **path_splited, char *command);
 //void		open_file(char **argv, int argc, t_pipex *pipex);
 void		execution(t_ms *ms);
+void		fork_execve(t_command *curr_cmd, t_ms *ms);
 void		redir_simple_droite(char *filename);
 void		init_fd(t_ms *ms);
 void		close_fd(t_ms *ms);

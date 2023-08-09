@@ -19,13 +19,13 @@ void	unset_var_env(t_ms *ms, int index)
 	i = index;
 	while (ms->env[i] != 0)
 	{
-			ms->env[i] = ms->env[i + 1];
+		ms->env[i] = ms->env[i + 1];
 		i++;
 	}
 	ms->env[i] = NULL;
 }
 
-void	builtin_unset(t_token *token, t_ms *ms)
+void	builtin_unset(char *command, t_ms *ms)
 {
 	int		i;
 	int		len_var_to_find;
@@ -35,7 +35,7 @@ void	builtin_unset(t_token *token, t_ms *ms)
 
 	i = 0;
 	index_env_i_to_remove = -1;
-	tab_split_var_to_find = ft_split(token->next->contenue, '=');
+	tab_split_var_to_find = ft_split(command, '=');
 	var_to_find = tab_split_var_to_find[0];
 	len_var_to_find = ft_strlen(var_to_find);
 	while (ms->env[i] != 0)

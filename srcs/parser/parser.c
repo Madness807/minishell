@@ -12,78 +12,64 @@
 
 #include "../../include/minishell.h"
 
-char	*cmd_path(char *str, t_ms *ms)
-{
-	char	**path_splited;
-	char	*path_access;
-	char	*command;
-
-	path_splited = NULL;
-	path_access = NULL;
-	command = NULL;
-	if (str)
-	{
-		command = str;
-		command = ft_strjoin("/", str);
-	}
-	path_splited = ms->bin_path;
-	path_access = join_path_cmd(path_splited, command);
-	free(command);
-	if (path_access == NULL)
-		return (NULL);
-	return (path_access);
-}
-
-void	tab_maker(t_token *curr_token, t_command *command)
+void	tab_maker_word(t_token *curr_token, t_command *command)
 {
 	int		i;
 	t_token	*tmp;
 
 	tmp = curr_token;
 	i = 0;
-	while (tmp && (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_BUILTINS))
+	while (tmp && (tmp->type == TOKEN_WORD))
 	{
 		tmp = tmp->next;
 		i++;
 	}
+	command->tab_options = malloc ((i + 2) * sizeof(char *));
 	tmp = curr_token;
-	if (tmp->type == TOKEN_CMD_FLAG)
+	if (tmp->previous && tmp->previous->type == TOKEN_CMD)
 	{
-		command->tab_options = malloc ((i + 2) * sizeof(char *));
-		if (tmp->previous == NULL || (tmp->previous != NULL && tmp->previous->type == TOKEN_CMD))
-		{
-			command->tab_options[0] = ft_strdup(command->cmd_path);
-			i = 1;
-		}
+		command->tab_options[0] = ft_strdup(command->cmd_path);
+		i = 1;
 	}
 	else
 		i = 0;
-	while (tmp && (tmp->type == TOKEN_CMD_FLAG || tmp->type == TOKEN_WORD))
+	while (tmp && (tmp->type == TOKEN_WORD))
 	{
 		command->tab_options[i] = ft_strdup(tmp->contenue);
 		tmp = tmp->next;
 		i++;
 	}
-	if (tmp && tmp->type == TOKEN_CMD_FLAG)
-		command->tab_options[i] = NULL;
-	else
-		command->tab_options = NULL;
+	command->tab_options[i] = NULL;
 }
 
-void	fill_cmd_args(t_token *curr_token, t_command *command)
+void	tab_maker_flag(t_token *curr_token, t_command *command)
 {
-		char 	*argument;
-		int		arg_len;
-		
-		argument = curr_token->contenue;
-		arg_len = ft_strlen(argument);
-		command->args = malloc((arg_len + 1) * sizeof (char));
-	
-		if (curr_token->type == TOKEN_WORD)
-			command->args = curr_token->contenue;
-		else 
-			command->args = NULL;
+	int		i;
+	t_token	*tmp;
 
+	tmp = curr_token;
+	i = 0;
+	while (tmp && (tmp->type == TOKEN_CMD_FLAG))
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	command->tab_options = malloc ((i + 2) * sizeof(char *));
+	tmp = curr_token;
+	if (tmp->previous && tmp->previous->type == TOKEN_CMD)
+	{
+		command->tab_options[0] = ft_strdup(command->cmd_path);
+		i = 1;
+	}
+	else
+		i = 0;
+	while (tmp && (tmp->type == TOKEN_CMD_FLAG))
+	{
+		command->tab_options[i] = ft_strdup(tmp->contenue);
+		tmp = tmp->next;
+		i++;
+	}
+	command->tab_options[i] = NULL;
 }
 
 void	parser(t_ms *ms)

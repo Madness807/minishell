@@ -53,6 +53,6 @@ char	*join_path_cmd(char **path_splited, char *command)
 		}
 		free(tmp);
 		i++;
-	}	
+	}
 	return (NULL);
 }
