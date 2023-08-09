@@ -27,7 +27,7 @@ void	builtin_echo(t_command *command)
 			i++;
 		}
 		else
-			break;
+			break ;
 	}
 	while (command->tab_options[i])
 	{

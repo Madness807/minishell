@@ -12,66 +12,6 @@
 
 #include "../../include/minishell.h"
 
-void	tab_maker_word(t_token *curr_token, t_command *command)
-{
-	int		i;
-	t_token	*tmp;
-
-	tmp = curr_token;
-	i = 0;
-	while (tmp && (tmp->type == TOKEN_WORD))
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	command->tab_options = malloc ((i + 2) * sizeof(char *));
-	tmp = curr_token;
-	if (tmp->previous && tmp->previous->type == TOKEN_CMD)
-	{
-		command->tab_options[0] = ft_strdup(command->cmd_path);
-		i = 1;
-	}
-	else
-		i = 0;
-	while (tmp && (tmp->type == TOKEN_WORD))
-	{
-		command->tab_options[i] = ft_strdup(tmp->contenue);
-		tmp = tmp->next;
-		i++;
-	}
-	command->tab_options[i] = NULL;
-}
-
-void	tab_maker_flag(t_token *curr_token, t_command *command)
-{
-	int		i;
-	t_token	*tmp;
-
-	tmp = curr_token;
-	i = 0;
-	while (tmp && (tmp->type == TOKEN_CMD_FLAG))
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	command->tab_options = malloc ((i + 2) * sizeof(char *));
-	tmp = curr_token;
-	if (tmp->previous && tmp->previous->type == TOKEN_CMD)
-	{
-		command->tab_options[0] = ft_strdup(command->cmd_path);
-		i = 1;
-	}
-	else
-		i = 0;
-	while (tmp && (tmp->type == TOKEN_CMD_FLAG))
-	{
-		command->tab_options[i] = ft_strdup(tmp->contenue);
-		tmp = tmp->next;
-		i++;
-	}
-	command->tab_options[i] = NULL;
-}
-
 void	parser(t_ms *ms)
 {
 	t_token			*token;

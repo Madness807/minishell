@@ -42,7 +42,7 @@ void	remplace_type_after_echo(t_token *curr)
 	while (curr)
 	{
 		if (curr->type == TOKEN_PIPE || (curr->type > 7 && curr->type < 12))
-			break;
+			break ;
 		else
 			curr->type = TOKEN_WORD;
 		curr = curr->next;
@@ -59,7 +59,7 @@ void	looking_for_echo(t_ms *ms)
 		if (ft_strcmp(curr->contenue, "echo") == 0)
 		{
 			remplace_type_after_echo(curr->next);
-			break;
+			break ;
 		}
 		curr = curr->next;
 	}

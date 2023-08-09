@@ -31,7 +31,10 @@ t_token	*create_new_token(t_ms *ms, int *buffer_idx, char *buffer, \
 			ms->token = new_token;
 		*buffer_idx = 0;
 	}
-	return (new_token);
+	if (new_token)
+		return (new_token);
+	else
+		return (last_token);
 }
 
 void	switch_state(t_quote_state *state, int curr)

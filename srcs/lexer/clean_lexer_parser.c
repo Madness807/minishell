@@ -35,6 +35,18 @@ void	clean_token(t_ms *ms)
 	ms->token = NULL;
 }
 
+void	free_tab_content(char **tab_options)
+{
+	int	i; 
+
+	i = 0;
+	while (tab_options[i])
+	{
+		free(tab_options[i]);
+		i++;
+	}
+}
+
 void	clean_command(t_ms *ms)
 {
 	t_command	*tmp;
@@ -48,7 +60,10 @@ void	clean_command(t_ms *ms)
 			current = tmp;
 			tmp = tmp->next;
 			if (current->tab_options)
+			{
+				free_tab_content(current->tab_options);
 				free(current->tab_options);
+			}
 			free(current->cmd_path);
 			free(current);
 			current = NULL;

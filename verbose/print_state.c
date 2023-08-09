@@ -35,13 +35,34 @@ void	print_lst_execution_cmd(t_ms *ms)
 	printf("\n");
 }
 
+void	boucle_sur_tab_opts(char **tab_options)
+{
+	int	i;
+
+	i = 0;
+	while (tab_options[i] != NULL)
+	{
+		if (i == 0)
+		{
+			printf(YEL "Options[%i] = %s\t\t" RESET, 
+				i, tab_options[i]);
+			printf("\n");
+		}
+		else
+		{
+			printf(YEL "\t\t\t\t\tOptions[%i] = %s" RESET, 
+				i, tab_options[i]);
+			printf("\n");
+		}
+		i++;
+	}
+}
+
 void	print_lst_command(t_ms *ms)
 {
 	t_command	*cur;
-	int			i;
 	int			j;
 
-	i = 0;
 	j = 0;
 	cur = ms->command;
 	printf(BLU"LISTE CHAINEE COMMANDES AVANT EXECUTION\n"RESET);
@@ -53,23 +74,9 @@ void	print_lst_command(t_ms *ms)
 		printf("[%i]\t\t", j);
 		j++;
 		printf(GRN "CMD_NAME = %s\t\t" RESET, cur->cmd_name);
-		i = 0;
 		if (cur->tab_options)
 		{
-			while (cur->tab_options[i] != NULL)
-			{
-				if (i == 0)
-				{
-					printf(YEL "Options[%i] = %s\t\t" RESET, i, cur->tab_options[i]);
-					printf("\n");
-				}
-				else
-				{
-					printf(YEL "\t\t\t\t\tOptions[%i] = %s" RESET, i, cur->tab_options[i]);
-					printf("\n");
-				}
-				i++;
-			}
+			boucle_sur_tab_opts(cur->tab_options);
 		}
 		cur = cur->next;
 	}

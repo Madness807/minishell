@@ -188,8 +188,9 @@ void		parser(t_ms *ms);
 void		add_envcmd_to_lst_cmd(t_token *token, t_ms *ms);
 void		add_builtins_to_lst_cmd(t_token *token, t_ms *ms);
 void		add_to_lst_redir(t_token *token, t_ms *ms);
-void		tab_maker_flag(t_token *curr_token, t_command *command);
-void		tab_maker_word(t_token *curr_token, t_command *command);
+void		tab_maker_flag(t_token *curr_token, t_command *command, int i);
+void		tab_maker_word(t_token *curr_token, t_command *command, int i);
+void		tab_maker_1_cmd(t_token *curr_token, t_command *command);
 void		creat_malloc_tab_options(t_token *tmp, t_command *command);
 char		*cmd_path(char *str, t_ms *ms);
 

@@ -25,9 +25,9 @@
 [X] gestion des quotes double
 [X] gestion du dollars $$$
 
-## Execution //FIXME - commande seul cree un seg fault mais je sais pk
+## Execution 
 [X] Comprendre les bases
-[] Implémenter l'exécution simple:
+[X] Implémenter l'exécution simple:
     Commence par implémenter l'exécution d'une commande simple sans pipe ni redirection. Utilise fork et exec pour créer un nouveau processus et exécuter la commande.
 [] Gérer les redirections:
     Une fois que tu peux exécuter une commande simple, tu peux commencer à ajouter le support des redirections. Tu devras manipuler les descripteurs de fichier en utilisant des appels système comme open, close, dup2, etc.
