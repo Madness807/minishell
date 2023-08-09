@@ -62,7 +62,6 @@ void	user_input(t_ms *ms)
 
 	while (ms->stop == 0)
 	{
-		init_boucle_infinie(ms);
 		prompt = def_prompt(ms);
 		ms->user_cmd = readline(prompt);
 		if (ms->user_cmd)

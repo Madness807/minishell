@@ -12,35 +12,6 @@
 
 #include "../../include/minishell.h"
 
-int	is_in_quote(int start, int end, char *str)
-{
-	int		i;
-	int		j;
-	char	quote;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-		{
-			quote = str[i];
-			j = i + 1;
-			while (str[j] != quote)
-			{
-				j++;
-			}
-			if (i < start && j > end)
-			{
-				return (1);
-			}
-			else
-				i = j;
-		}
-		i++;
-	}
-	return (0);
-}
-
 char	*follow_pipe(char *str, int nb_char, int i)
 {
 	int		res_i;

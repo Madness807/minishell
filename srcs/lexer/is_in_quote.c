@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forbiden_char.c                                    :+:      :+:    :+:   */
+/*   is_in_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,29 @@
 
 #include "../../include/minishell.h"
 
-int	forbiden_char(t_ms *ms)
+int	is_in_quote(int start, int end, char *str)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	quote;
 
 	i = 0;
-	while (ms->user_cmd[i])
+	while (str[i])
 	{
-		if ((ms->user_cmd[i] == '\\' || ms->user_cmd[i] == ';') && 
-			is_in_quote(i, i, ms->user_cmd) == 0)
+		if (str[i] == '\'' || str[i] == '\"')
 		{
-			ft_printf("Error42subj: forbidden char detected\n");
-			ft_printf("It's minishell, not shell tout court\n");
-			return (1);
+			quote = str[i];
+			j = i + 1;
+			while (str[j] != quote)
+			{
+				j++;
+			}
+			if (i < start && j > end)
+			{
+				return (1);
+			}
+			else
+				i = j;
 		}
 		i++;
 	}

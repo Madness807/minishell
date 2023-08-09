@@ -133,13 +133,6 @@ typedef struct s_redirection
 	struct s_redirection	*next;
 }t_redirection;
 
-typedef struct s_info_user
-{
-	int						nb_pipe;
-	int						nb_sq;
-	int						nb_dq;
-}t_info_user;
-
 typedef struct s_ms
 {
 	int						argc;
