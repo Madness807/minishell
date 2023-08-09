@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_unset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:20:04 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 02:39:52 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:04:04 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,5 @@ void	builtin_unset(char *command, t_ms *ms)
 	free(tab_split_var_to_find);
 	printf("\n");
 }
+
+// SI UNSET SANS ARGUMENT = SEGFAULT, A MODIFIER

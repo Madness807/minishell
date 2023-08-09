@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_dollars.c                                   :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 04:58:45 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/09 15:01:10 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,3 +90,4 @@ int	swap_process(t_ms *ms, int start, int end)
 	}
 	return (ret);
 }
+// ATTENTION !!! NE PAS UTILISER GETENV CAR IL VA DANS L ENV GENERAL ET PAS DANS L ENV PERSO

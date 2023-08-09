@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:18:38 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 02:33:28 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:03:19 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,7 @@ void	builtin_export(char *command, t_ms *ms)
 	tmp_env[i + 1] = NULL;
 	ms->env = tmp_env;
 }
+// ON DOIT D AVOIR QUE UNE LETTRE EN PREMIER DANS LA VARIABLE D ENV SINON ERREUR
+// exemple $4NON / pas ok
+// exemple $;NON / pas ok
+// exemple $OUI4 / ok

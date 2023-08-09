@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/01 21:11:59 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:43:43 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_token	*create_new_token(t_ms *ms, int *buffer_idx, char *buffer, \
 {
 	t_token	*new_token;
 
+	new_token = NULL;
 	if (*buffer_idx > 0)
 	{
 		buffer[*buffer_idx] = '\0';
