@@ -74,7 +74,7 @@ void	handle_dollars(t_ms *ms)
 	{
 		if (ms->user_cmd[i] == '$')
 		{
-			if (ms->user_cmd[i + 1] == ' ')
+			if (ms->user_cmd[i + 1] == ' ' || ms->user_cmd[i + 1] == '\0')
 				i++;
 			else
 				i = dollar_process(ms, i);

@@ -28,6 +28,8 @@ SRC				=		srcs/main.c \
 						srcs/lexer/is_valid_cmd.c\
 						srcs/lexer/is_closed.c\
 						srcs/lexer/is_in_quote.c\
+						srcs/lexer/ft_getenv.c\
+						srcs/lexer/ft_strict_strncmp.c\
 						srcs/parser/parser.c\
 						srcs/parser/add_to_lst_cmd.c\
 						srcs/parser/tab_maker_options.c\

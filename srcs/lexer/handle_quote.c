@@ -141,7 +141,6 @@ void handle_quote(t_ms *ms)
 			switch_state(&state, DOUBLE_QUOTE);
 		else if (*p == '\'' && state != DOUBLE_QUOTE)
 			switch_state(&state, SINGLE_QUOTE);
-		} 
 		else 
 			buffer[buffer_idx++] = *p;
 		p++;

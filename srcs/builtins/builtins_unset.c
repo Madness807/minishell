@@ -48,7 +48,6 @@ void	builtin_unset(char *command, t_ms *ms)
 		unset_var_env(ms, index_env_i_to_remove);
 	ms->env[i] = NULL;
 	free(tab_split_var_to_find);
-	printf("\n");
 }
 
 // SI UNSET SANS ARGUMENT = SEGFAULT, A MODIFIER

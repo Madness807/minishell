@@ -182,6 +182,8 @@ int			create_malloc(char *str);
 int			is_in_quote(int start, int end, char *str);
 int			add_double(int i, int res_i, char *str, char *res);
 int			add_single(int i, int res_i, char *str, char *res);
+char    	*ft_getenv(t_ms *ms, char *looking_name);
+int			ft_strict_strncmp(const char *s1, const char *s2, size_t nb);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);

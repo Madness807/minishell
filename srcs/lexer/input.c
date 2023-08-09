@@ -29,7 +29,7 @@ void	update_history(t_ms *ms)
 	int	len_cmd;
 
 	len_cmd = ft_strlen(ms->user_cmd);
-	if (ft_strncmp(ms->user_cmd, ms->last_user_cmd, len_cmd) != 0)
+	if (ft_strict_strncmp(ms->user_cmd, ms->last_user_cmd, len_cmd) != 0)
 	{
 		free(ms->last_user_cmd);
 		ms->last_user_cmd = NULL;
