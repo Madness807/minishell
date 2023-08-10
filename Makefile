@@ -39,6 +39,7 @@ SRC				=		srcs/main.c \
 						srcs/builtins/builtins_pwd.c\
 						srcs/builtins/builtins_echo.c\
 						srcs/builtins/builtins_export.c\
+						srcs/builtins/builtins_export2.c\
 						srcs/builtins/builtins_unset.c\
 						srcs/builtins/builtins_env.c\
 						srcs/builtins/call_builtins.c\

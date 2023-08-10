@@ -28,7 +28,7 @@ void	call_builtins(char *command, t_command *curr_cmd, t_ms *ms)
 	else if (ft_strcmp(command, "pwd") == 0)
 		builtin_pwd(ms->current_folder);
 	else if (ft_strcmp(command, "export") == 0)
-		builtin_export(curr_cmd->tab_options[0], ms);
+		builtin_export(ms, curr_cmd);
 	else if (ft_strcmp(command, "unset") == 0)
 		builtin_unset(curr_cmd->tab_options[0], ms);
 }
