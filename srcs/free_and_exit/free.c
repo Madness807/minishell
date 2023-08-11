@@ -14,6 +14,19 @@
 
 void	free_and_exit(t_ms *ms, char *msg, int force_exit)
 {
+	int	i;
+
+	i = 0;
+	if (ms->env)
+	{
+		while (ms->env[i])
+		{
+			free(ms->env[i]);
+			ms->env[i] = NULL;
+			i++;
+		}
+		free(ms->env);
+	}
 	if (ms->current_folder)
 		free(ms->current_folder);
 	if (ms->info_user)

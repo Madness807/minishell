@@ -13,6 +13,7 @@ SRCS	=	ft_atoi.c \
 			ft_strchr.c \
 			ft_strlcpy.c \
 			ft_strlen.c \
+			ft_tablen.c \
 			ft_strncmp.c \
 			ft_strcmp.c \
 			ft_strnstr.c \

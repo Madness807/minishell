@@ -65,6 +65,7 @@ int		ft_memcmp(const void *ptr1, const void *ptr2, size_t size);
 int		ft_lstsize(t_list *lst);
 
 size_t	ft_strlen(const char *str);
+int		ft_tablen(char **tableau);
 size_t	ft_strlcpy(char *dst, const char *src, size_t siz);
 size_t	ft_strlcat(char *dst, const char *src, size_t siz);
 

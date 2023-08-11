@@ -14,12 +14,14 @@
 
 void swap(char **str1, char **str2)
 {
-    char *temp = *str1;
+    char *temp;
+    
+    temp = *str1;
     *str1 = *str2;
     *str2 = temp;
 }
 
-void bubbleSortRecursive(char **env, int n, int i, int j)
+void bubble_sort_recursive(char **env, int n, int i, int j)
 {
     char *str1;
     char *str2;
@@ -27,7 +29,7 @@ void bubbleSortRecursive(char **env, int n, int i, int j)
         if (j == n - 1) {
             return;
         }
-        return bubbleSortRecursive(env, n, 0, j + 1);
+        return bubble_sort_recursive(env, n, 0, j + 1);
     }
     str1 = env[i];
     str2 = env[i + 1];
@@ -38,7 +40,7 @@ void bubbleSortRecursive(char **env, int n, int i, int j)
     }
     if (*str1 != '=' && *str2 != '=' && *str1 > *str2) 
         swap(&env[i], &env[i + 1]);
-    bubbleSortRecursive(env, n, i + 1, j);
+   bubble_sort_recursive(env, n, i + 1, j);
 }
 
 void    builtin_export_no_args(t_ms *ms)
@@ -51,7 +53,7 @@ void    builtin_export_no_args(t_ms *ms)
     size = 0;
     while (tmp[size])
         size++;
-    bubbleSortRecursive(tmp, size, 0, 0);
+    bubble_sort_recursive(tmp, size, 0, 0);
     i = 0;
     while (tmp[i])
     {

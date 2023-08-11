@@ -12,13 +12,8 @@
 
 #include "../../include/minishell.h"
 
-void	builtin_echo(t_command *command)
+void	builtin_echo(t_command *command, int bck_slh_n, int i)
 {
-	int	bck_slh_n;
-	int	i;
-
-	bck_slh_n = 0;
-	i = 0;
 	if (command->tab_options)
 	{
 		while (command->tab_options[i])

@@ -24,7 +24,7 @@ void	call_builtins(char *command, t_command *curr_cmd, t_ms *ms)
 	else if (ft_strcmp(command, "cd") == 0)
 		builtin_cd(ms->user_cmd);
 	else if (ft_strcmp(command, "echo") == 0)
-		builtin_echo(curr_cmd);
+		builtin_echo(curr_cmd, 0, 0);
 	else if (ft_strcmp(command, "pwd") == 0)
 		builtin_pwd(ms->current_folder);
 	else if (ft_strcmp(command, "export") == 0)
