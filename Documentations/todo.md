@@ -53,3 +53,13 @@
 
 ## Autre truc remarquer
 - l-historique ne se comporte pas comme dans bash
+
+
+# apres correction 00
+commande que des espaces, segfault
+appelle builtins sans argument, ne pas creer le tableau
+building exit, si arguments, il faut changer la valeur numérique représentant le code de sortie du shell
+gestion dollard, ajouter le $?
+les signaux
+.., verbose (ou autre dossier) concidere comme commande (peut etre la fonction stat peut aider)
+dans l init, nous faisons une copie du path dans la struc, il faudrai changer ca et faire en sorte que a chaque fois qu on en a besoin, on va le chercher

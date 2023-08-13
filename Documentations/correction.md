@@ -1,100 +1,73 @@
 # Compilation
 
-- [ ]	Utilisez "make -n" to pour vous assurer que le projet
+- [X]	Utilisez "make -n" to pour vous assurer que le projet
 		compile avec "-Wall -Wextra -Werror". Si ce n'est
 		pas le cas, cochez le flag "invalid compilation".
 
-- [ ]	Le minishell compile sans aucune erreur. Si ce n'est
+- [X]	Le minishell compile sans aucune erreur. Si ce n'est
 		pas le cas, cochez le flag
 
-- [ ]	Le Makefile ne doit pas re-link. Si ce n'est pas le
+- [X]	Le Makefile ne doit pas re-link. Si ce n'est pas le
 		cas, cochez le flag
 
 # Commande simple et variables globales
 
-- [ ]	Exécutez une commande simple avec un PATH
+- [X]	Exécutez une commande simple avec un PATH
 		absolu tel que /bin/Is ou n'importe quelle autre
 		commande sans option.
 
-- [ ]	Combien de variables globales y a-il 2 Pourquoi
+- [X]	Combien de variables globales y a-il 2 Pourquoi
 		Demandez a la personne évaluée de vous donner
 		un exemple concret pour démontrer que leur usage
 		est obligatoire et cohérent.
 
-- [ ]	Testez une commande vide.
+- [X]	Testez une commande vide.
 
-- [ ]	Test ez seulement des espaces et des tabs.
-
-- [ ]	Enccas de crash, cochez le flag “crash”.
-
-- [ ]	Si quelque chose ne marche pas, cochez le flag
-		“incomplete work".
+- [ ]	Test ez seulement des espaces et des tabs.//FIXME - 
 
 # Arguments
 
-- [ ]	Exécutez une commande simple avec un PATH
+- [X]	Exécutez une commande simple avec un PATH
 		absolu tel que /bin/Is ou n'importe quelle autre
 		commande, avec option mais sans" (single quotes)
 		ni" (double quotes).
 
-- [ ]	Répétez ce test plusieurs fois avec différentes
+- [X]	Répétez ce test plusieurs fois avec différentes
 		commandes et différents arguments.
-
-- [ ]	Encas de crash, cochez le flag “crash”
-
-- [ ]	Si quelque chose ne marche pas, cochez le flag
-		“incomplete work".
 
 # echo
 
-- [ ]	Lancez la commande echo avec et sans argument
+- [ ]	Lancez la commande echo avec et sans argument//FIXME - 
 		‘ou options, ou avec l'option -n.
 
-- [ ]	Répétez ce test plusieurs fois avec différents
+- [X]	Répétez ce test plusieurs fois avec différents
 		arguments.
-
-- [ ]	Encas de crash, cochez le flag “crash”
-
-- [ ]	Si quelque chose ne marche pas, cochez le flag
-		“incomplete work".
 
 # exit
 
-- [ ]	Lancez la commande exit avec et sans arguments.
+- [ ]	Lancez la commande exit avec et sans arguments.//FIXME - 
 
-- [ ]	Répétez ce test plusieurs fois avec différents
+- [ ]	Répétez ce test plusieurs fois avec différents//FIXME - 
 		arguments.
-
-- [ ]	N'oubliez pas de relancer le minishell.
-
-- [ ]	Encas de crash, cochez le flag “crash”
-
-- [ ]	Si quelque chose ne marche pas, cochez le flag
-		“incomplete work"
 
 # Valeur de retour d'un processus
 
-- [ ]	Exécutez des commandes simple avec un chemin
+- [ ]	Exécutez des commandes simple avec un chemin//TODO - 
 		absolu tel que /bin/Is ou n'importe quelle autre
 		commande avec des arguments mais sans " (single
-		quotes) ni" (double quotes), puis lancez "echo $2"
+		quotes) ni" (double quotes), puis lancez "echo $?"
 		Vérifiez la valeur affichée. Vous pouvez le refaire
 		dans bash et comparer.
 
-- [ ]	Répétez ce test plusieurs fois avec différentes
+- [ ]	Répétez ce test plusieurs fois avec différentes//TODO - 
 		commandes et différents arguments.
 
-- [ ]	Utilisez des commandes qui ne fonctionnent pas
+- [ ]	Utilisez des commandes qui ne fonctionnent pas//TODO - 
 		telles que '/bin/Is fichiernul’.
 
-- [ ]	Essayez des expressions telles que $2 + $2
+- [ ]	Essayez des expressions telles que $? + $?//TODO - 
 
-- [ ]	En cas de crash, cochez le flag "crash"
-
-- [ ]	Si quelque chose ne marche pas, cochez le flag
-		“incomplete work"
-
-# Signaux
+# Signaux//TODO - 
 
 - [ ]	ctrl-C dans un prompt vide devrait afficher une
 		nouvelle ligne avec un nouveau prompt.
@@ -130,93 +103,81 @@
 - [ ]	Répétez plusieurs fois en utilisant des commandes
 		différentes.
 
-- [ ]	En cas de crash, cochez le flag "crash"
-
-- [ ]	Si quelque chose ne marche pas, cochez le flag
-		“incomplete work"
-
 # Double Quotes
 
-- [ ]	Exécutez une commande simple avec des
+- [X]	Exécutez une commande simple avec des
 		arguments, mais cette fois utilisez des guillemets
 		(rajoutez des '; et des espaces entre les guillemets)
 
-- [ ]	Essayez une commande comme : echo “cat lol.c |
+- [X]	Essayez une commande comme : echo “cat lol.c |
 		cat > lol.c"
-
-- [ ]	Nressayez pas $.
-
-- [ ]	Encas de crash, cochez le flag "crash"
-
-- [ ]	Si quelque chose ne marche pas, cochez le flag
-		“incomplete work"
 
 # Single Quotes
 
-- [ ]	Exécutez des commandes avec des single quotes
-dans les arguments.
+- [X]	Exécutez des commandes avec des single quotes
+		dans les arguments.
 
-- [ ]	Essayez des arguments vides.
+- [X]	Essayez des arguments vides.
 
-- [ ]	Faites des tests avec des variables d'environnement,
+- [X]	Faites des tests avec des variables d'environnement,
 		des espaces, des pipes, des redirections entre les
 		guillemets.
 
-- [ ]	echo '$USER' doit afficher "$USER"
+- [X]	echo '$USER' doit afficher "$USER"
 
-- [ ]	Rien ne devrait étre interprété.
+- [X]	Rien ne devrait étre interprété.
 
 # env
 
-- [ ]	Vérifiez qu'env vous affiche bien les variables
+- [X]	Vérifiez qu'env vous affiche bien les variables
 		d'environnement.
 
 # export
 
-- [ ]	Exportez des variables d'environnement, dont
+- [X]	Exportez des variables d'environnement, dont
 		certaines pour remplacer les anciennes.
-- [ ]	Vérifiez le résultat avec env.
+- [X]	Vérifiez le résultat avec env.
 
 # unset
 
-- [ ]	Exportez des variables d'environnement, dont
+- [X]	Exportez des variables d'environnement, dont
 		certaines pour remplacer les anciennes.
 
-- [ ]	Ufilisez unset pour en retirer.
+- [X]	Ufilisez unset pour en retirer.
 
-- [ ]	Vérifiez le résultat avec env.
+- [X]	Vérifiez le résultat avec env.
 
 # cd
 
-- [ ]	Utilisez la commande cd pour vous déplacer dans
+- [ ]	Utilisez la commande cd pour vous déplacer dans//FIXME - 
 		Varborescence et utilisez /bin/Is pour vérifier que
 		vous étes dans le bon répertoire.
 
-- [ ]	Répétez ce test plusieurs fois avec des cd qui
+- [ ]	Répétez ce test plusieurs fois avec des cd qui//FIXME - 
 		fonctionnent et qui ne fonctionnent pas.
 
-- [ ]	Essayez aussi.’ et". en arguments.
+- [ ]	Essayez aussi '.’ et ".." en arguments.//FIXME - 
 
 # pwd
 
-- [ ]	Utilisez la commande pwd, avec et sans argument.
+- [X]	Utilisez la commande pwd, avec et sans argument.
 
-- [ ]	Répétez ce test plusieurs fois dans différents
+- [X]	Répétez ce test plusieurs fois dans différents
 		répertoires.
 
-- [ ]	Essayez''' et’. en arguments.
+- [X]	Essayez '.' et '..' en arguments.
 
 # Chemin relatif
 
-- [ ]	Exécutez des commandes en utilisant un chemin
+- [ ]	Exécutez des commandes en utilisant un chemin//FIXME - 
 		relatif.
 
-- [ ]	Répétez ce test plusieurs fois dans d'autres dossier
+- [ ]	Répétez ce test plusieurs fois dans d'autres dossier//FIXME - 
 		avec un chemin relatif complexe (beaucoup de ..).
 
 # PATH d'environnement
 
-- [ ]	Exécutez des commandes mais sans PATH (Is, we,
+- [ ]	Exécutez des commandes mais sans PATH (Is, wc,
 		awk, etc...).
 
 - [ ]	Retirez le $PATH et vérifiez si les commandes ne
@@ -228,17 +189,17 @@ dans les arguments.
 
 # Redirection
 
-- [ ]	Exécutez des commandes avec les redirections <
-		et/ou>
+- [ ]	Exécutez des commandes avec les redirections <//FIXME - 
+		et / ou >
 
-- [ ]	Répétez ce test plusieurs fois avec différentes
+- [X]	Répétez ce test plusieurs fois avec différentes
 		commandes et différents arguments et, quelques
 		fois, utilisez >> au lieu de >.
 
 - [ ]	Vérifiez si plusieurs instances de la méme redirection
 		échovent.
 
-- [ ]	Testez les redirections avec << (cela ne doit pas
+- [ ]	Testez les redirections avec << (cela ne doit pas//FIXME -
 		forcément mettre & jour I'historique).
 
 # Pipes
