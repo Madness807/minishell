@@ -73,6 +73,7 @@ char	*ft_strchr(const char *str, int param);
 char	*ft_strnstr(const char *s1, const char *s2, size_t len);
 char	*ft_strrchr(const char *str, int param);
 char	*ft_strdup(const char *str);
+char	**ft_tabdup(char **tableau);
 char	*ft_substr(char const *str, unsigned int start, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);

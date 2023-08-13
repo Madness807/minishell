@@ -52,7 +52,7 @@ void	builtin_export_no_args(t_ms *ms)
 	int		size;
 	int		i;
 
-	tmp = ms->env;
+	tmp = ft_tabdup(ms->env);
 	size = 0;
 	while (tmp[size])
 		size++;
@@ -61,6 +61,9 @@ void	builtin_export_no_args(t_ms *ms)
 	while (tmp[i])
 	{
 		ft_printf("%s\n", tmp[i]);
+		free(tmp[i]);
+		tmp[i] = NULL;
 		i++;
 	}
+	free(tmp);
 }
