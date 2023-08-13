@@ -83,6 +83,7 @@ void	add_to_lst_redir(t_token *token, t_ms *ms)
 	redir = ((t_redirection *)malloc(sizeof(t_redirection)));
 	redir->contenue = token->contenue;
 	redir->type = token->type;
+	redir->file = token->next->contenue;
 	redir->next = NULL;
 	if (ms->redir == NULL)
 	{

@@ -33,6 +33,7 @@ SRC				=		srcs/main.c \
 						srcs/parser/parser.c\
 						srcs/parser/add_to_lst_cmd.c\
 						srcs/parser/tab_maker_options.c\
+						srcs/parser/get_fd.c\
 						srcs/signal/signal.c\
 						srcs/free_and_exit/free.c\
 						srcs/builtins/builtins_cd.c\

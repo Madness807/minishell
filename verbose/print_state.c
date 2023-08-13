@@ -121,7 +121,7 @@ void	print_lst_redir(t_ms *ms)
 		printf(RED"|  "RESET);
 		printf("[%i]\t\t", i);
 		printf(GRN "Contenue = %s\t\t"RESET, cur->contenue);
-		printf(CYN "Type = %d\n"RESET, cur->type);
+		printf(CYN "Fichier = %s\n"RESET, cur->file);
 		cur = cur->next;
 		i++;
 	}

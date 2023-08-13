@@ -52,27 +52,27 @@ void	clean_command(t_ms *ms)
 	t_command	*tmp;
 	t_command	*current;
 
-	if (ms->command)
+	if (!ms || !ms->command)
+		return ;
+	tmp = ms->command;
+	while (tmp)
 	{
-		tmp = ms->command;
-		while (tmp->next != NULL)
+		if (tmp->tab_options)
 		{
-			current = tmp;
-			tmp = tmp->next;
-			if (current->tab_options)
-			{
-				free_tab_content(current->tab_options);
-				free(current->tab_options);
-			}
-			free(current->cmd_path);
-			free(current);
-			current = NULL;
+			free_tab_content(tmp->tab_options);
+			free(tmp->tab_options);
+			tmp->tab_options = NULL;
 		}
-		free(tmp->tab_options);
-		free(tmp->cmd_path);
-		free(tmp);
-		ms->command = NULL;
+		if (tmp->cmd_path)
+		{
+			free(tmp->cmd_path);
+			tmp->cmd_path = NULL;
+		}
+		current = tmp;
+		tmp = tmp->next;
+		free(current);
 	}
+	ms->command = NULL;
 }
 
 void	clean_redir(t_ms *ms)

@@ -54,14 +54,14 @@ void	update_env(t_ms *ms, t_command *command, int siz_var_name)
 			free(ms->env[i]);
 			ms->env[i] = NULL;
 			ms->env[i] = ft_strdup(command->tab_options[0]);
-			break;
+			break ;
 		}
 		i++;
 	}
 }
 
 int	is_already_in_env(t_ms *ms, t_command *command, int siz_var_name)
-{	
+{
 	int	i;
 
 	i = 0;
@@ -72,7 +72,6 @@ int	is_already_in_env(t_ms *ms, t_command *command, int siz_var_name)
 			return (1);
 		i++;
 	}
-	
 	return (0);
 }
 
@@ -107,7 +106,7 @@ void	builtin_export(t_ms *ms, t_command *curr_cmd)
 			if (curr_cmd->tab_options[0][end] == '=')
 			{
 				builtin_export_with_args(ms, curr_cmd, end);
-				break;
+				break ;
 			}
 			end++;
 		}

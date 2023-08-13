@@ -128,6 +128,7 @@ typedef struct s_redirection
 {
 	t_token_type			type;
 	char					*contenue;
+	char					*file;
 	int						fd_in;
 	int						fd_out;
 	struct s_redirection	*next;
@@ -182,7 +183,7 @@ int			create_malloc(char *str);
 int			is_in_quote(int start, int end, char *str);
 int			add_double(int i, int res_i, char *str, char *res);
 int			add_single(int i, int res_i, char *str, char *res);
-char    	*ft_getenv(t_ms *ms, char *looking_name);
+char		*ft_getenv(t_ms *ms, char *looking_name);
 int			ft_strict_strncmp(const char *s1, const char *s2, size_t nb);
 
 //			PARSING FUNCTION
@@ -195,14 +196,18 @@ void		tab_maker_word(t_token *curr_token, t_command *command, int i);
 void		tab_maker_1_cmd(t_token *curr_token, t_command *command);
 void		creat_malloc_tab_options(t_token *tmp, t_command *command);
 char		*cmd_path(char *str, t_ms *ms);
+int			get_fd_redir_sd(t_redirection *redir, t_ms *ms);
+int			get_fd_redir_sg(t_redirection *redir, t_ms *ms);
+int			get_fd_redir_dd(t_redirection *redir, t_ms *ms);
+int			get_fd_redir_dg(t_redirection *redir, t_ms *ms);
 
 //			BUILTINS FUNCTION
 void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);
-void		builtin_echo(t_command *command);
+void		builtin_echo(t_command *command, int bck_slh_n, int i);
 void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);
 void		builtin_export(t_ms *ms, t_command *curr_cmd);
-void    	builtin_export_no_args(t_ms *ms);
+void		builtin_export_no_args(t_ms *ms);
 void		builtin_unset(char *command, t_ms *ms);
 void		builtin_env(char **env);
 
@@ -210,11 +215,11 @@ void		builtin_env(char **env);
 void		print_env(char **env);
 char		*var_env_finder(t_command *curr_cmd, t_ms *ms);
 char		*join_path_cmd(char **path_splited, char *command);
-//void		open_file(char **argv, int argc, t_pipex *pipex);
 void		execution(t_ms *ms);
 void		fork_execve(t_command *curr_cmd, t_ms *ms);
 void		redir_simple_droite(char *filename);
 void		init_fd(t_ms *ms);
+void		init_redirection(t_ms *ms);
 void		close_fd(t_ms *ms);
 
 //			SIGNAL FUNCTION

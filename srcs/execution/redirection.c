@@ -11,40 +11,26 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	init_redirection(t_ms *ms)
+{
+	t_redirection	*curr_redir;
+
+	curr_redir = ms->redir;
+	while (curr_redir)
+	{
+		if (ft_strcmp(curr_redir->contenue, ">") == 0)
+			get_fd_redir_sd(curr_redir, ms);
+		if (ft_strcmp(curr_redir->contenue, "<") == 0)
+			get_fd_redir_sg(curr_redir, ms);
+		if (ft_strcmp(curr_redir->contenue, ">>") == 0)
+			get_fd_redir_dd(curr_redir, ms);
+		curr_redir = curr_redir->next;
+	}
+}
 /*
-void	redir_simple_droite(char *filename)
-{
-	int	fd;
 
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd == -1)
-	{
-		perror("open");
-		exit(1);
-	}
-	if (dup2(fd, 1) == -1)
-	{
-		perror("dup2");
-		exit(1);
-	}
-	close(fd);
-}
+		//if (ft_strcmp(curr_redir->contenue, "<<") == 0)
+		//	get_fd_redir_dg(curr_redir, ms);
 
-void    redir_simple_gauche()
-{
-
-	
-}
-
-void    redire_double_droite()
-{
-
-
-}
-
-void    redire_double_gauche()
-{
-
-	
-}
 */

@@ -38,7 +38,7 @@ char	*single_double_redirection(char *str, int i, int res_i)
 				i++;
 			}
 			else
-				res_i += add_single(i, res_i, str, res);
+				res_i = add_single(i, res_i, str, res);
 		}
 		else
 			res[res_i++] = str[i];

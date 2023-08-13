@@ -23,8 +23,6 @@ void	parser(t_ms *ms)
 			add_envcmd_to_lst_cmd(token, ms);
 		else if (token->type == TOKEN_BUILTINS)
 			add_builtins_to_lst_cmd(token, ms);
-		else if (token->type == TOKEN_PIPE)
-			add_to_lst_redir(token, ms);
 		else if (token->type == TOKEN_REDIC_DD)
 			add_to_lst_redir(token, ms);
 		else if (token->type == TOKEN_REDIC_DG)

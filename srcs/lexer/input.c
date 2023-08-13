@@ -51,6 +51,7 @@ void	hard_work(t_ms *ms)
 		print_lst_token_1(ms);
 		parser(ms);
 		init_fd(ms);
+		init_redirection(ms);
 		execution(ms);
 		clean_lexer_parser(ms);
 	}
