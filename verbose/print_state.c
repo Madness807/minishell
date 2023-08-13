@@ -78,6 +78,7 @@ void	print_lst_command(t_ms *ms)
 		{
 			boucle_sur_tab_opts(cur->tab_options);
 		}
+		printf("\t\t\t\t\tFD_IN [%i]   FD_OUT  [%i]\n", cur->fd_in, cur->fd_out);
 		cur = cur->next;
 	}
 	printf("\n");
@@ -121,7 +122,8 @@ void	print_lst_redir(t_ms *ms)
 		printf(RED"|  "RESET);
 		printf("[%i]\t\t", i);
 		printf(GRN "Contenue = %s\t\t"RESET, cur->contenue);
-		printf(CYN "Fichier = %s\n"RESET, cur->file);
+		printf(CYN "File = %s\n"RESET, cur->file);
+		printf("\t\t\t\t\tFD_IN [%i]   FD_OUT[%i]\n", cur->fd_in, cur->fd_out);
 		cur = cur->next;
 		i++;
 	}

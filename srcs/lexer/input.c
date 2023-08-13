@@ -38,6 +38,34 @@ void	update_history(t_ms *ms)
 	}
 }
 
+int	cmd_not_find_check(t_ms *ms)
+{
+	t_token	*tmp;
+	t_token	*last_tmp;
+	int		res;
+
+	res = 0;
+	last_tmp = NULL;
+	tmp = ms->token;
+	if (tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
+	{
+		ft_printf("%s: command not found\n", tmp->contenue);
+		res++;
+	}
+	while (tmp)
+	{
+		if (last_tmp && last_tmp->type == TOKEN_PIPE && 
+			tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
+		{
+			ft_printf("%s: command not found\n", tmp->contenue);
+			res++;
+		}
+		last_tmp = tmp;
+		tmp = tmp->next;
+	}
+	return (res);
+}
+
 void	hard_work(t_ms *ms)
 {
 	is_closed(ms, 0);
@@ -50,9 +78,14 @@ void	hard_work(t_ms *ms)
 		tokeniser(ms);
 		print_lst_token_1(ms);
 		parser(ms);
-		init_fd(ms);
-		init_redirection(ms);
-		execution(ms);
+		if (cmd_not_find_check(ms) == 0 && ms->command)
+		{
+			init_fd(ms);
+			init_redirection(ms);
+			print_lst_command(ms);
+			print_lst_redir(ms);
+			execution(ms);
+		}
 		clean_lexer_parser(ms);
 	}
 }

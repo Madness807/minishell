@@ -48,7 +48,6 @@ void	update_env(t_ms *ms, t_command *command, int siz_var_name)
 	i = 0;
 	while (ms->env[i])
 	{
-		printf("B %d / %s\n", i, ms->env[i]);
 		if (ft_strncmp(ms->env[i], command->tab_options[0], siz_var_name + 1) == 0)
 		{
 			free(ms->env[i]);
@@ -67,7 +66,6 @@ int	is_already_in_env(t_ms *ms, t_command *command, int siz_var_name)
 	i = 0;
 	while (ms->env[i])
 	{
-		printf("A %d\n", i);
 		if (ft_strncmp(ms->env[i], command->tab_options[0], siz_var_name + 1) == 0)
 			return (1);
 		i++;

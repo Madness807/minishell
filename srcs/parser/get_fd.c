@@ -12,19 +12,29 @@
 
 #include "../../include/minishell.h"
 
+t_command	*last_command(t_ms *ms)
+{
+	t_command	*command;
+
+	command = ms->command;
+	while (command->next)
+		command = command->next;
+	return (command);
+}
+
 int	get_fd_redir_sd(t_redirection *redir, t_ms *ms)
 {
 	int			fd;
 	t_command	*command;
 
-	command = ms->command;
+	command = last_command(ms);
 	fd = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
 		perror("Erreur d ouverture de fichier");
 		return (-1);
 	}
-	if (command->fd_out > 2)
+	if (command->fd_out - 1)
 	{
 		close (command->fd_out);
 	}

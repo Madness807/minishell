@@ -21,6 +21,8 @@ void	fill_tab_options(t_token *token, t_command *command)
 		tab_maker_flag(token->next, command, i);
 	else if (token->next->type == TOKEN_WORD)
 		tab_maker_word(token->next, command, i);
+	else 
+		tab_maker_1_cmd(token, command);
 }
 
 void	add_envcmd_to_lst_cmd(t_token *token, t_ms *ms)

@@ -19,6 +19,8 @@ int	is_valid_cmd(char *str, t_ms *ms)
 	int		i;
 
 	i = 0;
+	if (access(str, X_OK) == 0)
+		return (1);
 	while (ms->bin_path[i])
 	{
 		tmp_add_slash = ft_strjoin(ms->bin_path[i], "/");

@@ -33,6 +33,4 @@ void	parser(t_ms *ms)
 			add_to_lst_redir(token, ms);
 		token = token->next;
 	}
-	print_lst_command(ms);
-	print_lst_redir(ms);
 }

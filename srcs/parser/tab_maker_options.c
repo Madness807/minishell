@@ -97,6 +97,8 @@ char	*cmd_path(char *str, t_ms *ms)
 	path_splited = NULL;
 	path_access = NULL;
 	command = NULL;
+	if (access(str, F_OK) == 0)
+		return (ft_strdup(str));
 	if (str)
 	{
 		command = str;

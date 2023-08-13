@@ -21,6 +21,8 @@ char	*var_env_finder(t_command *curr_cmd, t_ms *ms)
 	path_splited = NULL;
 	path_access = NULL;
 	command = NULL;
+	if (access(curr_cmd->cmd_name, F_OK) == 0)
+		return (ft_strdup(curr_cmd->cmd_name));
 	if (curr_cmd)
 	{
 		command = curr_cmd->cmd_name;
