@@ -22,7 +22,7 @@ int	get_fd_redir_sd(t_redirection *redir, t_ms *ms)
 	if (fd == -1)
 	{
 		perror("Erreur d ouverture de fichier");
-		return (1);
+		return (-1);
 	}
 	if (command->fd_out > 2)
 	{
@@ -38,17 +38,17 @@ int	get_fd_redir_sg(t_redirection *redir, t_ms *ms)
 	t_command	*command;
 
 	command = ms->command;
-	fd = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(redir->file, O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Erreur d ouverture de fichier");
-		return (1);
+		return (-1);
 	}
-	if (command->fd_out > 2)
+	if (command->fd_out != 0)
 	{
-		close (command->fd_out);
+		close (command->fd_in);
 	}
-	command->fd_out = fd;
+	command->fd_in = fd;
 	return (fd);
 }
 
@@ -58,7 +58,7 @@ int	get_fd_redir_dd(t_redirection *redir, t_ms *ms)
 	t_command	*command;
 
 	command = ms->command;
-	fd = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(redir->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
 		perror("Erreur d ouverture de fichier");
