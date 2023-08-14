@@ -40,16 +40,16 @@ int	cmd_not_find_check(t_ms *ms)
 	return (res);
 }
 
-int only_empty(t_ms *ms)
+int	only_empty(t_ms *ms)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (ms->user_cmd[i])
-    {
-        if (ft_isprint_no_space(ms->user_cmd[i]) != 0)
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (ms->user_cmd[i])
+	{
+		if (ft_isprint_no_space(ms->user_cmd[i]) != 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

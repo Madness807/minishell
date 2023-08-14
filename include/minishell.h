@@ -147,6 +147,7 @@ typedef struct s_ms
 	struct s_token			*token;
 	struct s_command		*command;
 	struct s_redirection	*redir;
+	int						wait_status;
 	t_error_type			e_error_type;
 	int						error_number;
 }t_ms;
@@ -187,7 +188,7 @@ int			add_single(int i, int res_i, char *str, char *res);
 char		*ft_getenv(t_ms *ms, char *looking_name);
 int			ft_strict_strncmp(const char *s1, const char *s2, size_t nb);
 int			cmd_not_find_check(t_ms *ms);
-int 		only_empty(t_ms *ms);
+int			only_empty(t_ms *ms);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);
@@ -248,6 +249,6 @@ void		print_lst_execution_cmd(t_ms *ms);
 ////////////////////////////////////////////////////////////////////////////////
 // 							Variable global						              //
 ////////////////////////////////////////////////////////////////////////////////
-extern int	g_wait_status;
+//extern int	g_wait_status;
 
 #endif

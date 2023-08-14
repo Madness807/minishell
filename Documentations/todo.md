@@ -45,7 +45,6 @@
 [X] env
 [X] exit 
 
-
 ## Gestion des signaux
 [X] ctrl-C affiche un nouveau prompt sur une nouvelle ligne.
 [X] ctrl-D quitte le shell.
@@ -63,3 +62,4 @@ gestion dollard, ajouter le $?
 les signaux
 .., verbose (ou autre dossier) concidere comme commande (peut etre la fonction stat peut aider)
 dans l init, nous faisons une copie du path dans la struc, il faudrai changer ca et faire en sorte que a chaque fois qu on en a besoin, on va le chercher
+refaire builtin cd, lors d un changement de dossier, il modifie la variable d env : old_pwd
