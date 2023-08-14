@@ -25,10 +25,8 @@ void	init_redirection(t_ms *ms)
 			get_fd_redir_sg(curr_redir, ms);
 		if (ft_strcmp(curr_redir->contenue, ">>") == 0)
 			get_fd_redir_dd(curr_redir, ms);
+		if (ft_strcmp(curr_redir->contenue, "<<") == 0)
+			get_fd_redir_dg(curr_redir, ms);
 		curr_redir = curr_redir->next;
 	}
 }
-/*
-		//if (ft_strcmp(curr_redir->contenue, "<<") == 0)
-		//	get_fd_redir_dg(curr_redir, ms);
-*/

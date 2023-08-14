@@ -227,6 +227,7 @@ void		redir_simple_droite(char *filename);
 void		init_fd(t_ms *ms);
 void		init_redirection(t_ms *ms);
 void		close_fd(t_ms *ms);
+t_command	*last_command(t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);
