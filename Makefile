@@ -17,6 +17,7 @@ SRC				=		srcs/main.c \
 						srcs/execution/redirection.c\
 						srcs/init/init.c\
 						srcs/lexer/input.c\
+						srcs/lexer/input2.c\
 						srcs/lexer/forbiden_char.c\
 						srcs/lexer/swap.c\
 						srcs/lexer/tokeniser.c\

@@ -10,6 +10,7 @@ SRCS	=	ft_atoi.c \
 			ft_isascii.c \
 			ft_isdigit.c \
 			ft_isprint.c \
+			ft_isprint_no_space.c \
 			ft_strchr.c \
 			ft_strlcpy.c \
 			ft_strlen.c \

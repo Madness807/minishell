@@ -38,55 +38,30 @@ void	update_history(t_ms *ms)
 	}
 }
 
-int	cmd_not_find_check(t_ms *ms)
-{
-	t_token	*tmp;
-	t_token	*last_tmp;
-	int		res;
-
-	res = 0;
-	last_tmp = NULL;
-	tmp = ms->token;
-	if (tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
-	{
-		ft_printf("%s: command not found\n", tmp->contenue);
-		res++;
-	}
-	while (tmp)
-	{
-		if (last_tmp && last_tmp->type == TOKEN_PIPE && 
-			tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
-		{
-			ft_printf("%s: command not found\n", tmp->contenue);
-			res++;
-		}
-		last_tmp = tmp;
-		tmp = tmp->next;
-	}
-	return (res);
-}
-
 void	hard_work(t_ms *ms)
 {
 	is_closed(ms, 0);
-	update_history(ms);
-	if (forbiden_char(ms) == 0)
+	if (only_empty(ms) == 0)
 	{
-		handle_dollars(ms);
-		add_spaces(ms);
-		handle_quote(ms);
-		tokeniser(ms);
-		print_lst_token_1(ms);
-		parser(ms);
-		if (cmd_not_find_check(ms) == 0 && ms->command)
+		update_history(ms);
+		if (forbiden_char(ms) == 0)
 		{
-			init_fd(ms);
-			init_redirection(ms);
-			print_lst_command(ms);
-			print_lst_redir(ms);
-			execution(ms);
+			handle_dollars(ms);
+			add_spaces(ms);
+			handle_quote(ms);
+			tokeniser(ms);
+			print_lst_token_1(ms);
+			parser(ms);
+			if (cmd_not_find_check(ms) == 0 && ms->command)
+			{
+				init_fd(ms);
+				init_redirection(ms);
+				print_lst_command(ms);
+				print_lst_redir(ms);
+				execution(ms);
+			}
+			clean_lexer_parser(ms);
 		}
-		clean_lexer_parser(ms);
 	}
 }
 

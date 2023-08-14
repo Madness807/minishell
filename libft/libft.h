@@ -57,6 +57,7 @@ int		ft_isalpha(int nb);
 int		ft_isascii(int c);
 int		ft_isdigit(int nb);
 int		ft_isprint(int nb);
+int		ft_isprint_no_space(int nb);
 int		ft_strncmp(const char *s1, const char *s2, size_t nb);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_toupper(int str);
