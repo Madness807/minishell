@@ -94,8 +94,7 @@ void	builtin_export(t_ms *ms, t_command *curr_cmd)
 	int	end;
 
 	end = 0;
-	if (ft_strncmp(curr_cmd->tab_options[0], "export", 6) == 0 && 
-		curr_cmd->tab_options[0][7] != '=')
+	if (curr_cmd->tab_options == NULL)
 		builtin_export_no_args(ms);
 	else
 	{

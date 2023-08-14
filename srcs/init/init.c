@@ -69,4 +69,5 @@ void	init_struct(t_ms *ms, int argc, char **argv, char **env)
 	using_history();
 	ms->last_user_cmd = malloc (1);
 	ms->stop = 0;
+	ms->error_number = 0;
 }

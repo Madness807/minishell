@@ -15,10 +15,7 @@
 void	call_builtins(char *command, t_command *curr_cmd, t_ms *ms)
 {
 	if (ft_strcmp(command, "exit") == 0)
-	{
-		ms->stop = 1;
-		write(1, "exit\n", 5);
-	}
+		builtin_exit(ms, curr_cmd);
 	else if (ft_strcmp(command, "env") == 0)
 		builtin_env(ms->env);
 	else if (ft_strcmp(command, "cd") == 0)

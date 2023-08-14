@@ -23,5 +23,5 @@ int	main(int argc, char **argv, char **env)
 	init_struct(&ms, argc, argv, env);
 	user_input(&ms);
 	free_and_exit(&ms, NULL, 0);
-	return (0);
+	return (ms.error_number);
 }

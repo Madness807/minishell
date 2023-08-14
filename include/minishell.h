@@ -148,6 +148,7 @@ typedef struct s_ms
 	struct s_command		*command;
 	struct s_redirection	*redir;
 	t_error_type			e_error_type;
+	int						error_number;
 }t_ms;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -206,6 +207,7 @@ t_command	*last_command(t_ms *ms);
 
 //			BUILTINS FUNCTION
 void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);
+void		builtin_exit(t_ms *ms, t_command *curr_cmd);
 void		builtin_echo(t_command *command, int bck_slh_n, int i);
 void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);

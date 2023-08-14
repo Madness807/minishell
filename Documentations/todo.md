@@ -56,9 +56,9 @@
 
 
 # apres correction 00
-commande que des espaces, segfault
-appelle builtins sans argument, ne pas creer le tableau
-building exit, si arguments, il faut changer la valeur numérique représentant le code de sortie du shell
+// commande que des espaces, segfault
+// appelle builtins sans argument, ne pas creer le tableau
+// building exit, si arguments, il faut changer la valeur numérique représentant le code de sortie du shell
 gestion dollard, ajouter le $?
 les signaux
 .., verbose (ou autre dossier) concidere comme commande (peut etre la fonction stat peut aider)
