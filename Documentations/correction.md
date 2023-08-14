@@ -23,7 +23,7 @@
 
 - [X]	Testez une commande vide.
 
-- [ ]	Test ez seulement des espaces et des tabs.//FIXME - 
+- [X]	Test ez seulement des espaces et des tabs.
 
 # Arguments
 
@@ -37,7 +37,7 @@
 
 # echo
 
-- [ ]	Lancez la commande echo avec et sans argument//FIXME - 
+- [X]	Lancez la commande echo avec et sans argument
 		‘ou options, ou avec l'option -n.
 
 - [X]	Répétez ce test plusieurs fois avec différents
@@ -45,9 +45,9 @@
 
 # exit
 
-- [ ]	Lancez la commande exit avec et sans arguments.//FIXME - 
+- [X]	Lancez la commande exit avec et sans arguments.
 
-- [ ]	Répétez ce test plusieurs fois avec différents//FIXME - 
+- [X]	Répétez ce test plusieurs fois avec différents
 		arguments.
 
 # Valeur de retour d'un processus
@@ -189,31 +189,31 @@
 
 # Redirection
 
-- [ ]	Exécutez des commandes avec les redirections <//FIXME - 
+- [ ]	Exécutez des commandes avec les redirections < //REVIEW - 
 		et / ou >
 
 - [X]	Répétez ce test plusieurs fois avec différentes
 		commandes et différents arguments et, quelques
 		fois, utilisez >> au lieu de >.
 
-- [ ]	Vérifiez si plusieurs instances de la méme redirection
+- [X]	Vérifiez si plusieurs instances de la méme redirection
 		échovent.
 
-- [ ]	Testez les redirections avec << (cela ne doit pas//FIXME -
+- [X]	Testez les redirections avec << (cela ne doit pas
 		forcément mettre & jour I'historique).
 
 # Pipes
 
-- [ ]	Exécutez des commandes avec des pipes telles que
+- [X]	Exécutez des commandes avec des pipes telles que
 		‘cat file | grep bla | more!
 
-- [ ]	Répétez plusieurs fois avec différentes commandes
+- [X]	Répétez plusieurs fois avec différentes commandes
 		et différents arguments.
 
-- [ ]	Essayez des commandes qui échovent telles que ‘ls.
+- [X]	Essayez des commandes qui échovent telles que ‘ls.
 		fichiernul | grep bla | more’
 
-- [ ]	Mixez les pipes et les redirections.
+- [X]	Mixez les pipes et les redirections.
 
 # Soyons fous ! Et I'historique
 
@@ -221,32 +221,29 @@
 		"Entrée". Le buffer devrait étre vide et il ne devrait
 		plus rien avoir & exécuter.
 
-- [ ]	Peut-on naviguer dans I'historique avec Haut et Bas
+- [X]	Peut-on naviguer dans I'historique avec Haut et Bas
 		(profitez-en pour relancer des commandes) @
 
-- [ ]	Exécutez des commandes qui ne fonctionnent pas
+- [X]	Exécutez des commandes qui ne fonctionnent pas
 		telles que 'dskdskdksd' et vérifiez que tout
 		fonctionne comme préwu.
 
-- [ ]	‘cat | cat | Is' doit fonctionner.
+- [X]	‘cat | cat | Is' doit fonctionner.
 
-- [ ]	Essayez des commandes vraiment, vraiment
+- [X]	Essayez des commandes vraiment, vraiment
 		longues avec des tonnes d'arguments.
 
-- [ ]	Amusez-vous avec ce superbe minishell et profitez-
+- [NON]	Amusez-vous avec ce superbe minishell et profitez-
 
 # Variables d'environnement
 
-- [ ]	Exécutez echo avec des variables d'environnement
+- [X]	Exécutez echo avec des variables d'environnement
 		($variable) en argument.
 
-- [ ]	Assurez-vous que § est interprété correctement.
+- [X]	Assurez-vous que $ est interprété correctement.
 
-- [ ]	Vérifiez que les guillemets autour des $variables
+- [X]	Vérifiez que les guillemets autour des $variables
 		fonctionnent correctement (comme dans bash).
 
-- [ ]	Si USER n'existe pas, définissez-la.
-
-- [ ]	Ainsi, echo "$USER" devrait afficher la valeur de
+- [X]	Ainsi, echo "$USER" devrait afficher la valeur de
 		SUSER.
-
