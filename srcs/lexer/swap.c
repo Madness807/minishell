@@ -82,27 +82,19 @@ int	swap_process(t_ms *ms, int start, int end)
 	char	*env_value;
 
 	looking_name = ft_substr(ms->user_cmd, start + 1, end - start - 1);
-	env_value = ft_getenv(ms, looking_name);
-	ret = swap_text(ms, start, end, env_value);
+	if (looking_name[0] == '?')
+	{
+		env_value = ft_itoa(g_error_no);
+		ret = swap_text(ms, start, start + 2, env_value);
+	}
+	else
+	{
+		env_value = ft_getenv(ms, looking_name);
+		ret = swap_text(ms, start, end, env_value);
+	}
 	if (looking_name)
 		free(looking_name);
 	if (env_value)
 		free(env_value);
 	return (ret);
 }
-
-/*
-int	swap_process(t_ms *ms, int start, int end)
-{
-	int		ret;
-	char	*looking_name;
-	char	*env_value;
-
-	looking_name = ft_substr(ms->user_cmd, start + 1, end - start - 1);
-	env_value = getenv(looking_name);
-	ret = swap_text(ms, start, end, env_value);
-	if (looking_name)
-		free(looking_name);
-	return (ret);
-}
-*/
