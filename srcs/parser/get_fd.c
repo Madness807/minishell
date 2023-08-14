@@ -24,7 +24,7 @@ int	get_fd_redir_sd(t_redirection *redir, t_ms *ms)
 		perror("Erreur d ouverture de fichier");
 		return (-1);
 	}
-	if (command->fd_out - 1)
+	if (command->fd_out != -1)
 	{
 		close (command->fd_out);
 	}
@@ -42,7 +42,7 @@ int	get_fd_redir_dd(t_redirection *redir, t_ms *ms)
 	if (fd == -1)
 	{
 		perror("Erreur d ouverture de fichier");
-		return (1);
+		return (-1);
 	}
 	if (command->fd_out > 2)
 	{
@@ -85,10 +85,14 @@ int	here_doc_fd(char *delimiter)
 	{
 		line = readline("> ");
 		if (!ft_strcmp(line, delimiter))
+		{
+			free (line);
 			break ;
+		}
 		tmp = ft_strjoin(line, "\n");
 		write(fd[1], tmp, ft_strlen(tmp));
 		free(tmp);
+		free (line);
 	}
 	close(fd[1]);
 	return (fd[0]);

@@ -76,8 +76,16 @@ void	fork_execve(t_command *curr_cmd, t_ms *ms)
 			dup2(curr_cmd->fd_out, STDOUT_FILENO);
 		close_fd(ms);
 		path = var_env_finder(curr_cmd, ms);
-		if (execve(path, curr_cmd->tab_options, ms->env) == -1)
+		if (execve(path, curr_cmd->tab_options, ms->env) == 0)
+		{
+			g_error_no = 0;
+			exit(0);
+		}
+		else
+		{
+			g_error_no = 1;
 			exit(1);
+		}
 	}
 }
 

@@ -23,7 +23,8 @@ int	cmd_not_find_check(t_ms *ms)
 	tmp = ms->token;
 	if (tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
 	{
-		ft_printf("%s: command not found\n", tmp->contenue);
+		//ft_printf("%s: command not found\n", tmp->contenue);
+		exit (127);//REVIEW - 
 		res++;
 	}
 	while (tmp)
@@ -31,7 +32,9 @@ int	cmd_not_find_check(t_ms *ms)
 		if (last_tmp && last_tmp->type == TOKEN_PIPE && 
 			tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
 		{
-			ft_printf("%s: command not found\n", tmp->contenue);
+			//ft_printf("%s: command not found\n", tmp->contenue);
+			printf(" command not found");
+			exit (127);//REVIEW - 
 			res++;
 		}
 		last_tmp = tmp;

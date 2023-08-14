@@ -45,7 +45,7 @@
 # define RESET "\x1B[0m"
 
 # define ERR_MSG_SUCCESS "Succès.\n"
-# define ERR_MSG_CMD_NOT_FOUND "Erreur: Commande non trouvée.\n"
+# define ERR_MSG_CMD_NOT_FOUND "command not found.\n"
 # define ERR_MSG_SYNTAX "Erreur: Problème de syntaxe.\n"
 # define ERR_MSG_ARG_REQUIRED "Erreur: Argument requis.\n"
 # define ERR_MSG_TOO_MANY_ARGS "Erreur: Trop d'arguments.\n"
@@ -189,6 +189,7 @@ char		*ft_getenv(t_ms *ms, char *looking_name);
 int			ft_strict_strncmp(const char *s1, const char *s2, size_t nb);
 int			cmd_not_find_check(t_ms *ms);
 int			only_empty(t_ms *ms);
+void		looking_for_echo(t_ms *ms);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);

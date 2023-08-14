@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   looking_for_echo.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 02:13:13 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 02:13:50 by joterret         ###   ########.fr       */
+/*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
+/*   Updated: 2023/08/03 20:52:45 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	builtin_cd(char *cmd)
+void	remplace_type_after_echo(t_token *curr)
 {
-	char	*dest;
-	int		i;
+	while (curr)
+	{
+		if (curr->type == TOKEN_PIPE || (curr->type > 7 && curr->type < 12))
+			break ;
+		else
+			curr->type = TOKEN_WORD;
+		curr = curr->next;
+	}
+}
 
-	dest = malloc(1024);
-	i = 3;
-	while (cmd[i])
+void	looking_for_echo(t_ms *ms)
+{
+	t_token	*curr;
+
+	curr = ms->token;
+	while (curr)
 	{
-		dest[i - 3] = cmd[i];
-		i++;
+		if (ft_strcmp(curr->contenue, "echo") == 0)
+		{
+			remplace_type_after_echo(curr->next);
+			break ;
+		}
+		curr = curr->next;
 	}
-	dest[i - 3] = '\0';
-	if (chdir(dest) != 0)
-	{
-		//ft_printf("minishell: cd: %s: No such file or directory\n", dest);
-		exit (1);//REVIEW - 
-	}
-	free(dest);
 }

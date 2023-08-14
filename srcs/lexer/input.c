@@ -50,14 +50,14 @@ void	hard_work(t_ms *ms)
 			add_spaces(ms);
 			handle_quote(ms);
 			tokeniser(ms);
-			print_lst_token_1(ms);
+			//print_lst_token_1(ms);
 			parser(ms);
 			if (cmd_not_find_check(ms) == 0 && ms->command)
 			{
 				init_fd(ms);
 				init_redirection(ms);
-				print_lst_command(ms);
-				print_lst_redir(ms);
+				//print_lst_command(ms);
+				//print_lst_redir(ms);
 				execution(ms);
 			}
 			clean_lexer_parser(ms);

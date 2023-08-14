@@ -12,6 +12,15 @@
 
 #include "../../include/minishell.h"
 
+/*
+void	access_check(t_token *token, t_ms *ms)
+{
+	if (access(token->contenue, F_OK) == );
+		if erno == nfdnfndj
+			print 
+
+}
+*/
 void	parser(t_ms *ms)
 {
 	t_token			*token;
@@ -31,6 +40,8 @@ void	parser(t_ms *ms)
 			add_to_lst_redir(token, ms);
 		else if (token->type == TOKEN_REDIC_SG)
 			add_to_lst_redir(token, ms);
+		//else if (token->type == TOKEN_WORD)
+		//	access_check(token, ms);
 		token = token->next;
 	}
 }
