@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-int	g_wait_status;
+int	g_error_no = 0;
 
 int	main(int argc, char **argv, char **env)
 {
@@ -23,5 +23,5 @@ int	main(int argc, char **argv, char **env)
 	init_struct(&ms, argc, argv, env);
 	user_input(&ms);
 	free_and_exit(&ms, NULL, 0);
-	return (ms.error_number);
+	return (g_error_no % 256);
 }
