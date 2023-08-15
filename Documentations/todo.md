@@ -59,9 +59,12 @@
 // appelle builtins sans argument, ne pas creer le tableau
 // building exit, si arguments, il faut changer la valeur numérique représentant le code de sortie du shell
 // gestion dollard, ajouter le $?
-les signaux
 // ., verbose (ou autre dossier) concidere comme commande (peut etre la fonction stat peut aider)
-dans l init, nous faisons une copie du path dans la struc, il faudrai changer ca et faire en sorte que a chaque fois qu on en a besoin, on va le chercher (idee, garder le ms->path mais l initaliser a chaque user_input et le free a chaque fois dans le clean lexer parser)
+
+les signaux
+
+//dans l init, nous faisons une copie du path dans la struc, il faudrai changer ca et faire en sorte que a chaque fois qu on en a besoin, on va le chercher (idee, garder le ms->path mais l initaliser a chaque user_input et le free a chaque fois dans le clean lexer parser)
+
 refaire builtin cd, lors d un changement de dossier, il modifie la variable d env : old_pwd
 
-- [ ] corriger erreur "$" '$' 
+corriger erreur "$" '$' 

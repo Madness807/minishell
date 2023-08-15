@@ -21,19 +21,22 @@ int	is_valid_cmd(char *str, t_ms *ms)
 	i = 0;
 	if (access(str, X_OK) == 0)
 		return (1);
-	while (ms->bin_path[i])
+	if (ms->bin_path)
 	{
-		tmp_add_slash = ft_strjoin(ms->bin_path[i], "/");
-		tmp = ft_strjoin(tmp_add_slash, str);
-		if (access(tmp, F_OK) == 0)
+		while (ms->bin_path[i])
 		{
+			tmp_add_slash = ft_strjoin(ms->bin_path[i], "/");
+			tmp = ft_strjoin(tmp_add_slash, str);
+			if (access(tmp, F_OK) == 0)
+			{
+				free(tmp_add_slash);
+				free(tmp);
+				return (1);
+			}
 			free(tmp_add_slash);
 			free(tmp);
-			return (1);
+			i++;
 		}
-		free(tmp_add_slash);
-		free(tmp);
-		i++;
 	}
 	return (0);
 }

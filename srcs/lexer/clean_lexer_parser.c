@@ -40,10 +40,13 @@ void	free_tab_content(char **tab_options)
 	int	i; 
 
 	i = 0;
-	while (tab_options[i])
+	if (tab_options)
 	{
-		free(tab_options[i]);
-		i++;
+		while (tab_options[i])
+		{
+			free(tab_options[i]);
+			i++;
+		}
 	}
 }
 
@@ -101,4 +104,7 @@ void	clean_lexer_parser(t_ms *ms)
 	clean_token(ms);
 	clean_command(ms);
 	clean_redir(ms);
+	free_tab_content(ms->bin_path);
+	free(ms->bin_path);
+	ms->bin_path = NULL;
 }

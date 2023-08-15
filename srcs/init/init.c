@@ -65,7 +65,6 @@ void	init_struct(t_ms *ms, int argc, char **argv, char **env)
 	(void)argv;
 	ms->argc = argc;
 	init_env(ms, env, 0);
-	init_bin_path(ms);
 	using_history();
 	ms->last_user_cmd = malloc (1);
 	ms->stop = 0;

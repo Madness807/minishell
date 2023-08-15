@@ -190,6 +190,7 @@ int			ft_strict_strncmp(const char *s1, const char *s2, size_t nb);
 int			cmd_not_find_check(t_ms *ms);
 int			only_empty(t_ms *ms);
 void		looking_for_echo(t_ms *ms);
+void		init_bin_path(t_ms *ms);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);
@@ -217,6 +218,10 @@ void		builtin_export(t_ms *ms, t_command *curr_cmd);
 void		builtin_export_no_args(t_ms *ms);
 void		builtin_unset(char *command, t_ms *ms);
 void		builtin_env(char **env);
+int			is_already_in_env(t_ms *ms, char *command, int siz_var_name);
+void		update_env(t_ms *ms, char *command, int siz_var_name);
+void		add_in_env(t_ms *ms, char *command);
+
 
 //			EXECUTION FUNCTION
 void		print_env(char **env);
