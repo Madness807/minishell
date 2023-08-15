@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/06 23:40:13 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/15 21:25:55 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,7 @@ void		init_fd(t_ms *ms);
 void		init_redirection(t_ms *ms);
 void		close_fd(t_ms *ms);
 t_command	*last_command(t_ms *ms);
+int			my_exec(char *path, t_command *curr_cmd, t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);

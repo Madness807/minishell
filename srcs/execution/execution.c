@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 05:06:23 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/15 21:28:00 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,18 @@ void	fork_execve(t_command *curr_cmd, t_ms *ms)
 		if (curr_cmd->fd_out > 2)
 			dup2(curr_cmd->fd_out, STDOUT_FILENO);
 		close_fd(ms);
-		path = var_env_finder(curr_cmd, ms);
+		path = var_env_finder(curr_cmd, ms);//REVIEW - 
+		my_exec(path, curr_cmd, ms);
+	}
+}
+
+
+int		my_exec(char *path, t_command *curr_cmd, t_ms *ms)
+{
+	if (is_valid_builtin(curr_cmd->cmd_name) == 1)
+		call_builtins(curr_cmd->cmd_name, curr_cmd, ms);
+	else
+	{
 		if (execve(path, curr_cmd->tab_options, ms->env) == 0)
 		{
 			g_error_no = 0;
@@ -87,6 +98,7 @@ void	fork_execve(t_command *curr_cmd, t_ms *ms)
 			exit(1);
 		}
 	}
+	return (0);
 }
 
 void	execution(t_ms *ms)
@@ -96,10 +108,7 @@ void	execution(t_ms *ms)
 	curr_cmd = ms->command;
 	while (curr_cmd)
 	{
-		if (is_valid_builtin(curr_cmd->cmd_name) == 1)
-			call_builtins(curr_cmd->cmd_name, curr_cmd, ms);
-		else
-			fork_execve(curr_cmd, ms);
+		fork_execve(curr_cmd, ms);
 		curr_cmd = curr_cmd->next;
 	}
 	close_fd(ms);
