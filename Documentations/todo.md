@@ -66,3 +66,9 @@
 les signaux
 
 refaire builtin cd, lors d un changement de dossier, il modifie la variable d env : old_pwd
+
+dans export, il ne faut pas accepter les export contenant des char sepciaux + set error un export
+dans export aussi, il ne faut pas se baser que sur l espace en ligne 101
+
+
+si unset avec nom faux, SEGFAULT
