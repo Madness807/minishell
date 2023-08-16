@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 10:58:41 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:37:02 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	call_builtins(char *command, t_command *curr_cmd, t_ms *ms)
 	else if (ft_strcmp(command, "export") == 0)
 		builtin_export(ms, curr_cmd);
 	else if (ft_strcmp(command, "unset") == 0)
-		builtin_unset(curr_cmd->tab_options[0], ms);
+		builtin_unset(ms, curr_cmd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:18:38 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 00:29:24 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:58:55 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ void	builtin_exit(t_ms *ms, t_command *curr_cmd)
 			g_error_no = ft_atoi(curr_cmd->tab_options[0]);
 		else
 		{
-			ft_putstr_fd(" numeric argument required", 2);
-			//ft_printf("minishell: exit: ");
-			//ft_printf("%s: numeric arg required\n", curr_cmd->tab_options[0]);
-			g_error_no = 2;
+			error_handle_no_exit(255, \
+			join_msg("minishell: exit: ", \
+			curr_cmd->tab_options[0], ": numeric arg required"), 1);
 		}
 	}
 	ms->stop = 1;

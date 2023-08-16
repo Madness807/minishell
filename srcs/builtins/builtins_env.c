@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:15:19 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 12:17:51 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:47:24 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	builtin_env(char **env)
 		ft_printf("\n");
 		i++;
 	}
-	exit (0);
+	error_handle(0, NULL, 0);
 }

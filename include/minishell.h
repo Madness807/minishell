@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/16 13:04:47 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:27:39 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ void		builtin_cd(char *cmd);
 void		builtin_pwd(char *current_folder);
 void		builtin_export(t_ms *ms, t_command *curr_cmd);
 void		builtin_export_no_args(t_ms *ms);
-void		builtin_unset(char *command, t_ms *ms);
+void		builtin_unset(t_ms *ms, t_command *command);
 void		builtin_env(char **env);
 int			is_already_in_env(t_ms *ms, char *command, int siz_var_name);
 void		update_env(t_ms *ms, char *command, int siz_var_name);
@@ -241,6 +241,7 @@ void		use_signal(void);
 //			HANDLE_ERROR
 void		print_error(t_error_type e_error_type);
 void		error_handle(int nb, char *msg, int is_malloc);
+void		error_handle_no_exit(int nb, char *msg, int is_malloc);
 char		*join_msg(char *s1, char *s2, char *s3);
 
 //			exit and free function 

@@ -6,12 +6,62 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:20:04 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/09 15:04:04 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:55:48 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+/**/
+void	destroy_time(t_ms *ms, int no_cpy)
+{
+	char	**res;
+	int		tab_size;
+	int		i;
+	int		j;
+
+	tab_size = ft_tablen(ms->env);
+	res = malloc(tab_size * sizeof(char *));
+	i = 0;
+	j = 0;
+	while (ms->env[i] != NULL)
+	{
+		if (i == no_cpy)
+			i++;
+		else
+		{
+			res[j] = ft_strdup(ms->env[i]);
+			free(ms->env[i]);
+			i++;
+			j++;
+		}
+	}
+	res[j] = NULL;
+}
+
+void	builtin_unset(t_ms *ms, t_command *command)
+{
+	int	i;
+	
+	i = 0;
+	if (command->tab_options)
+	{
+		while (ft_strncmp(ms->env[i], command->tab_options[0], \
+		ft_strlen(command->tab_options[0])) != 0)
+		{
+			if (ms->env[i] == NULL)
+				break;
+			i++;
+		}
+		if (ms->env[i] != NULL)
+		{
+			destroy_time(ms, i);
+		}
+	}
+	g_error_no = 0;
+}
+
+/*
 void	unset_var_env(t_ms *ms, int index)
 {
 	int	i;
@@ -51,3 +101,4 @@ void	builtin_unset(char *command, t_ms *ms)
 }
 
 // SI UNSET SANS ARGUMENT = SEGFAULT, A MODIFIER
+*/

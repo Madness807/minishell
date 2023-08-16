@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 12:42:54 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:40:03 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	execution(t_ms *ms)
 		else if (ft_strncmp(curr_cmd->cmd_name, "export", 6) == 0)
 			builtin_export(ms, curr_cmd);
 		else if (ft_strncmp(curr_cmd->cmd_name, "unset", 5) == 0)
-			builtin_unset(curr_cmd->tab_options[0], ms);
+			builtin_unset(ms, curr_cmd);
 		else
 			fork_execve(curr_cmd, ms);
 		curr_cmd = curr_cmd->next;

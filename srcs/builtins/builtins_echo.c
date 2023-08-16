@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:16:55 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 12:18:02 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:46:32 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	builtin_echo(t_command *command, int bck_slh_n, int i)
 	}
 	if (bck_slh_n == 0)
 		ft_printf("\n");
-	exit (0);
+	error_handle(0, NULL, 0);
 }

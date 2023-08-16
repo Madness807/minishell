@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:18:38 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 12:15:00 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:08:19 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	builtin_export_no_args(t_ms *ms)
 	i = 0;
 	while (tmp[i])
 	{
+		ft_printf("declare -x ");
 		ft_printf("%s\n", tmp[i]);
 		free(tmp[i]);
 		tmp[i] = NULL;
@@ -75,8 +76,9 @@ void	builtin_export_with_args(t_ms *ms, t_command *command, int siz_var_name)
 	tmp = command->tab_options[0][0];
 	if (ft_isalpha(tmp) == 0)
 	{
-		ft_printf("Minishell: export: `%s': not a valid identifier\n", 
-			command->tab_options[0]);
+		error_handle_no_exit(1, \
+		join_msg("minishell: export: ", \
+		command->tab_options[0], ": not a valid identifier"), 1);
 	}
 	else if (is_already_in_env(ms, command->tab_options[0], siz_var_name) == 1)
 		update_env(ms, command->tab_options[0], siz_var_name);
