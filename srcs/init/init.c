@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:18 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 04:49:56 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/16 10:48:44 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_env(t_ms *ms, char **env, int i)
 		ms->env[j] = ft_strdup(env[j]);
 		j++;
 	}
-	ms->env[j] = '\0';
+	ms->env[j] = NULL;
 	free(new_number);
 	free(env[i]);
 }

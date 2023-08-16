@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 04:44:52 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/16 10:58:41 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	call_builtins(char *command, t_command *curr_cmd, t_ms *ms)
 {
-	if (ft_strcmp(command, "exit") == 0)
-		builtin_exit(ms, curr_cmd);
-	else if (ft_strcmp(command, "env") == 0)
+	if (ft_strcmp(command, "env") == 0)
 		builtin_env(ms->env);
 	else if (ft_strcmp(command, "cd") == 0)
 		builtin_cd(ms->user_cmd);

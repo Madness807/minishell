@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 04:58:45 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/16 11:51:35 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,18 @@ int	dollar_process(t_ms *ms, int curr_dollar)
 	}
 }
 
+int		bidouille_check(int i, char *str)
+{
+	if (i > 0)
+	{
+		if (str[i - 1] == '\"' && str[i] == '$' && str[i + 1] == '\"')
+		{
+			i++;
+		}
+	}
+	return (i);
+}
+
 void	handle_dollars(t_ms *ms)
 {
 	int	i;
@@ -74,6 +86,7 @@ void	handle_dollars(t_ms *ms)
 	{
 		if (ms->user_cmd[i] == '$')
 		{
+			i = bidouille_check(i, ms->user_cmd);
 			if (ms->user_cmd[i + 1] == ' ' || ms->user_cmd[i + 1] == '\0')
 				i++;
 			else

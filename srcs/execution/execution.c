@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 03:46:23 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/15 22:24:24 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/16 12:42:54 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,17 @@ void	fork_execve(t_command *curr_cmd, t_ms *ms)
 	}
 }
 
-int	my_exec(char *path, t_command *curr_cmd, t_ms *ms)
+void	my_exec(char *path, t_command *curr_cmd, t_ms *ms)
 {
 	if (is_valid_builtin(curr_cmd->cmd_name) == 1)
 		call_builtins(curr_cmd->cmd_name, curr_cmd, ms);
 	else
 	{
-		if (execve(path, curr_cmd->tab_options, ms->env) == 0)
-		{
-			g_error_no = 0;
-			exit(0);
-		}
-		else
-		{
-			g_error_no = 1;
-			exit(1);
-		}
+		execve(path, curr_cmd->tab_options, ms->env);
+		g_error_no = errno;
+		printf("%d\n", g_error_no);
+		exit (g_error_no);
 	}
-	return (0);
 }
 
 void	execution(t_ms *ms)
@@ -105,9 +98,17 @@ void	execution(t_ms *ms)
 	t_command	*curr_cmd;
 
 	curr_cmd = ms->command;
+	
 	while (curr_cmd)
 	{
-		fork_execve(curr_cmd, ms);
+		if (ft_strncmp(curr_cmd->cmd_name, "exit", 4) == 0)
+			builtin_exit(ms, curr_cmd);
+		else if (ft_strncmp(curr_cmd->cmd_name, "export", 6) == 0)
+			builtin_export(ms, curr_cmd);
+		else if (ft_strncmp(curr_cmd->cmd_name, "unset", 5) == 0)
+			builtin_unset(curr_cmd->tab_options[0], ms);
+		else
+			fork_execve(curr_cmd, ms);
 		curr_cmd = curr_cmd->next;
 	}
 	close_fd(ms);

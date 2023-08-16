@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/15 22:26:19 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:04:47 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,13 +233,15 @@ void		init_fd(t_ms *ms);
 void		init_redirection(t_ms *ms);
 void		close_fd(t_ms *ms);
 t_command	*last_command(t_ms *ms);
-int			my_exec(char *path, t_command *curr_cmd, t_ms *ms);
+void		my_exec(char *path, t_command *curr_cmd, t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);
 
 //			HANDLE_ERROR
 void		print_error(t_error_type e_error_type);
+void		error_handle(int nb, char *msg, int is_malloc);
+char		*join_msg(char *s1, char *s2, char *s3);
 
 //			exit and free function 
 void		free_and_exit(t_ms *ms, char *msg, int force_exit);

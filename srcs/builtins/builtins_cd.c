@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:13:13 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/15 22:25:19 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:22:19 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void	builtin_cd(char *cmd)
 	dest[i - 3] = '\0';
 	if (chdir(dest) != 0)
 	{
-		ft_printf("minishell: cd: %s: No such file or directory\n", dest);
+		error_handle(127, \
+		join_msg("minishell: cd: ", dest, ": No such file or directory"), 1);
 	}
 	free(dest);
+	exit (0);
 }
 
 /*

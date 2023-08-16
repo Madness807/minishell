@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:18:44 by aschaefe          #+#    #+#             */
-/*   Updated: 2022/10/19 16:09:40 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 12:50:31 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	ft_putendl_fd(char *s, int fd)
 		write(fd, &s[i], sizeof(s[i]));
 		i++;
 	}
-	write(fd, "\n", 1);
+	if (s != NULL)
+		write(fd, "\n", 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tabdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:32:39 by aschaefe          #+#    #+#             */
-/*   Updated: 2022/10/18 18:51:36 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:46:56 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ char	**ft_tabdup(char **tableau)
 		res[i] = ft_strdup(tableau[i]);
 		i++;
 	}
-	res[i] = '\0';
+	res[i] = NULL;
 	return (res);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_pwd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:17:43 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 02:17:57 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/16 12:24:14 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	builtin_pwd(char *current_folder)
 		i++;
 	}
 	ft_printf("\n");
+	exit (0);
 }
