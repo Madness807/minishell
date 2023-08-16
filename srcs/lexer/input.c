@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/16 02:18:41 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:12:50 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 char	*def_prompt(t_ms *ms)
 {
+	char	*tmp;
+	int		size;
+
 	if (ms->current_folder)
 	{
 		free(ms->current_folder);
 		ms->current_folder = NULL;
 	}
-	ms->current_folder = malloc(1024);
-	ms->current_folder = getcwd(ms->current_folder, 1024);
-	return (ft_strjoin(ms->current_folder, "> "));
+	tmp = getcwd(ms->current_folder, PATH_MAX);
+	size = ft_strlen(tmp);
+	ms->current_folder = ft_strdup(tmp);
+	return (ft_strjoin(tmp, "> "));
 }
 
 void	update_history(t_ms *ms)

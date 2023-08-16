@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_lexer_parser.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/07 01:34:10 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/16 15:13:44 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,6 @@ void	clean_lexer_parser(t_ms *ms)
 	free_tab_content(ms->bin_path);
 	free(ms->bin_path);
 	ms->bin_path = NULL;
+	free(ms->current_folder);
+	ms->current_folder = NULL;
 }

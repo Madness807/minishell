@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/16 14:27:39 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:16:33 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);
 void		builtin_exit(t_ms *ms, t_command *curr_cmd);
 void		builtin_echo(t_command *command, int bck_slh_n, int i);
 void		builtin_cd(char *cmd);
-void		builtin_pwd(char *current_folder);
+void		builtin_pwd(t_ms *ms);
 void		builtin_export(t_ms *ms, t_command *curr_cmd);
 void		builtin_export_no_args(t_ms *ms);
 void		builtin_unset(t_ms *ms, t_command *command);

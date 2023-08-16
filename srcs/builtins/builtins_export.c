@@ -6,7 +6,7 @@
 /*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:18:38 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 14:08:19 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:51:16 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	builtin_export_no_args(t_ms *ms)
 		i++;
 	}
 	free(tmp);
+	g_error_no = 0;
 }
 
 void	builtin_export_with_args(t_ms *ms, t_command *command, int siz_var_name)
@@ -99,6 +100,7 @@ void	builtin_export(t_ms *ms, t_command *curr_cmd)
 		{
 			if (curr_cmd->tab_options[0][end] == '=')
 			{
+				g_error_no = 0;
 				builtin_export_with_args(ms, curr_cmd, end);
 				break ;
 			}

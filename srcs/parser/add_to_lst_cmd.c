@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_lst_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:07:53 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/07 01:21:23 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/16 15:24:06 by aschaefe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void	add_to_lst_redir(t_token *token, t_ms *ms)
 	redir = ((t_redirection *)malloc(sizeof(t_redirection)));
 	redir->contenue = token->contenue;
 	redir->type = token->type;
-	redir->file = token->next->contenue;
+	if (token->next)
+		redir->file = token->next->contenue;
 	redir->next = NULL;
 	if (ms->redir == NULL)
 	{
