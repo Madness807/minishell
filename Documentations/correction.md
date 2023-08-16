@@ -1,4 +1,4 @@
-# Compilation
+# Compilation✅
 
 - [X]	Utilisez "make -n" to pour vous assurer que le projet
 		compile avec "-Wall -Wextra -Werror". Si ce n'est
@@ -10,7 +10,7 @@
 - [X]	Le Makefile ne doit pas re-link. Si ce n'est pas le
 		cas, cochez le flag
 
-# Commande simple et variables globales
+# Commande simple et variables globales✅
 
 - [X]	Exécutez une commande simple avec un PATH
 		absolu tel que /bin/Is ou n'importe quelle autre
@@ -25,7 +25,7 @@
 
 - [X]	Test ez seulement des espaces et des tabs.
 
-# Arguments
+# Arguments✅
 
 - [X]	Exécutez une commande simple avec un PATH
 		absolu tel que /bin/Is ou n'importe quelle autre
@@ -35,7 +35,7 @@
 - [X]	Répétez ce test plusieurs fois avec différentes
 		commandes et différents arguments.
 
-# echo
+# echo✅
 
 - [X]	Lancez la commande echo avec et sans argument
 		‘ou options, ou avec l'option -n.
@@ -43,14 +43,14 @@
 - [X]	Répétez ce test plusieurs fois avec différents
 		arguments.
 
-# exit
+# exit✅
 
 - [X]	Lancez la commande exit avec et sans arguments.
 
 - [X]	Répétez ce test plusieurs fois avec différents
 		arguments.
 
-# Valeur de retour d'un processus
+# Valeur de retour d'un processus❌//TODO - ben faire enfaite
 
 - [ ]	Exécutez des commandes simple avec un chemin//TODO - 
 		absolu tel que /bin/Is ou n'importe quelle autre
@@ -67,7 +67,7 @@
 
 - [ ]	Essayez des expressions telles que $? + $?//TODO - 
 
-# Signaux//TODO - 
+# Signaux//TODO - ❌//FIXME - afaire fonctionner sur les mac de 42
 
 - [ ]	ctrl-C dans un prompt vide devrait afficher une
 		nouvelle ligne avec un nouveau prompt.
@@ -103,7 +103,7 @@
 - [ ]	Répétez plusieurs fois en utilisant des commandes
 		différentes.
 
-# Double Quotes
+# Double Quotes✅
 
 - [X]	Exécutez une commande simple avec des
 		arguments, mais cette fois utilisez des guillemets
@@ -112,7 +112,7 @@
 - [X]	Essayez une commande comme : echo “cat lol.c |
 		cat > lol.c"
 
-# Single Quotes
+# Single Quotes✅
 
 - [X]	Exécutez des commandes avec des single quotes
 		dans les arguments.
@@ -127,18 +127,18 @@
 
 - [X]	Rien ne devrait étre interprété.
 
-# env
+# env✅
 
 - [X]	Vérifiez qu'env vous affiche bien les variables
 		d'environnement.
 
-# export
+# export✅
 
 - [X]	Exportez des variables d'environnement, dont
 		certaines pour remplacer les anciennes.
 - [X]	Vérifiez le résultat avec env.
 
-# unset
+# unset✅
 
 - [X]	Exportez des variables d'environnement, dont
 		certaines pour remplacer les anciennes.
@@ -147,18 +147,18 @@
 
 - [X]	Vérifiez le résultat avec env.
 
-# cd
+# cd✅
 
-- [ ]	Utilisez la commande cd pour vous déplacer dans//FIXME - 
+- [X]	Utilisez la commande cd pour vous déplacer dans//FIXME - 
 		Varborescence et utilisez /bin/Is pour vérifier que
 		vous étes dans le bon répertoire.
 
-- [ ]	Répétez ce test plusieurs fois avec des cd qui//FIXME - 
+- [X]	Répétez ce test plusieurs fois avec des cd qui//FIXME - 
 		fonctionnent et qui ne fonctionnent pas.
 
-- [ ]	Essayez aussi '.’ et ".." en arguments.//FIXME - 
+- [X]	Essayez aussi '.’ et ".." en arguments.//FIXME - 
 
-# pwd
+# pwd✅
 
 - [X]	Utilisez la commande pwd, avec et sans argument.
 
@@ -167,15 +167,15 @@
 
 - [X]	Essayez '.' et '..' en arguments.
 
-# Chemin relatif
+# Chemin relatif✅
 
-- [ ]	Exécutez des commandes en utilisant un chemin//FIXME - 
+- [X]	Exécutez des commandes en utilisant un chemin//FIXME - 
 		relatif.
 
-- [ ]	Répétez ce test plusieurs fois dans d'autres dossier//FIXME - 
+- [X]	Répétez ce test plusieurs fois dans d'autres dossier//FIXME - 
 		avec un chemin relatif complexe (beaucoup de ..).
 
-# PATH d'environnement
+# PATH d'environnement❌//NOTE - MASHALA
 
 - [ ]	Exécutez des commandes mais sans PATH (Is, wc,
 		awk, etc...).
@@ -187,7 +187,7 @@
 		(directory 1 :directory2) et vérifiez qu'ils sont bien
 		évalués de gauche droite.
 
-# Redirection
+# Redirection❌
 
 - [ ]	Exécutez des commandes avec les redirections < //REVIEW - 
 		et / ou >
@@ -202,7 +202,7 @@
 - [X]	Testez les redirections avec << (cela ne doit pas
 		forcément mettre & jour I'historique).
 
-# Pipes
+# Pipes✅
 
 - [X]	Exécutez des commandes avec des pipes telles que
 		‘cat file | grep bla | more!
@@ -215,9 +215,9 @@
 
 - [X]	Mixez les pipes et les redirections.
 
-# Soyons fous ! Et I'historique
+# Soyons fous ! Et I'historique❌//NOTE - ok quand les signaux seront ok
 
-- [ ]	Entrez une commande, puis ctrl-C, et appuyez sur
+- [ ]	Entrez une commande, puis ctrl-C, et appuyez sur//TODO - signaux
 		"Entrée". Le buffer devrait étre vide et il ne devrait
 		plus rien avoir & exécuter.
 
@@ -235,7 +235,7 @@
 
 - [NON]	Amusez-vous avec ce superbe minishell et profitez-
 
-# Variables d'environnement
+# Variables d'environnement✅
 
 - [X]	Exécutez echo avec des variables d'environnement
 		($variable) en argument.

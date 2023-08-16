@@ -3,24 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/07 01:07:36 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/15 22:21:46 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/*
-void	access_check(t_token *token, t_ms *ms)
-{
-	if (access(token->contenue, F_OK) == );
-		if erno == nfdnfndj
-			print 
-
-}
-*/
 void	parser(t_ms *ms)
 {
 	t_token			*token;
@@ -40,8 +31,6 @@ void	parser(t_ms *ms)
 			add_to_lst_redir(token, ms);
 		else if (token->type == TOKEN_REDIC_SG)
 			add_to_lst_redir(token, ms);
-		//else if (token->type == TOKEN_WORD)
-		//	access_check(token, ms);
 		token = token->next;
 	}
 }

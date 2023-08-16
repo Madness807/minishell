@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:15:19 by joterret          #+#    #+#             */
-/*   Updated: 2023/07/26 02:15:47 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:23:51 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*ft_getenv(t_ms *ms, char *looking_name)
 	i = 0;
 	while (ms->env[i])
 	{
-		if (ft_strncmp(ms->env[i], looking_name, size) == 0 &&
-			ms->env[i][size] == '=')
+		if (ft_strncmp(ms->env[i], looking_name, size)
+			== 0 && ms->env[i][size] == '=')
 		{
 			size_env_i = ft_strlen(ms->env[i]);
 			return (ft_substr(ms->env[i], size + 1, size_env_i));

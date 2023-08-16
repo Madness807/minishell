@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/15 21:25:55 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:26:19 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,6 @@ void		builtin_env(char **env);
 int			is_already_in_env(t_ms *ms, char *command, int siz_var_name);
 void		update_env(t_ms *ms, char *command, int siz_var_name);
 void		add_in_env(t_ms *ms, char *command);
-
 
 //			EXECUTION FUNCTION
 void		print_env(char **env);

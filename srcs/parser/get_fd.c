@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   get_fd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:14:29 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/07 01:07:36 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/16 00:18:48 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_fd_redir_sd(t_redirection *redir, t_ms *ms)
 		perror("Erreur d ouverture de fichier");
 		return (-1);
 	}
-	if (command->fd_out != -1)
+	if (command->fd_out > 2)
 	{
 		close (command->fd_out);
 	}
@@ -80,7 +80,6 @@ int	here_doc_fd(char *delimiter)
 
 	if (pipe(fd) == -1)
 		return (-1);
-
 	while (1)
 	{
 		line = readline("> ");
@@ -117,4 +116,3 @@ int	get_fd_redir_dg(t_redirection *redir, t_ms *ms)
 	command->fd_in = fd;
 	return (fd);
 }
-

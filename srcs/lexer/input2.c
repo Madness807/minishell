@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/06 23:36:34 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/15 22:23:10 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	cmd_not_find_check(t_ms *ms)
 	if (tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
 	{
 		ft_printf("%s: command not found\n", tmp->contenue);
-		//exit (127); //REVIEW -
 		res++;
 	}
 	while (tmp)
@@ -34,7 +33,6 @@ int	cmd_not_find_check(t_ms *ms)
 		{
 			ft_printf("%s: command not found\n", tmp->contenue);
 			printf(" command not found");
-			//exit (127);//REVIEW -
 			res++;
 		}
 		last_tmp = tmp;
