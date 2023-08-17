@@ -21,7 +21,9 @@ int	get_fd_redir_sd(t_redirection *redir, t_ms *ms)
 	fd = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		perror("Erreur d ouverture de fichier");
+		g_error_no = 1;
+		error_handle(1, " Permission denied", 0);
+		close(fd);
 		return (-1);
 	}
 	if (command->fd_out > 2)
@@ -41,7 +43,9 @@ int	get_fd_redir_dd(t_redirection *redir, t_ms *ms)
 	fd = open(redir->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
-		perror("Erreur d ouverture de fichier");
+		g_error_no = 1;
+		error_handle(1, " Permission denied", 0);
+		close(fd);
 		return (-1);
 	}
 	if (command->fd_out > 2)
@@ -61,7 +65,9 @@ int	get_fd_redir_sg(t_redirection *redir, t_ms *ms)
 	fd = open(redir->file, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Erreur d ouverture de fichier");
+		g_error_no = 1;
+		error_handle(1, " Permission denied", 0);
+		close(fd);
 		return (-1);
 	}
 	if (command->fd_out != 0)
@@ -106,7 +112,9 @@ int	get_fd_redir_dg(t_redirection *redir, t_ms *ms)
 	fd = here_doc_fd(redir->file);
 	if (fd == -1)
 	{
-		perror("Erreur lors de la création du here-doc");
+		g_error_no = 1;
+		error_handle(1, " Permission denied", 0);
+		close(fd);
 		return (-1);
 	}
 	if (command->fd_in != 0)
