@@ -57,51 +57,57 @@ void	update_old_pwd_and_pwd(t_ms *ms, char *new_pwd)
 	char	*tmp;
 	char	*tmp2;
 
+	tmp = NULL;
+	tmp2 = NULL;
+	(void)new_pwd;
 	if (is_already_in_env(ms, "OLD_PWD", 7) == 1)
 	{
-		tmp2 = ft_getenv(ms, "PWD");
-		cd_update_env(ms, tmp2, ft_strlen(new_pwd));
-		free(tmp2);
+		tmp = ft_getenv(ms, "PWD");
+		cd_update_env(ms, tmp, ft_strlen(tmp));
 	}
 	else
 	{
 		tmp2 = ft_getenv(ms, "PWD");
 		tmp = ft_strjoin("OLD_PWD=", tmp2);
 		cd_add_in_env(ms, tmp);
+	}
+	if (tmp)
 		free(tmp);
+	if (tmp2)
 		free(tmp2);
+}
+
+void	builtin_cd_no_args(t_ms *ms)
+{
+	char *home;
+
+	home = ft_getenv(ms, "HOME");
+	if (home == NULL)
+		error_handle_no_exit(1, "minishell: cd: HOME not set", 0);
+	else
+	{
+		if (chdir(home) != 0)
+		{
+			error_handle_no_exit(1, \
+			join_msg("minishell: cd: ", home, \
+			": No such file or directory"), 1);
+			free(home);
+			home = NULL;
+		}
+		else
+		{
+			update_old_pwd_and_pwd(ms, home);
+			g_error_no = 0;
+		}
 	}
 }
 
 void	builtin_cd(t_ms *ms, t_command *cmd)
 {
-	char *home;
-
-	home = NULL;
 	if (cmd->tab_options && ft_tablen(cmd->tab_options) > 1)
 		error_handle_no_exit(1, "minishell: cd: too many arguments", 0);
 	else if (!cmd->tab_options)
-	{
-		home = ft_getenv(ms, "HOME");
-		if (home == NULL)
-			error_handle_no_exit(1, "minishell: cd: HOME not set", 0);
-		else
-		{
-			if (chdir(home) != 0)
-			{
-				error_handle_no_exit(1, \
-				join_msg("minishell: cd: ", home, \
-				": No such file or directory"), 1);
-				free(home);
-				home = NULL;
-			}
-			else
-			{
-				update_old_pwd_and_pwd(ms, home);
-				g_error_no = 0;
-			}
-		}
-	}
+		builtin_cd_no_args(ms);
 	else
 	{
 		if (chdir(cmd->tab_options[0]) != 0)
@@ -115,16 +121,14 @@ void	builtin_cd(t_ms *ms, t_command *cmd)
 		}
 	}
 }
-/*
 
+/*
 void	builtin_cd(t_ms *ms, t_command *cmd)
 {
 	(void)ms;
 	if (chdir(cmd->tab_options[0]) != 0)
 	{
-		error_handle_no_exit(127, \
-		join_msg("minishell: cd: ", cmd->tab_options[0], \
-		": No such file or directory"), 1);
+		error_handle_no_exit(127, join_msg("minishell: cd: ", cmd->tab_options[0], ": No such file or directory"), 1);
 	}
 	g_error_no = 0;
 }
