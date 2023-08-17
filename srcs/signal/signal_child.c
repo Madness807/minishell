@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forbiden_char.c                                    :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 04:50:34 by joterrett        ###   ########.fr       */
+/*   Created: 2023/06/07 18:30:49 by joterret          #+#    #+#             */
+/*   Updated: 2023/08/04 21:13:38 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	forbiden_char(t_ms *ms)
+void	ctrl_c_child(int key)
 {
-	int	i;
+	(void)key;
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	write(1, "\n", 1);
+}
 
-	i = 0;
-	while (ms->user_cmd[i])
-	{
-		if ((ms->user_cmd[i] == '\\' || ms->user_cmd[i] == ';') && 
-			is_in_quote(i, i, ms->user_cmd) == 0)
-		{
-			error_handle_no_exit(1, "Error42subj: forbiden char detected\n", 0);
-			//ft_printf("It's minishell, not shell tout court\n");
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+void	other_ctrl_child(int key)
+{
+	(void)key;
+	rl_on_new_line();
+	rl_redisplay();
+}
+
+void	use_signal_child(void)
+{
+	signal(SIGINT, ctrl_c_child);
+	signal(SIGQUIT, other_ctrl_child);
 }

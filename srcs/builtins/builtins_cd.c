@@ -12,85 +12,120 @@
 
 #include "../../include/minishell.h"
 
-void	builtin_cd(char *cmd)
+void	cd_add_in_env(t_ms *ms, char *command)
 {
-	char	*dest;
+	int		len_env;
 	int		i;
+	char	**tmp_env;
 
-	dest = malloc(1024);
-	i = 3;
-	while (cmd[i])
+	len_env = 0;
+	i = 0;
+	while (ms->env[len_env] != 0)
+		len_env++;
+	tmp_env = malloc((len_env) * sizeof(char *));
+	while (i < len_env)
 	{
-		dest[i - 3] = cmd[i];
+		tmp_env[i] = malloc(ft_strlen(ms->env[i]) * sizeof(char));
+		tmp_env[i] = ms->env[i];
 		i++;
 	}
-	dest[i - 3] = '\0';
-	if (chdir(dest) != 0)
-	{
-		error_handle(127, \
-		join_msg("minishell: cd: ", dest, ": No such file or directory"), 1);
-	}
-	free(dest);
-	exit (0);
+	tmp_env[i] = command;
+	tmp_env[i + 1] = NULL;
+	ms->env = tmp_env;
 }
 
-/*
+void	cd_update_env(t_ms *ms, char *str, int siz_var_name)
+{
+	int	i;
+
+	i = 0;
+	while (ms->env[i])
+	{
+		if (ft_strncmp(ms->env[i], str, siz_var_name + 1) == 0)
+		{
+			free(ms->env[i]);
+			ms->env[i] = NULL;
+			ms->env[i] = str;
+			break ;
+		}
+		i++;
+	}
+}
+
 void	update_old_pwd_and_pwd(t_ms *ms, char *new_pwd)
 {
 	char	*tmp;
-	char	*curr_pwd;
+	char	*tmp2;
 
-	curr_cmd = ft_getenv
 	if (is_already_in_env(ms, "OLD_PWD", 7) == 1)
-		update_env(ms, ft_getenv(ms, "PWD"), ft_strlen(new_pwd));
+	{
+		tmp2 = ft_getenv(ms, "PWD");
+		cd_update_env(ms, tmp2, ft_strlen(new_pwd));
+		free(tmp2);
+	}
 	else
 	{
-		tmp = ft_strjoin("OLD_PWD=", ft_getenv(ms, "PWD"));
-		add_in_env(ms, tmp);
+		tmp2 = ft_getenv(ms, "PWD");
+		tmp = ft_strjoin("OLD_PWD=", tmp2);
+		cd_add_in_env(ms, tmp);
 		free(tmp);
+		free(tmp2);
 	}
-}
-
-void	builtin_cd_no_args(t_ms *ms)
-{
-	char	*home;
-
-	home = ft_getenv(ms, "HOME");
-	if (home == NULL)
-		ft_printf("minishell: Error: HOME not set.\n");
-	else if (chdir(home) != 0)
-		ft_printf("minishell: cd: %s: No such file or directory\n", home);
-	else
-		update_old_pwd_and_pwd(ms, home);
 }
 
 void	builtin_cd(t_ms *ms, t_command *cmd)
 {
-	char	tmp*;
-	int		buffer;
+	char *home;
 
-	tmp = NULL;
-	buffer = 0;
-	while (tmp == NULL)
+	home = NULL;
+	if (cmd->tab_options && ft_tablen(cmd->tab_options) > 1)
+		error_handle_no_exit(1, "minishell: cd: too many arguments", 0);
+	else if (!cmd->tab_options)
 	{
-		getcwd(tmp, buffer);
-		buffer++;
-		if (buffer == PATH_MAX)
+		home = ft_getenv(ms, "HOME");
+		if (home == NULL)
+			error_handle_no_exit(1, "minishell: cd: HOME not set", 0);
+		else
 		{
-			ft_printf("OMG WTF !!!\n");
-			break;
+			if (chdir(home) != 0)
+			{
+				error_handle_no_exit(1, \
+				join_msg("minishell: cd: ", home, \
+				": No such file or directory"), 1);
+				free(home);
+				home = NULL;
+			}
+			else
+			{
+				update_old_pwd_and_pwd(ms, home);
+				g_error_no = 0;
+			}
 		}
 	}
-	if (is_already_in_env(ms, "PWD", 3) == 0)
-	{
-		tmp = getcwd()
-		add_in_env(ms, )
-	}
-	if (!cmd->tab_options)
-		builtin_cd_no_args(ms);
 	else
 	{
-		//work with args
+		if (chdir(cmd->tab_options[0]) != 0)
+			error_handle_no_exit(1, \
+			join_msg("minishell: cd: ", cmd->tab_options[0], \
+			": No such file or directory"), 1);
+		else
+		{
+			update_old_pwd_and_pwd(ms, cmd->tab_options[0]);
+			g_error_no = 0;
+		}
 	}
+}
+/*
+
+void	builtin_cd(t_ms *ms, t_command *cmd)
+{
+	(void)ms;
+	if (chdir(cmd->tab_options[0]) != 0)
+	{
+		error_handle_no_exit(127, \
+		join_msg("minishell: cd: ", cmd->tab_options[0], \
+		": No such file or directory"), 1);
+	}
+	g_error_no = 0;
 }
 */

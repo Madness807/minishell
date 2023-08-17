@@ -70,41 +70,46 @@ void	builtin_export_no_args(t_ms *ms)
 	g_error_no = 0;
 }
 
-void	builtin_export_with_args(t_ms *ms, t_command *command, int siz_var_name)
+int	start_by_nb(char *str)
 {
 	int	tmp;
 
-	tmp = command->tab_options[0][0];
-	if (ft_isalpha(tmp) == 0)
+	tmp = str[0];
+	if (isdigit(tmp) > 0)
 	{
 		error_handle_no_exit(1, \
 		join_msg("minishell: export: ", \
-		command->tab_options[0], ": not a valid identifier"), 1);
+		str, ": not a valid identifier"), 1);
+		return (1);
 	}
-	else if (is_already_in_env(ms, command->tab_options[0], siz_var_name) == 1)
-		update_env(ms, command->tab_options[0], siz_var_name);
-	else
-		add_in_env(ms, command->tab_options[0]);
+	return (0);
 }
 
-void	builtin_export(t_ms *ms, t_command *curr_cmd)
+void	builtin_export(t_ms *ms, t_command *curr_cmd, int end)
 {
-	int	end;
-
-	end = 0;
 	if (curr_cmd->tab_options == NULL)
 		builtin_export_no_args(ms);
 	else
 	{
-		while (curr_cmd->tab_options[0][end])
+		if (start_by_nb(curr_cmd->tab_options[0]) == 0)
 		{
-			if (curr_cmd->tab_options[0][end] == '=')
+			while (curr_cmd->tab_options[0][end])
 			{
-				g_error_no = 0;
-				builtin_export_with_args(ms, curr_cmd, end);
-				break ;
+				if (curr_cmd->tab_options[0][end] == '=')
+				{
+					g_error_no = 0;
+					builtin_export_with_args(ms, curr_cmd, end);
+					break ;
+				}
+				if (is_char_ok(curr_cmd->tab_options[0][end]) != 0)
+				{
+					error_handle_no_exit(1, \
+					join_msg("minishell: export: ", \
+					curr_cmd->tab_options[0], ": not a valid identifier"), 1);
+					break ;
+				}
+				end++;
 			}
-			end++;
 		}
 	}
 }

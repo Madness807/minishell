@@ -23,9 +23,9 @@ void	destroy_time(t_ms *ms, int no_cpy)
 	i = 0;
 	while (i < no_cpy)
 	{
-			res[i] = ft_strdup(ms->env[i]);
-			free(ms->env[i]);
-			i++;
+		res[i] = ft_strdup(ms->env[i]);
+		free(ms->env[i]);
+		i++;
 	}
 	i++;
 	while (ms->env[i] != NULL)
@@ -42,15 +42,15 @@ void	destroy_time(t_ms *ms, int no_cpy)
 void	builtin_unset(t_ms *ms, t_command *command)
 {
 	int	i;
-	
+
 	i = 0;
 	if (command->tab_options)
 	{
-		while (ft_strncmp(ms->env[i], command->tab_options[0], \
+		while (ms->env[i] && ft_strncmp(ms->env[i], command->tab_options[0], \
 		ft_strlen(command->tab_options[0])) != 0)
 		{
 			if (ms->env[i] == NULL)
-				break;
+				break ;
 			i++;
 		}
 		if (ms->env[i] != NULL)

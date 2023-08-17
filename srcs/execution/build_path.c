@@ -44,17 +44,20 @@ char	*join_path_cmd(char **path_splited, char *command)
 
 	i = 0;
 	res = NULL;
-	while (path_splited[i])
+	if (path_splited != NULL)
 	{
-		tmp = ft_strjoin(path_splited[i], command);
-		if (access(tmp, X_OK) == 0)
+		while (path_splited[i])
 		{
-			res = ft_strdup(tmp);
+			tmp = ft_strjoin(path_splited[i], command);
+			if (access(tmp, X_OK) == 0)
+			{
+				res = ft_strdup(tmp);
+				free(tmp);
+				return (res);
+			}
 			free(tmp);
-			return (res);
+			i++;
 		}
-		free(tmp);
-		i++;
 	}
 	return (NULL);
 }

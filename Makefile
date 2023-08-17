@@ -38,12 +38,14 @@ SRC				=		srcs/main.c \
 						srcs/parser/get_fd.c\
 						srcs/parser/get_fd_utils.c\
 						srcs/signal/signal.c\
+						srcs/signal/signal_child.c\
 						srcs/free_and_exit/free.c\
 						srcs/builtins/builtins_cd.c\
 						srcs/builtins/builtins_pwd.c\
 						srcs/builtins/builtins_exit.c\
 						srcs/builtins/builtins_echo.c\
 						srcs/builtins/builtins_export.c\
+						srcs/builtins/builtins_export2.c\
 						srcs/builtins/builtins_unset.c\
 						srcs/builtins/builtins_env.c\
 						srcs/builtins/call_builtins.c\

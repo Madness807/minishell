@@ -69,32 +69,32 @@
 
 # Signaux//TODO - ❌//FIXME - afaire fonctionner sur les mac de 42
 
-- [ ]	ctrl-C dans un prompt vide devrait afficher une
+- [X]	ctrl-C dans un prompt vide devrait afficher une
 		nouvelle ligne avec un nouveau prompt.
 
-- [ ]	ctrl-\ dans un prompt vide ne devrait rien faire.
+- []	ctrl-\ dans un prompt vide ne devrait rien faire.//ANCHOR - 
 
-- [ ]	ctrl-D dans un prompt vide devrait quitter minishell.
+- [X]	ctrl-D dans un prompt vide devrait quitter minishell.
 		Ensuite, relancez-le.
 
-- [ ]	ctrl-C dans un prompt aprés avoir écrit des choses
+- [X]	ctrl-C dans un prompt aprés avoir écrit des choses
 		devrait afficher une nouvelle ligne avec un nouveau
 		prompt.
 
-- [ ]	Egalement, le buffer devrait étre vide. Appuyez sur
+- [X]	Egalement, le buffer devrait étre vide. Appuyez sur
 		"Entrée" afin de vous assurer que la ligne
 		précédente a été exécutée.
 
-- [ ]	ctrl-D dans un prompt aprés avoir écrit des choses
+- [X]	ctrl-D dans un prompt aprés avoir écrit des choses
 		ne devrait rien faire.
 
-- [ ]	ctrl-\ dans un prompt aprés avoir écrit des choses
+- [ ]	ctrl-\ dans un prompt aprés avoir écrit des choses//ANCHOR - 
 		ne devrait rien faire.
 
-- [ ]	Essayez ctrl-C aprés avoir lancé une commande
+- [X]	Essayez ctrl-C aprés avoir lancé une commande
 		bloquante, comme cat ou grep sans argument.
 
-- [ ]	Essayez ctrl-\ aprés avoir lancé une commande
+- [ ]	Essayez ctrl-\ aprés avoir lancé une commande//
 		bloquante, comme cat ou grep sans argument.
 
 - [ ]	Essayez ctrl-D aprés avoir lancé une commande

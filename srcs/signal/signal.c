@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-/*
+
 void	ctrl_c(int key)
 {
 	(void)key;
@@ -25,6 +25,7 @@ void	other_ctrl(int key)
 {
 	(void)key;
 	rl_on_new_line();
+	rl_redisplay();
 }
 
 void	use_signal(void)
@@ -32,7 +33,7 @@ void	use_signal(void)
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, other_ctrl);
 }
+
 // ajouter les signaux dans les commandes bloquantes (exemple cat qui attend une
 // entree user, le ctrl \ + c ne fait pas la meme quand dans minishell de base
 // le ctrl d ferme tout dans tout les cas
-*/

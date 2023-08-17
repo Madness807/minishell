@@ -75,7 +75,7 @@ void	fork_execve(t_command *curr_cmd, t_ms *ms)
 		if (curr_cmd->fd_out > 2)
 			dup2(curr_cmd->fd_out, STDOUT_FILENO);
 		close_fd(ms);
-		path = var_env_finder(curr_cmd, ms);//REVIEW - bon path ou pas ??
+		path = var_env_finder(curr_cmd, ms);
 		my_exec(path, curr_cmd, ms);
 	}
 }
@@ -98,15 +98,17 @@ void	execution(t_ms *ms)
 	t_command	*curr_cmd;
 
 	curr_cmd = ms->command;
-	
+
 	while (curr_cmd)
 	{
 		if (ft_strncmp(curr_cmd->cmd_name, "exit", 4) == 0)
 			builtin_exit(ms, curr_cmd);
 		else if (ft_strncmp(curr_cmd->cmd_name, "export", 6) == 0)
-			builtin_export(ms, curr_cmd);
+			builtin_export(ms, curr_cmd, 0);
 		else if (ft_strncmp(curr_cmd->cmd_name, "unset", 5) == 0)
 			builtin_unset(ms, curr_cmd);
+		else if (ft_strncmp(curr_cmd->cmd_name, "cd", 2) == 0)
+			builtin_cd(ms, curr_cmd);
 		else
 			fork_execve(curr_cmd, ms);
 		curr_cmd = curr_cmd->next;

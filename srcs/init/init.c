@@ -55,6 +55,7 @@ void	init_bin_path(t_ms *ms)
 			tmp = ft_strtrim(ms->env[i], "PATH=");
 			ms->bin_path = ft_split(tmp, ':');
 			free(tmp);
+			break ;
 		}
 		i++;
 	}
@@ -69,4 +70,6 @@ void	init_struct(t_ms *ms, int argc, char **argv, char **env)
 	ms->last_user_cmd = malloc (1);
 	ms->stop = 0;
 	ms->error_number = 0;
+	ms->max_int = 9223372036854775807LL;
+	ms->min_int = -9223372036854775807LL - 1;
 }

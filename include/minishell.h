@@ -150,6 +150,8 @@ typedef struct s_ms
 	int						wait_status;
 	t_error_type			e_error_type;
 	int						error_number;
+	long long				max_int;
+	long long				min_int;
 }t_ms;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -212,10 +214,12 @@ t_command	*last_command(t_ms *ms);
 void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);
 void		builtin_exit(t_ms *ms, t_command *curr_cmd);
 void		builtin_echo(t_command *command, int bck_slh_n, int i);
-void		builtin_cd(char *cmd);
+void		builtin_cd(t_ms *ms, t_command *cmd);
 void		builtin_pwd(t_ms *ms);
-void		builtin_export(t_ms *ms, t_command *curr_cmd);
+void		builtin_export(t_ms *ms, t_command *curr_cmd, int end);
+int			is_char_ok(char c);
 void		builtin_export_no_args(t_ms *ms);
+void		builtin_export_with_args(t_ms *ms, t_command *command, int siz_var_name);
 void		builtin_unset(t_ms *ms, t_command *command);
 void		builtin_env(char **env);
 int			is_already_in_env(t_ms *ms, char *command, int siz_var_name);
@@ -237,6 +241,7 @@ void		my_exec(char *path, t_command *curr_cmd, t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);
+void		use_signal_child(void);
 
 //			HANDLE_ERROR
 void		print_error(t_error_type e_error_type);
