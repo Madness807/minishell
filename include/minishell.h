@@ -252,6 +252,7 @@ char		*join_msg(char *s1, char *s2, char *s3);
 //			exit and free function 
 void		free_and_exit(t_ms *ms, char *msg, int force_exit);
 void		clean_lexer_parser(t_ms *ms);
+void		free_tab_content(char **tab_options);
 
 //zone de test
 void		print_lst_token_1(t_ms *ms);

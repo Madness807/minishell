@@ -12,74 +12,39 @@
 
 #include "../../include/minishell.h"
 
-void	cd_add_in_env(t_ms *ms, char *command)
-{
-	int		len_env;
-	int		i;
-	char	**tmp_env;
-
-	len_env = 0;
-	i = 0;
-	while (ms->env[len_env] != 0)
-		len_env++;
-	tmp_env = malloc((len_env) * sizeof(char *));
-	while (i < len_env)
-	{
-		tmp_env[i] = malloc(ft_strlen(ms->env[i]) * sizeof(char));
-		tmp_env[i] = ms->env[i];
-		i++;
-	}
-	tmp_env[i] = command;
-	tmp_env[i + 1] = NULL;
-	ms->env = tmp_env;
-}
-
-void	cd_update_env(t_ms *ms, char *str, int siz_var_name)
-{
-	int	i;
-
-	i = 0;
-	while (ms->env[i])
-	{
-		if (ft_strncmp(ms->env[i], str, siz_var_name + 1) == 0)
-		{
-			free(ms->env[i]);
-			ms->env[i] = NULL;
-			ms->env[i] = str;
-			break ;
-		}
-		i++;
-	}
-}
-
-void	update_old_pwd_and_pwd(t_ms *ms, char *new_pwd)
+void	update_old_pwd_and_pwd(t_ms *ms)
 {
 	char	*tmp;
-	char	*tmp2;
+	char	*res;
+	int		size;
 
+	tmp = ft_getenv(ms, "PWD");
+	res = ft_strjoin("OLD_PWD=", tmp);
+	size = ft_strlen(res);
+	free(tmp);
 	tmp = NULL;
-	tmp2 = NULL;
-	(void)new_pwd;
 	if (is_already_in_env(ms, "OLD_PWD", 7) == 1)
-	{
-		tmp = ft_getenv(ms, "PWD");
-		cd_update_env(ms, tmp, ft_strlen(tmp));
-	}
+		update_env(ms, res, size);
 	else
-	{
-		tmp2 = ft_getenv(ms, "PWD");
-		tmp = ft_strjoin("OLD_PWD=", tmp2);
-		cd_add_in_env(ms, tmp);
-	}
-	if (tmp)
-		free(tmp);
-	if (tmp2)
-		free(tmp2);
+		add_in_env(ms, res);
+	free(res);
+	res = NULL;
+	tmp = getcwd(tmp, PATH_MAX);
+	res = ft_strjoin("PWD=", tmp);
+	free(tmp);
+	tmp = NULL;
+	size = ft_strlen(res);
+	if (is_already_in_env(ms, "PWD", 3) == 1)
+		update_env(ms, res, size);
+	else
+		add_in_env(ms, res);
+	free(res);
+	res = NULL;
 }
 
 void	builtin_cd_no_args(t_ms *ms)
 {
-	char *home;
+	char	*home;
 
 	home = ft_getenv(ms, "HOME");
 	if (home == NULL)
@@ -91,14 +56,14 @@ void	builtin_cd_no_args(t_ms *ms)
 			error_handle_no_exit(1, \
 			join_msg("minishell: cd: ", home, \
 			": No such file or directory"), 1);
-			free(home);
-			home = NULL;
 		}
 		else
 		{
-			update_old_pwd_and_pwd(ms, home);
+			update_old_pwd_and_pwd(ms);
 			g_error_no = 0;
 		}
+		free(home);
+		home = NULL;
 	}
 }
 
@@ -116,7 +81,7 @@ void	builtin_cd(t_ms *ms, t_command *cmd)
 			": No such file or directory"), 1);
 		else
 		{
-			update_old_pwd_and_pwd(ms, cmd->tab_options[0]);
+			update_old_pwd_and_pwd(ms);
 			g_error_no = 0;
 		}
 	}
@@ -132,4 +97,38 @@ void	builtin_cd(t_ms *ms, t_command *cmd)
 	}
 	g_error_no = 0;
 }
+*/
+/*	
+	ft_getenv donne le resultat apres le = dans l env
+
+	env
+	{
+		pwd=1
+		old_pwd=2
+		home=0
+	}
+	chdir home ()
+	env
+	{
+		pwd=0		// join pwd avec du retour de getcwd
+		old_pwd=1	// substr PWD de pwd puis strjoin old_pwd avec le substr
+		home=0		// pas touche
+	}
+	____________________________________________________________________________
+	env
+	{
+		pwd=1
+		old_pwd=2
+		home=0
+	}
+	chdir include/
+	env
+	{
+		pwd=include/	// join pwd avec du retour de getcwd
+		old_pwd=1		// substr PWD de pwd puis strjoin old_pwd avec le substr
+		home=0			// pas touche
+	}
+
+	chaque fois que j appelle update in env ou add in env, je dois TOUT le temps
+	envoyer tata=titi. PEUT IMPORTE LE QUOI QUOU BE
 */

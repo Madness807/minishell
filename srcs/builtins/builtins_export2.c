@@ -40,3 +40,4 @@ void	builtin_export_with_args(t_ms *ms, t_command *command, int siz_var_name)
 	else
 		add_in_env(ms, command->tab_options[0]);
 }
+

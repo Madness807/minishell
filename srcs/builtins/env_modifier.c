@@ -18,26 +18,21 @@ void	add_in_env(t_ms *ms, char *command)
 	int		i;
 	char	*new_var;
 	char	**tmp_env;
-	int		tok_val_len;
 
 	len_env = 0;
 	i = 0;
-	tok_val_len = ft_strlen(command) + 1;
-	while (ms->env[len_env] != 0)
-		len_env++;
-	new_var = malloc((tok_val_len) * sizeof(char));
-	if (new_var == NULL)
-		return ;
-	ft_strlcpy(new_var, command, tok_val_len);
-	tmp_env = malloc((len_env) * sizeof(char *));
+	len_env = ft_tablen(ms->env);
+	new_var = ft_strdup(command);
+	tmp_env = malloc((len_env + 2) * sizeof(char *));
 	while (i < len_env)
 	{
-		tmp_env[i] = malloc(ft_strlen(ms->env[i]) * sizeof(char));
-		tmp_env[i] = ms->env[i];
+		tmp_env[i] = ft_strdup(ms->env[i]);
 		i++;
 	}
 	tmp_env[i] = new_var;
 	tmp_env[i + 1] = NULL;
+	free_tab_content(ms->env);
+	free(ms->env);
 	ms->env = tmp_env;
 }
 
