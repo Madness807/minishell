@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/16 15:16:33 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:12:23 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ int			get_fd_redir_sg(t_redirection *redir, t_ms *ms);
 int			get_fd_redir_dd(t_redirection *redir, t_ms *ms);
 int			get_fd_redir_dg(t_redirection *redir, t_ms *ms);
 t_command	*last_command(t_ms *ms);
-void		basic_syntax_checker(t_ms *ms);
+int			basic_syntax_checker(t_ms *ms);
 
 //			BUILTINS FUNCTION
 void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);

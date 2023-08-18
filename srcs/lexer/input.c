@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/16 15:12:50 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:42:40 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,23 @@ void	hard_work(t_ms *ms)
 			handle_dollars(ms);
 			add_spaces(ms);
 			handle_quote(ms);
-			tokeniser(ms);
-			//print_lst_token_1(ms);
-			basic_syntax_checker(ms);
-			parser(ms);
-			if (cmd_not_find_check(ms) == 0 && ms->command)
+			if (only_empty(ms) == 0)
 			{
-				init_fd(ms);
-				init_redirection(ms);
-				//print_lst_command(ms);
-				//cdprint_lst_redir(ms);
-				if (check_before_execution(ms) == 0)
-					execution(ms);
+				tokeniser(ms);
+				print_lst_token_1(ms);
+				if (basic_syntax_checker(ms) == 0)
+				{
+					parser(ms);
+					if (cmd_not_find_check(ms) == 0 && ms->command)
+					{
+						init_fd(ms);
+						init_redirection(ms);
+						print_lst_command(ms);
+						print_lst_redir(ms);
+						if (check_before_execution(ms) == 0)
+							execution(ms);
+					}
+				}
 			}
 			clean_lexer_parser(ms);
 		}

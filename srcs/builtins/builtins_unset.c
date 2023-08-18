@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_unset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:20:04 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 15:03:14 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:57:41 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	destroy_time(t_ms *ms, int no_cpy)
 		free(ms->env[i]);
 		i++;
 	}
+	free(ms->env[i]);
 	i++;
 	while (ms->env[i] != NULL)
 	{
