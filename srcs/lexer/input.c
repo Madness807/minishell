@@ -49,7 +49,7 @@ int	check_before_execution(t_ms *ms)
 			if (tmp->file == NULL)
 			{
 				error_handle_no_exit(2, \
-				"bash: syntax error near unexpected token `newline'", 0);
+				"bash: syntax error near unexpected token `newline'", 1);
 				return (1);
 			}
 			tmp = tmp->next;
@@ -72,6 +72,7 @@ void	hard_work(t_ms *ms)
 			handle_quote(ms);
 			tokeniser(ms);
 			//print_lst_token_1(ms);
+			basic_syntax_checker(ms);
 			parser(ms);
 			if (cmd_not_find_check(ms) == 0 && ms->command)
 			{
