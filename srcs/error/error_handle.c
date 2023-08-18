@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:30:40 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 13:53:40 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:55:19 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	error_handle(int nb, char *msg, int is_malloc)
 	exit (nb);
 }
 
+/*
 void	print_error(t_error_type e_error_type)
 {
 	(void)e_error_type;
@@ -63,6 +64,5 @@ void	print_error(t_error_type e_error_type)
 		ft_putchar_fd(ERR_MSG_FILE_NOT_FOUND, 2);
 	else
 		ft_putchar_fd(ERR_MSG_UNKNOWN, 2);
-
-	*/
 }
+*/

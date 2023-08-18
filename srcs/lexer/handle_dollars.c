@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 11:51:35 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:56:13 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	dollar_process(t_ms *ms, int curr_dollar)
 	}
 }
 
-int		bidouille_check(int i, char *str)
+int	bidouille_check(int i, char *str)
 {
 	if (i > 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forbiden_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 04:16:24 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/05 04:50:34 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/08/18 16:55:40 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	forbiden_char(t_ms *ms)
 			is_in_quote(i, i, ms->user_cmd) == 0)
 		{
 			error_handle_no_exit(1, "Error42subj: forbiden char detected\n", 0);
-			//ft_printf("It's minishell, not shell tout court\n");
 			return (1);
 		}
 		i++;

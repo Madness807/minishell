@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_export2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:18:38 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 15:51:16 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:57:57 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ void	builtin_export_with_args(t_ms *ms, t_command *command, int siz_var_name)
 	else
 		add_in_env(ms, command->tab_options[0]);
 }
-

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/18 14:12:23 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:05:06 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,8 @@ void		builtin_pwd(t_ms *ms);
 void		builtin_export(t_ms *ms, t_command *curr_cmd, int end);
 int			is_char_ok(char c);
 void		builtin_export_no_args(t_ms *ms);
-void		builtin_export_with_args(t_ms *ms, t_command *command, int siz_var_name);
+void		builtin_export_with_args(t_ms *ms, \
+									t_command *command, int siz_var_name);
 void		builtin_unset(t_ms *ms, t_command *command);
 void		builtin_env(char **env);
 int			is_already_in_env(t_ms *ms, char *command, int siz_var_name);

@@ -6,39 +6,44 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:07:53 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/18 15:37:23 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:10:15 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int res_return(int res)
+int	res_return(int res)
 {
 	if (res == 1)
-		error_handle_no_exit(2, "bash: syntax error near unexpected token `newline'", 0);
+		error_handle_no_exit(2, \
+			"bash: syntax error near unexpected token `newline'", 0);
 	if (res == 2)
-		error_handle_no_exit(2, "bash: syntax error near unexpected token `|'", 0);
+		error_handle_no_exit(2, \
+			"bash: syntax error near unexpected token `|'", 0);
 	if (res == 3)
-		error_handle_no_exit(2, "bash: syntax error near unexpected token `>'", 0);
+		error_handle_no_exit(2, \
+			"bash: syntax error near unexpected token `>'", 0);
 	if (res == 4)
-		error_handle_no_exit(2, "bash: syntax error near unexpected token `<'", 0);
+		error_handle_no_exit(2, \
+			"bash: syntax error near unexpected token `<'", 0);
 	if (res == 5)
-		error_handle_no_exit(2, "bash: syntax error near unexpected token `>>'", 0);
+		error_handle_no_exit(2, \
+			"bash: syntax error near unexpected token `>>'", 0);
 	if (res == 6)
-		error_handle_no_exit(2, "bash: syntax error near unexpected token `<<'", 0);
-
+		error_handle_no_exit(2, \
+			"bash: syntax error near unexpected token `<<'", 0);
 	return (res);
 }
 
 int	check_last_token(t_token *last_tmp)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	if (last_tmp != NULL)
 	{
 		if (last_tmp->type == TOKEN_PIPE)
-			res = 2;	
+			res = 2;
 		if (last_tmp->type == TOKEN_REDIC_SD)
 			res = 3;
 		if (last_tmp->type == TOKEN_REDIC_SG)
@@ -55,8 +60,8 @@ int	basic_syntax_checker(t_ms *ms)
 {
 	t_token	*tmp;
 	t_token	*last_tmp;
-	int 	res;
-	int 	print;
+	int		res;
+	int		print;
 
 	tmp = ms->token;
 	last_tmp = NULL;
@@ -107,6 +112,6 @@ int	basic_syntax_checker(t_ms *ms)
 			res = 6;
 	}
 	if (print == 0 && res != 0)
-			res = res_return(res);
+		res = res_return(res);
 	return (res);
 }

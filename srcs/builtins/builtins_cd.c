@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschaefe <aschaefe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 02:13:13 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/16 13:22:19 by aschaefe         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:57:34 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,49 +86,3 @@ void	builtin_cd(t_ms *ms, t_command *cmd)
 		}
 	}
 }
-
-/*
-void	builtin_cd(t_ms *ms, t_command *cmd)
-{
-	(void)ms;
-	if (chdir(cmd->tab_options[0]) != 0)
-	{
-		error_handle_no_exit(127, join_msg("minishell: cd: ", cmd->tab_options[0], ": No such file or directory"), 1);
-	}
-	g_error_no = 0;
-}
-*/
-/*	
-	ft_getenv donne le resultat apres le = dans l env
-
-	env
-	{
-		pwd=1
-		old_pwd=2
-		home=0
-	}
-	chdir home ()
-	env
-	{
-		pwd=0		// join pwd avec du retour de getcwd
-		old_pwd=1	// substr PWD de pwd puis strjoin old_pwd avec le substr
-		home=0		// pas touche
-	}
-	____________________________________________________________________________
-	env
-	{
-		pwd=1
-		old_pwd=2
-		home=0
-	}
-	chdir include/
-	env
-	{
-		pwd=include/	// join pwd avec du retour de getcwd
-		old_pwd=1		// substr PWD de pwd puis strjoin old_pwd avec le substr
-		home=0			// pas touche
-	}
-
-	chaque fois que j appelle update in env ou add in env, je dois TOUT le temps
-	envoyer tata=titi. PEUT IMPORTE LE QUOI QUOU BE
-*/

@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/18 16:42:40 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:55:57 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	update_history(t_ms *ms)
 
 int	check_before_execution(t_ms *ms)
 {
-	t_redirection *tmp;
+	t_redirection	*tmp;
 
 	tmp = ms->redir;
 	if (tmp)
