@@ -1,2 +1,0 @@
-[0;33mTest 139: ❌[38;5;244m $EMPTY 
-[0mmini exit code = 139

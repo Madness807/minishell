@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:32:26 by jo                #+#    #+#             */
-/*   Updated: 2023/08/18 17:05:06 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:42:59 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,9 @@ int			cmd_not_find_check(t_ms *ms);
 int			only_empty(t_ms *ms);
 void		looking_for_echo(t_ms *ms);
 void		init_bin_path(t_ms *ms);
+char		*def_prompt(t_ms *ms);
+void		update_history(t_ms *ms);
+int			check_before_execution(t_ms *ms);
 
 //			PARSING FUNCTION
 void		parser(t_ms *ms);
@@ -240,6 +243,7 @@ void		init_redirection(t_ms *ms);
 void		close_fd(t_ms *ms);
 t_command	*last_command(t_ms *ms);
 void		my_exec(char *path, t_command *curr_cmd, t_ms *ms);
+void		wait_child(t_ms *ms);
 
 //			SIGNAL FUNCTION
 void		use_signal(void);

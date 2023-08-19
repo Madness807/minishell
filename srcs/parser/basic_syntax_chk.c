@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 22:07:53 by joterret          #+#    #+#             */
-/*   Updated: 2023/08/18 17:10:15 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:58:22 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int	check_last_token(t_token *last_tmp)
 	}
 	return (res);
 }
+
+
+
 
 int	basic_syntax_checker(t_ms *ms)
 {

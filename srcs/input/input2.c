@@ -6,11 +6,17 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/15 22:23:10 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:53:42 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	do_handle_error(t_token *tmp)
+{
+	error_handle_no_exit(127, join_msg("\"", \
+		tmp->contenue, ": command not found"), 1);
+}
 
 int	cmd_not_find_check(t_ms *ms)
 {
@@ -23,9 +29,7 @@ int	cmd_not_find_check(t_ms *ms)
 	tmp = ms->token;
 	if (tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
 	{
-		error_handle_no_exit(127, \
-		join_msg("\"", \
-		tmp->contenue, ": command not found"), 1);
+		do_handle_error(tmp);
 		res++;
 	}
 	while (tmp)
@@ -33,9 +37,7 @@ int	cmd_not_find_check(t_ms *ms)
 		if (last_tmp && last_tmp->type == TOKEN_PIPE && 
 			tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
 		{
-			error_handle_no_exit(127, \
-			join_msg("\"", \
-			tmp->contenue, ": command not found"), 1);
+			do_handle_error(tmp);
 			res++;
 		}
 		last_tmp = tmp;

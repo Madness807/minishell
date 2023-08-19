@@ -6,56 +6,29 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:53 by aschaefe          #+#    #+#             */
-/*   Updated: 2023/08/18 16:55:57 by joterret         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:40:17 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*def_prompt(t_ms *ms)
+void	hard_work_2(t_ms *ms)
 {
-	if (ms->current_folder)
+	tokeniser(ms);
+	print_lst_token_1(ms);
+	if (basic_syntax_checker(ms) == 0)
 	{
-		free(ms->current_folder);
-		ms->current_folder = NULL;
-	}
-	ms->current_folder = getcwd(ms->current_folder, PATH_MAX);
-	return (ft_strjoin(ms->current_folder, "> "));
-}
-
-void	update_history(t_ms *ms)
-{
-	int	len_cmd;
-
-	len_cmd = ft_strlen(ms->user_cmd);
-	if (ft_strict_strncmp(ms->user_cmd, ms->last_user_cmd, len_cmd) != 0)
-	{
-		free(ms->last_user_cmd);
-		ms->last_user_cmd = NULL;
-		ms->last_user_cmd = ft_strdup(ms->user_cmd);
-		add_history(ms->user_cmd);
-	}
-}
-
-int	check_before_execution(t_ms *ms)
-{
-	t_redirection	*tmp;
-
-	tmp = ms->redir;
-	if (tmp)
-	{
-		while (tmp)
+		parser(ms);
+		if (cmd_not_find_check(ms) == 0 && ms->command)
 		{
-			if (tmp->file == NULL)
-			{
-				error_handle_no_exit(2, \
-				"bash: syntax error near unexpected token `newline'", 1);
-				return (1);
-			}
-			tmp = tmp->next;
+			init_fd(ms);
+			init_redirection(ms);
+			print_lst_command(ms);
+			print_lst_redir(ms);
+			if (check_before_execution(ms) == 0)
+				execution(ms);
 		}
 	}
-	return (0);
 }
 
 void	hard_work(t_ms *ms)
@@ -71,23 +44,7 @@ void	hard_work(t_ms *ms)
 			add_spaces(ms);
 			handle_quote(ms);
 			if (only_empty(ms) == 0)
-			{
-				tokeniser(ms);
-				print_lst_token_1(ms);
-				if (basic_syntax_checker(ms) == 0)
-				{
-					parser(ms);
-					if (cmd_not_find_check(ms) == 0 && ms->command)
-					{
-						init_fd(ms);
-						init_redirection(ms);
-						print_lst_command(ms);
-						print_lst_redir(ms);
-						if (check_before_execution(ms) == 0)
-							execution(ms);
-					}
-				}
-			}
+				hard_work_2(ms);
 			clean_lexer_parser(ms);
 		}
 	}
