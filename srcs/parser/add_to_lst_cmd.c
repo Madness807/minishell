@@ -62,8 +62,8 @@ void	add_builtins_to_lst_cmd(t_token *token, t_ms *ms)
 	command->cmd_path = NULL;
 	command->cmd_name = token->contenue;
 	command->next = NULL;
-	if (token->next != NULL && token->next->type != TOKEN_PIPE &&
-		(token->next->type < 8 || token->next->type > 11))
+	if (token->next != NULL && token->next->type != TOKEN_PIPE
+		&& (token->next->type < 8 || token->next->type > 11))
 		fill_tab_options(token, command);
 	else
 		command->tab_options = NULL;

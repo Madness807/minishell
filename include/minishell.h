@@ -212,7 +212,8 @@ int			get_fd_redir_sg(t_redirection *redir, t_ms *ms);
 int			get_fd_redir_dd(t_redirection *redir, t_ms *ms);
 int			get_fd_redir_dg(t_redirection *redir, t_ms *ms);
 t_command	*last_command(t_ms *ms);
-int			basic_syntax_checker(t_ms *ms);
+int			basic_syntax_checker(t_ms *ms, int res, int print);
+int			res_return(int res);
 
 //			BUILTINS FUNCTION
 void		call_builtins(char *command, t_command *curr_cmd, t_ms *ms);

@@ -40,6 +40,7 @@ SRC				=		srcs/main.c \
 						srcs/parser/get_fd.c\
 						srcs/parser/get_fd_utils.c\
 						srcs/parser/basic_syntax_chk.c\
+						srcs/parser/basic_syntax_chk_2.c\
 						srcs/signal/signal.c\
 						srcs/signal/signal_child.c\
 						srcs/free_and_exit/free.c\

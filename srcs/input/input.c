@@ -15,16 +15,13 @@
 void	hard_work_2(t_ms *ms)
 {
 	tokeniser(ms);
-	print_lst_token_1(ms);
-	if (basic_syntax_checker(ms) == 0)
+	if (basic_syntax_checker(ms, 0, 0) == 0)
 	{
 		parser(ms);
 		if (cmd_not_find_check(ms) == 0 && ms->command)
 		{
 			init_fd(ms);
 			init_redirection(ms);
-			print_lst_command(ms);
-			print_lst_redir(ms);
 			if (check_before_execution(ms) == 0)
 				execution(ms);
 		}
@@ -75,3 +72,24 @@ void	user_input(t_ms *ms)
 		prompt = NULL;
 	}
 }
+
+/*
+void	hard_work_2(t_ms *ms)
+{
+	tokeniser(ms);
+	//print_lst_token_1(ms);
+	if (basic_syntax_checker(ms, 0, 0) == 0)
+	{
+		parser(ms);
+		if (cmd_not_find_check(ms) == 0 && ms->command)
+		{
+			init_fd(ms);
+			init_redirection(ms);
+			//print_lst_command(ms);
+			//print_lst_redir(ms);
+			if (check_before_execution(ms) == 0)
+				execution(ms);
+		}
+	}
+}
+*/

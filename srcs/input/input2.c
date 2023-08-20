@@ -34,8 +34,8 @@ int	cmd_not_find_check(t_ms *ms)
 	}
 	while (tmp)
 	{
-		if (last_tmp && last_tmp->type == TOKEN_PIPE &&
-			tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
+		if (last_tmp && last_tmp->type == TOKEN_PIPE
+			&& tmp->type != TOKEN_BUILTINS && tmp->type != TOKEN_CMD)
 		{
 			do_handle_error(tmp);
 			res++;

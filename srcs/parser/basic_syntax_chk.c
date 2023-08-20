@@ -12,29 +12,6 @@
 
 #include "../../include/minishell.h"
 
-int	res_return(int res)
-{
-	if (res == 1)
-		error_handle_no_exit(2, \
-			"bash: syntax error near unexpected token `newline'", 0);
-	if (res == 2)
-		error_handle_no_exit(2, \
-			"bash: syntax error near unexpected token `|'", 0);
-	if (res == 3)
-		error_handle_no_exit(2, \
-			"bash: syntax error near unexpected token `>'", 0);
-	if (res == 4)
-		error_handle_no_exit(2, \
-			"bash: syntax error near unexpected token `<'", 0);
-	if (res == 5)
-		error_handle_no_exit(2, \
-			"bash: syntax error near unexpected token `>>'", 0);
-	if (res == 6)
-		error_handle_no_exit(2, \
-			"bash: syntax error near unexpected token `<<'", 0);
-	return (res);
-}
-
 int	check_last_token(t_token *last_tmp)
 {
 	int	res;
@@ -56,30 +33,64 @@ int	check_last_token(t_token *last_tmp)
 	return (res);
 }
 
-
-
-
-int	basic_syntax_checker(t_ms *ms)
+int	step_one(t_token *tmp)
 {
-	t_token	*tmp;
-	t_token	*last_tmp;
-	int		res;
-	int		print;
+	int	res;
 
-	tmp = ms->token;
-	last_tmp = NULL;
 	res = 0;
-	print = 0;
+	if (tmp->type == TOKEN_PIPE)
+		res = 2;
+	else if (tmp->type == TOKEN_REDIC_SD)
+		res = 1;
+	else if (tmp->type == TOKEN_REDIC_SG)
+		res = 1;
+	else if (tmp->type == TOKEN_REDIC_DD)
+		res = 1;
+	else if (tmp->type == TOKEN_REDIC_DG)
+		res = 1;
+	else
+		res = 0;
+	return (res);
+}
+
+int	step_two(t_token *tmp, t_token *last_tmp, int res)
+{
+	if (tmp->type == TOKEN_PIPE)
+		res = check_last_token(last_tmp);
+	if (tmp->type == TOKEN_REDIC_SD)
+		res = check_last_token(last_tmp);
+	if (tmp->type == TOKEN_REDIC_SG)
+		res = check_last_token(last_tmp);
+	if (tmp->type == TOKEN_REDIC_DD)
+		res = check_last_token(last_tmp);
+	if (tmp->type == TOKEN_REDIC_DG)
+		res = check_last_token(last_tmp);
+	return (res);
+}
+
+int	step_three(t_token *tmp, int res)
+{
 	if (tmp->type == TOKEN_PIPE)
 		res = 2;
 	if (tmp->type == TOKEN_REDIC_SD)
-		res = 1;
+		res = 3;
 	if (tmp->type == TOKEN_REDIC_SG)
-		res = 1;
+		res = 4;
 	if (tmp->type == TOKEN_REDIC_DD)
-		res = 1;
+		res = 5;
 	if (tmp->type == TOKEN_REDIC_DG)
-		res = 1;
+		res = 6;
+	return (res);
+}
+
+int	basic_syntax_checker(t_ms *ms, int res, int print)
+{
+	t_token	*tmp;
+	t_token	*last_tmp;
+
+	tmp = ms->token;
+	last_tmp = NULL;
+	res = step_one(tmp);
 	if (res == 1)
 		print = res_return(1);
 	if (res == 2)
@@ -88,32 +99,12 @@ int	basic_syntax_checker(t_ms *ms)
 	tmp = tmp->next;
 	while (tmp && tmp->next != NULL)
 	{
-		if (tmp->type == TOKEN_PIPE)
-			res = check_last_token(last_tmp);
-		if (tmp->type == TOKEN_REDIC_SD)
-			res = check_last_token(last_tmp);
-		if (tmp->type == TOKEN_REDIC_SG)
-			res = check_last_token(last_tmp);
-		if (tmp->type == TOKEN_REDIC_DD)
-			res = check_last_token(last_tmp);
-		if (tmp->type == TOKEN_REDIC_DG)
-			res = check_last_token(last_tmp);
+		res = step_two(tmp, last_tmp, res);
 		last_tmp = tmp;
 		tmp = tmp->next;
 	}
 	if (tmp)
-	{
-		if (tmp->type == TOKEN_PIPE)
-			res = 2;
-		if (tmp->type == TOKEN_REDIC_SD)
-			res = 3;
-		if (tmp->type == TOKEN_REDIC_SG)
-			res = 4;
-		if (tmp->type == TOKEN_REDIC_DD)
-			res = 5;
-		if (tmp->type == TOKEN_REDIC_DG)
-			res = 6;
-	}
+		res = step_three(tmp, res);
 	if (print == 0 && res != 0)
 		res = res_return(res);
 	return (res);

@@ -20,8 +20,6 @@ void	my_exec(char *path, t_command *curr_cmd, t_ms *ms)
 	{
 		execve(path, curr_cmd->tab_options, ms->env);
 		g_error_no = errno;
-		printf("%d\n", g_error_no);
-		exit (g_error_no);
 	}
 }
 

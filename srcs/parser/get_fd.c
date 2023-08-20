@@ -22,7 +22,7 @@ int	get_fd_redir_sd(t_redirection *redir, t_ms *ms)
 	if (fd == -1)
 	{
 		g_error_no = 1;
-		error_handle(1, " Permission denied", 0);
+		error_handle_no_exit(1, " Permission denied", 0);
 		close(fd);
 		return (-1);
 	}
@@ -44,7 +44,7 @@ int	get_fd_redir_dd(t_redirection *redir, t_ms *ms)
 	if (fd == -1)
 	{
 		g_error_no = 1;
-		error_handle(1, " Permission denied", 0);
+		error_handle_no_exit(1, " Permission denied", 0);
 		close(fd);
 		return (-1);
 	}
@@ -66,7 +66,7 @@ int	get_fd_redir_sg(t_redirection *redir, t_ms *ms)
 	if (fd == -1)
 	{
 		g_error_no = 1;
-		error_handle(1, " Permission denied", 0);
+		error_handle_no_exit(1, " Permission denied", 0);
 		close(fd);
 		return (-1);
 	}
@@ -113,7 +113,7 @@ int	get_fd_redir_dg(t_redirection *redir, t_ms *ms)
 	if (fd == -1)
 	{
 		g_error_no = 1;
-		error_handle(1, " Permission denied", 0);
+		error_handle_no_exit(1, " Permission denied", 0);
 		close(fd);
 		return (-1);
 	}

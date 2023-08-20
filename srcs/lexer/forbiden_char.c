@@ -19,8 +19,8 @@ int	forbiden_char(t_ms *ms)
 	i = 0;
 	while (ms->user_cmd[i])
 	{
-		if ((ms->user_cmd[i] == '\\' || ms->user_cmd[i] == ';') &&
-			is_in_quote(i, i, ms->user_cmd) == 0)
+		if ((ms->user_cmd[i] == '\\' || ms->user_cmd[i] == ';')
+			&& is_in_quote(i, i, ms->user_cmd) == 0)
 		{
 			error_handle_no_exit(1, "Error42subj: forbiden char detected\n", 0);
 			return (1);
