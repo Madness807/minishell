@@ -58,13 +58,13 @@ void	nice_while(t_ms *ms, char *buffer, int *buffer_idx, \
 	last_token = NULL;
 	while (1)
 	{
-		if (state == NONE && (*p == ' ' || *p == '\0')) 
+		if (state == NONE && (*p == ' ' || *p == '\0'))
 		{
 			last_token = create_new_token(ms, buffer_idx, buffer, last_token);
-			if (*p == '\0') 
+			if (*p == '\0')
 				break ;
 		}
-		else if (*p == '"' && state != SINGLE_QUOTE) 
+		else if (*p == '"' && state != SINGLE_QUOTE)
 			switch_state(&state, DOUBLE_QUOTE);
 		else if (*p == '\'' && state != DOUBLE_QUOTE)
 			switch_state(&state, SINGLE_QUOTE);
@@ -87,7 +87,7 @@ void	handle_quote(t_ms *ms)
 	buffer = malloc((ft_strlen(ms->user_cmd) + 1) * sizeof(char));
 	buffer_idx = 0;
 	nice_while(ms, buffer, &buffer_idx, p);
-	free(buffer); 
+	free(buffer);
 }
 
 /*

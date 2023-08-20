@@ -63,12 +63,12 @@ void	builtin_exit(t_ms *ms, t_command *curr_cmd)
 long long	ft_atol(t_ms *ms, const char *nptr, long long i, long long res)
 {
 	long long	sign;
-	long long	max_val_div_10;
-	long long	min_val_div_10;
+	long long	max;
+	long long	min;
 
 	sign = 1;
-	max_val_div_10 = ms->max_int / 10;
-	min_val_div_10 = ms->min_int / 10;
+	max = ms->max_int / 10;
+	min = ms->min_int / 10;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
@@ -79,11 +79,9 @@ long long	ft_atol(t_ms *ms, const char *nptr, long long i, long long res)
 	}
 	while (nptr[i] != 0 && (nptr[i] >= '0' && nptr[i] <= '9'))
 	{
-		if (sign > 0 && (res > max_val_div_10 || \
-			(res == max_val_div_10 && nptr[i] - '0' > 7)))
+		if (sign > 0 && (res > max || (res == max && nptr[i] - '0' > 7)))
 			return (ms->max_int);
-		if (sign < 0 && (res < min_val_div_10 || \
-			(res == min_val_div_10 && nptr[i] - '0' > 8)))
+		if (sign < 0 && (res < min || (res == min && nptr[i] - '0' > 8)))
 			return (ms->min_int);
 		res = (res * 10) + sign * (nptr[i] - '0');
 		i++;

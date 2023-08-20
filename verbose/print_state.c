@@ -44,13 +44,13 @@ void	boucle_sur_tab_opts(char **tab_options)
 	{
 		if (i == 0)
 		{
-			printf(YEL "Options[%i] = %s\t\t" RESET, 
+			printf(YEL "Options[%i] = %s\t\t" RESET,
 				i, tab_options[i]);
 			printf("\n");
 		}
 		else
 		{
-			printf(YEL "\t\t\t\t\tOptions[%i] = %s" RESET, 
+			printf(YEL "\t\t\t\t\tOptions[%i] = %s" RESET,
 				i, tab_options[i]);
 			printf("\n");
 		}

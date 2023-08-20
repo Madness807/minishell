@@ -37,7 +37,7 @@ void	clean_token(t_ms *ms)
 
 void	free_tab_content(char **tab_options)
 {
-	int	i; 
+	int	i;
 
 	i = 0;
 	if (tab_options)

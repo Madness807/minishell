@@ -26,7 +26,7 @@ void	bubble_sort_recursive(char **env, int n, int i, int j)
 	char	*str1;
 	char	*str2;
 
-	if (i == n - 1) 
+	if (i == n - 1)
 	{
 		if (j == n - 1)
 		{
@@ -36,12 +36,12 @@ void	bubble_sort_recursive(char **env, int n, int i, int j)
 	}
 	str1 = env[i];
 	str2 = env[i + 1];
-	while (*str1 != '=' && *str2 != '=' && *str1 == *str2) 
+	while (*str1 != '=' && *str2 != '=' && *str1 == *str2)
 	{
 		str1++;
 		str2++;
 	}
-	if (*str1 != '=' && *str2 != '=' && *str1 > *str2) 
+	if (*str1 != '=' && *str2 != '=' && *str1 > *str2)
 		swap(&env[i], &env[i + 1]);
 	bubble_sort_recursive(env, n, i + 1, j);
 }

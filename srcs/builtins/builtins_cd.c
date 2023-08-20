@@ -19,11 +19,11 @@ void	update_old_pwd_and_pwd(t_ms *ms)
 	int		size;
 
 	tmp = ft_getenv(ms, "PWD");
-	res = ft_strjoin("OLD_PWD=", tmp);
+	res = ft_strjoin("OLDPWD=", tmp);
 	size = ft_strlen(res);
 	free(tmp);
 	tmp = NULL;
-	if (is_already_in_env(ms, "OLD_PWD", 7) == 1)
+	if (is_already_in_env(ms, "OLDPWD=", 6) == 1)
 		update_env(ms, res, size);
 	else
 		add_in_env(ms, res);
@@ -32,14 +32,12 @@ void	update_old_pwd_and_pwd(t_ms *ms)
 	tmp = getcwd(tmp, PATH_MAX);
 	res = ft_strjoin("PWD=", tmp);
 	free(tmp);
-	tmp = NULL;
 	size = ft_strlen(res);
-	if (is_already_in_env(ms, "PWD", 3) == 1)
+	if (is_already_in_env(ms, "PWD=", 3) == 1)
 		update_env(ms, res, size);
 	else
 		add_in_env(ms, res);
 	free(res);
-	res = NULL;
 }
 
 void	builtin_cd_no_args(t_ms *ms)
