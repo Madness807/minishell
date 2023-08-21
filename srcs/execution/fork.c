@@ -55,9 +55,9 @@ void	wait_child(t_ms *ms)
 		{
 			waitpid(curr_cmd->pid, &ms->wait_status, 0);
 			if (WIFSIGNALED(ms->wait_status))
-				ms->wait_status = 128 + ms->wait_status;
+				g_error_no = 128 + WTERMSIG(ms->wait_status);
 			if (WIFEXITED(ms->wait_status))
-				ms->wait_status = WEXITSTATUS(ms->wait_status);
+				g_error_no = WEXITSTATUS(ms->wait_status);
 		}
 		curr_cmd = curr_cmd->next;
 	}

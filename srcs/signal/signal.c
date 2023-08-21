@@ -24,16 +24,19 @@ void	ctrl_c(int key)
 void	other_ctrl(int key)
 {
 	(void)key;
-	rl_on_new_line();
-	rl_redisplay();
 }
 
 void	use_signal(void)
 {
-	signal(SIGINT, ctrl_c);
-	signal(SIGQUIT, other_ctrl);
-}
+	struct sigaction	sig_quit;
+	struct sigaction	sig_int;
 
-// ajouter les signaux dans les commandes bloquantes (exemple cat qui attend une
-// entree user, le ctrl \ + c ne fait pas la meme quand dans minishell de base
-// le ctrl d ferme tout dans tout les cas
+	sig_int.sa_handler = &ctrl_c;
+	sigemptyset(&sig_int.sa_mask);
+	sig_int.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sig_int, NULL);
+	sig_quit.sa_handler = SIG_IGN;
+	sigemptyset(&sig_quit.sa_mask);
+	sig_quit.sa_flags = SA_RESTART;
+	sigaction(SIGQUIT, &sig_quit, NULL);
+}

@@ -89,6 +89,8 @@ int	here_doc_fd(char *delimiter)
 	while (1)
 	{
 		line = readline("> ");
+		if (line == NULL)
+			break ;
 		if (!ft_strcmp(line, delimiter))
 		{
 			free (line);

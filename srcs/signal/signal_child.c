@@ -23,8 +23,9 @@ void	ctrl_c_child(int key)
 void	other_ctrl_child(int key)
 {
 	(void)key;
+	rl_replace_line("", 0);
 	rl_on_new_line();
-	rl_redisplay();
+	write(1, "\n", 1);
 }
 
 void	use_signal_child(void)
