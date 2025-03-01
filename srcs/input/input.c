@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
+/*
 void	hard_work_2(t_ms *ms)
 {
 	tokeniser(ms);
@@ -27,8 +27,7 @@ void	hard_work_2(t_ms *ms)
 		}
 	}
 }
-
-/*
+*/
 void	hard_work_2(t_ms *ms)
 {
 	tokeniser(ms);
@@ -47,7 +46,6 @@ void	hard_work_2(t_ms *ms)
 		}
 	}
 }
-*/
 
 void	hard_work(t_ms *ms)
 {

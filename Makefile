@@ -91,7 +91,7 @@ RM				=		rm -f
 
 #***** Compilation *****#
 
-all : logo lib start $(NAME)
+all : lib $(NAME)
 
 lib:
 			@$(MLIBFT) all
@@ -145,3 +145,5 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean 
+
+$(NAME): -lreadline
